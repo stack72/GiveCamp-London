@@ -9,25 +9,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCampStarterKit", "GiveC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7A618468-9352-4283-BC2D-AB10B00C0E08}"
 	ProjectSection(SolutionItems) = preProject
-		GiveCampStarterSite1.vsmdi = GiveCampStarterSite1.vsmdi
 		Build\InitialMember.sql = Build\InitialMember.sql
-		Local.testsettings = Local.testsettings
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{56D62E5D-A48D-4165-BE46-4F1822EED841}"
 	ProjectSection(SolutionItems) = preProject
 		Build\AspnetMembership.sql = Build\AspnetMembership.sql
-		GiveCampStarterSite.vsmdi = GiveCampStarterSite.vsmdi
 		Build\InitialMember.sql = Build\InitialMember.sql
 		Build\SqlServerSchema.sql = Build\SqlServerSchema.sql
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = GiveCampStarterSite1.vsmdi
 	EndGlobalSection
@@ -54,5 +47,9 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{56D62E5D-A48D-4165-BE46-4F1822EED841} = {7A618468-9352-4283-BC2D-AB10B00C0E08}
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 EndGlobal
