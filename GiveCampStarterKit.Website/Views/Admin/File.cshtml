@@ -1,0 +1,86 @@
+﻿
+@model GiveCampStarterKit.Document
+@{
+    ViewBag.Title = "File";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>File Management</h2>
+<fieldset style="border:1px solid black">
+<legend><h2>Uploaded Files</h2></legend>
+<table style="border:1px">
+<tr style="font-weight:bold">
+<td style="width:100px">Id</td>
+<td style="width:100px">Type</td>
+<td style="width:250px">Name</td>
+<td style="width:500px">Description</td>
+<td style="width:250px">Filename</td>
+<td style="width:100px">MIME Type</td>
+<td style="width:100px">Upload Date</td>
+<td style="width:100px"></td>
+</tr>
+
+@foreach (Document d in ViewBag.DocumentList)
+{
+    <tr>
+<td>@d.DocumentId</td>
+<td>@d.Type</td>
+<td>@d.Name</td>
+<td>@d.Description</td>
+<td>@d.OriginalFilename</td>
+<td>@d.MimeType</td>
+<td>@d.UploadDate</td>
+    <td>
+@Html.ActionLink("Edit", "File", new { documentId = d.DocumentId, action = "edit" })  </td>
+   
+    </tr>
+}
+</table>
+
+</fieldset>
+
+
+<h2> Add/Edit </h2>
+@using (Html.BeginForm("File", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<table>
+<tr>
+<td>Id</td>
+<td>@Html.HiddenFor(d => d.DocumentId) @Html.Raw(Model.DocumentId == 0 ? "" : Model.DocumentId.ToString())</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>@Html.TextBoxFor(d => d.Name)</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>@Html.DropDownListFor(d => d.Type, (List<SelectListItem>)ViewBag.DocumentTypeList)</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>@Html.TextBoxFor(d => d.Description)</td>
+</tr>
+@if (Model.DocumentId == 0)
+{
+<tr>
+<td>Filename</td>
+<td><input id="UploadFile" name="UploadFile" type="file" /></td>
+</tr>
+}
+else
+{
+<tr>
+<td>Filename</td>
+<td>@Html.TextBoxFor(d => d.OriginalFilename)</td>
+</tr>
+}
+</table>    
+
+
+ <input type="submit" value="Save" />
+if (Model.DocumentId != 0)
+    {
+        <input type="button" value="Delete" onclick="document.location.href='File?documentId=@Model.DocumentId&option=delete'" />
+        <input type="button" value="Cancel" onclick="document.location.href='File'" /> 
+    }
+}
