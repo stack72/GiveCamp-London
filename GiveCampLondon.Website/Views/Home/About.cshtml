@@ -41,9 +41,15 @@
     </ul>
 
 
-    @section sidebar{
+@section sidebar{
     <ul>
-        <li>@Html.ActionLink("Agenda", "Agenda", "Home")</li>
-        <li>@Html.ActionLink("Location", "Location", "Home")</li>
+        <li>
+            <h3>
+                Event Resources</h2>
+                <ul>
+                    <li id="menuAgenda">@Html.ActionLink("Agenda", "Agenda", "Home")</li>
+                    <li id="menuLocation">@Html.ActionLink("Location", "Location", "Home")</li>
+                </ul>
+        </li>
     </ul>
 }
