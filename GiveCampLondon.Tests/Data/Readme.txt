@@ -1,1 +1,0 @@
-﻿This is where the .sdf file will be created by SQLCEHelper

@@ -1,0 +1,7 @@
+<Modules>
+  <Module PersistentId="392197F1-5C92-4E1C-A0D4-192F6A6FF533" ModuleId="GiveCampStarterKit.Tests" />
+  <Module PersistentId="180B44E6-24C5-4B8A-B5C2-C1B781E2C107" ModuleId="GiveCampStarterKit" />
+  <Module PersistentId="B3A75FCF-84BB-4079-B9F9-92CEBE472023" ModuleId="GiveCampStarterKit.Website" />
+  <Module PersistentId="d:Miscellaneous Files" ModuleId="System.Web.ApplicationServices" />
+  <Module PersistentId="System.Web.ApplicationServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" ModuleId="System.Web.ApplicationServices_1" />
+</Modules>

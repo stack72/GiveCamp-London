@@ -1,0 +1,94 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Home/f:Agenda.cshtml" caret="230" fromTop="11" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Home/f:About.cshtml" caret="2310" fromTop="18" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Shared/f:_Layout.cshtml" caret="2083" fromTop="11" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Account/f:LogOn.cshtml" caret="93" fromTop="5" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Home/f:Faq.cshtml" caret="0" fromTop="0" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Controllers/f:DocumentController.cs" caret="0" fromTop="0" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Controllers/f:HomeController.cs" caret="357" fromTop="8" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/f:Global.asax.cs" caret="0" fromTop="0" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Charity/f:Index.cshtml" caret="0" fromTop="0" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Controllers/f:CharityController.cs" caret="2122" fromTop="0" />
+      <File id="7A618468-9352-4283-BC2D-AB10B00C0E08/f:InitialMember.sql/l:C!?Projects?givecamp.org.uk?code?trunk?Build?InitialMember.sql" caret="318" fromTop="12" />
+      <File id="56D62E5D-A48D-4165-BE46-4F1822EED841/f:SqlServerSchema.sql/l:C!?Projects?givecamp.org.uk?code?trunk?Build?SqlServerSchema.sql" caret="16034" fromTop="25" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Home/f:Index.cshtml" caret="1184" fromTop="13" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/f:Web.config" caret="1094" fromTop="15" />
+      <File id="180B44E6-24C5-4B8A-B5C2-C1B781E2C107/d:Repositories/f:SettingRepository.cs" caret="540" fromTop="12" />
+      <File id="180B44E6-24C5-4B8A-B5C2-C1B781E2C107/d:Configuration/f:StructureMapControllerFactory.cs" caret="410" fromTop="13" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/f:Web.config" caret="182" fromTop="6" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Controllers/f:VolunteerController.cs" caret="1976" fromTop="6" />
+      <File id="56D62E5D-A48D-4165-BE46-4F1822EED841/f:AspnetMembership.sql/l:C!?Projects?givecamp.org.uk?code?trunk?Build?AspnetMembership.sql" caret="85747" fromTop="25" />
+      <File id="56D62E5D-A48D-4165-BE46-4F1822EED841/f:InitialMember.sql/l:C!?Projects?givecamp.org.uk?code?trunk?Build?InitialMember.sql" caret="3509" fromTop="27" />
+      <File id="180B44E6-24C5-4B8A-B5C2-C1B781E2C107/d:Services/f:IMemberShipService.cs" caret="568" fromTop="13" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Controllers/f:AccountController.cs" caret="6836" fromTop="15" />
+      <File id="180B44E6-24C5-4B8A-B5C2-C1B781E2C107/d:Services/f:AccountMembershipService.cs" caret="184" fromTop="7" />
+      <File id="180B44E6-24C5-4B8A-B5C2-C1B781E2C107/f:Charity.cs" caret="225" fromTop="10" />
+      <File id="180B44E6-24C5-4B8A-B5C2-C1B781E2C107/f:Content.cs" caret="0" fromTop="0" />
+      <File id="180B44E6-24C5-4B8A-B5C2-C1B781E2C107/f:SiteDataContext.cs" caret="1479" fromTop="7" />
+      <File id="180B44E6-24C5-4B8A-B5C2-C1B781E2C107/f:Document.cs" caret="166" fromTop="7" />
+      <File id="180B44E6-24C5-4B8A-B5C2-C1B781E2C107/f:VolunteerTechnology.cs" caret="24" fromTop="0" />
+      <File id="180B44E6-24C5-4B8A-B5C2-C1B781E2C107/d:Configuration/f:StructureMapRegistry.cs" caret="360" fromTop="13" />
+      <File id="180B44E6-24C5-4B8A-B5C2-C1B781E2C107/d:Repositories/f:DocumentRepository.cs" caret="0" fromTop="0" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Controllers/f:HomeController.cs" caret="0" fromTop="0" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Controllers/f:HomeController.cs" caret="311" fromTop="3" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Controllers/f:HomeController.cs" caret="311" fromTop="9" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Controllers/f:HomeController.cs" caret="311" fromTop="9" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Controllers/f:HomeController.cs" caret="311" fromTop="0" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Volunteer/f:Index.cshtml" caret="458" fromTop="5" />
+      <File id="56D62E5D-A48D-4165-BE46-4F1822EED841/f:SqlServerSchema.sql/l:C!?Projects?givecamp.org.uk?code?trunk?Build?SqlServerSchema.sql" caret="9880" fromTop="9" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Controllers/f:VolunteerController.cs" caret="2287" fromTop="12" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Volunteer/f:ThankYou.cshtml" caret="106" fromTop="4" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Controllers/f:VolunteerController.cs" caret="11380" fromTop="7" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Shared/f:_Layout.cshtml" caret="816" fromTop="3" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Shared/f:_Layout.cshtml" caret="1623" fromTop="16" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Shared/f:_Layout.cshtml" caret="635" fromTop="6" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Controllers/f:HomeController.cs" caret="567" fromTop="27" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Home/f:About.cshtml" caret="2135" fromTop="13" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Home/f:About.cshtml" caret="2310" fromTop="18" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Home/f:Faq.cshtml" caret="400" fromTop="15" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Home/f:Faq.cshtml" caret="571" fromTop="20" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Home/f:Location.cshtml" caret="63" fromTop="6" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Home/f:Location.cshtml" caret="234" fromTop="11" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Home/f:Agenda.cshtml" caret="59" fromTop="6" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Home/f:Agenda.cshtml" caret="230" fromTop="11" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/f:Global.asax.cs" caret="864" fromTop="13" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/f:Global.asax.cs" caret="0" fromTop="0" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Home/f:Index.cshtml" caret="892" fromTop="12" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Home/f:Index.cshtml" caret="1248" fromTop="16" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/d:Views/d:Home/f:Index.cshtml" caret="1184" fromTop="13" />
+      <File id="B3A75FCF-84BB-4079-B9F9-92CEBE472023/f:Web.config" caret="306" fromTop="8" />
+      <File id="180B44E6-24C5-4B8A-B5C2-C1B781E2C107/f:Document.cs" caret="104" fromTop="7" />
+      <File id="180B44E6-24C5-4B8A-B5C2-C1B781E2C107/d:Configuration/f:StructureMapRegistry.cs" caret="15" fromTop="1" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir>C:\Program Files (x86)\NUnit 2.5.9\bin\net-2.0\</NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="Controller`0" priority="0" />
+      <Item value="public" priority="1" />
+      <Item value="ActionResult`0" priority="1" />
+      <Item value="return" priority="1" />
+      <Item value="View`0" priority="1" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+</Configuration>
