@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCampStarterKit.Website", "GiveCampStarterKit.Website\GiveCampStarterKit.Website.csproj", "{B3A75FCF-84BB-4079-B9F9-92CEBE472023}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCampLondon.Website", "GiveCampLondon.Website\GiveCampLondon.Website.csproj", "{B3A75FCF-84BB-4079-B9F9-92CEBE472023}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCampStarterKit.Tests", "GiveCampStarterKit.Tests\GiveCampStarterKit.Tests.csproj", "{392197F1-5C92-4E1C-A0D4-192F6A6FF533}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCampLondon.Tests", "GiveCampLondon.Tests\GiveCampLondon.Tests.csproj", "{392197F1-5C92-4E1C-A0D4-192F6A6FF533}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCampStarterKit", "GiveCampStarterKit\GiveCampStarterKit.csproj", "{180B44E6-24C5-4B8A-B5C2-C1B781E2C107}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCampLondon", "GiveCampLondon\GiveCampLondon.csproj", "{180B44E6-24C5-4B8A-B5C2-C1B781E2C107}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7A618468-9352-4283-BC2D-AB10B00C0E08}"
 	ProjectSection(SolutionItems) = preProject
@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{56D62E5D
 		Build\InitialMember.sql = Build\InitialMember.sql
 		Build\SqlServerSchema.sql = Build\SqlServerSchema.sql
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{43EC2417-4C2C-451A-B902-B905FF833AE4}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -46,6 +48,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{392197F1-5C92-4E1C-A0D4-192F6A6FF533} = {43EC2417-4C2C-451A-B902-B905FF833AE4}
 		{56D62E5D-A48D-4165-BE46-4F1822EED841} = {7A618468-9352-4283-BC2D-AB10B00C0E08}
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
