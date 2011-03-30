@@ -1,4 +1,4 @@
-﻿@model GiveCampStarterKit.Website.Models.Volunteer.SignUpViewModel
+﻿@model GiveCampLondon.Website.Models.Volunteer.SignUpViewModel
 @{
     ViewBag.Title = "Volunteer Sign-up";
 }
@@ -61,13 +61,13 @@
             @Html.LabelFor(model => model.ShirtSize)
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.ShirtSize, new SelectList(GiveCampStarterKit.ShirtSizeValues.ShirtSizes))
+            @Html.DropDownListFor(model => model.ShirtSize, new SelectList(GiveCampLondon.ShirtSizeValues.ShirtSizes))
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.ShirtStyle)
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.ShirtStyle, new SelectList(GiveCampStarterKit.ShirtStyleValues.ShirtStyles))
+            @Html.DropDownListFor(model => model.ShirtStyle, new SelectList(GiveCampLondon.ShirtStyleValues.ShirtStyles))
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.JobRoleIds)

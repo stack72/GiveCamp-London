@@ -8,7 +8,7 @@ using GiveCampLondon.Configuration;
 
 namespace GiveCampLondon.Website
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
