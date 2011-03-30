@@ -1,0 +1,18 @@
+﻿@model GiveCampStarterKit.Charity
+@{
+    ViewBag.Title = "Details";
+}
+<h2>
+    Details</h2>
+@Html.DisplayForModel()
+@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+{
+    if (Model.Approved)
+    {
+        @Html.ActionLink("Disapprove", "Disapprove", new { id = Model.Id })   
+    }
+    else
+    { 
+        @Html.ActionLink("Approve", "Approve", new { id = Model.Id })   
+    }
+}

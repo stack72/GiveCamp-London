@@ -1,0 +1,24 @@
+﻿@model IEnumerable<GiveCampStarterKit.Website.Models.Charity.CharitySummaryModel>
+
+@{
+    ViewBag.Title = "Charities";
+}
+
+<h2>Charities</h2>
+
+<table>
+<tr>
+<th class="name">Name</th>
+<th class="email">Email</th>
+<th class="approved">Approved</th>
+</tr>
+@foreach (var summary in Model)
+{
+    <tr>
+        <td>
+    @Html.ActionLink(summary.Name, "Details", new { id = summary.Id }) </td> 
+    <td><a href="mailto:@summary.Email">@summary.Email</a></td>     
+    <td> @summary.Approved</td>
+    </tr>
+}
+</table>
