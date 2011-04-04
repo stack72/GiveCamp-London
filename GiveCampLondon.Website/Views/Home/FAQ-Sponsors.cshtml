@@ -1,0 +1,39 @@
+@{
+    ViewBag.Title = "FAQ-Sponsors";
+}
+<h1 class="pagetitle">
+    Frequently Asked Questions</h1>
+<div class="post">
+    <h2 class="title">
+        Sponsors</h2>
+    <div class="faq">
+        <a class="question">If I make a donation to this event, will I be recognized on the
+            website?</a>
+        <div class="answer">
+            <p>
+                Yes. If you make a donation, you will receive recognition on the Sponsor page.</p>
+        </div>
+    </div>
+</div>
+@section headInclude{
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $("#navHome").addClass("active");
+        });
+    </script>
+    <script src="@Url.Content("~/Content/Scripts/jquery.faqs.js")" type="text/javascript"></script>
+}
+@section sidebar{
+    <ul>
+        <li>
+            <h2>
+                FAQ Resources</h2>
+            <ul>
+                <li>@Html.ActionLink("Charities", "FAQ", new { id = "Charities" })</li>
+                <li>@Html.ActionLink("Developers", "FAQ", new { id = "Developers" })</li>
+                <li>@Html.ActionLink("Event Staff", "FAQ", new { id = "EventStaff" })</li>
+                <li>@Html.ActionLink("Sponsors", "FAQ", new { id = "Sponsors" })</li>
+            </ul>
+        </li>
+    </ul>
+}

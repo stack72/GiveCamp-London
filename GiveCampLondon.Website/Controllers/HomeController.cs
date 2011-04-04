@@ -13,10 +13,31 @@ namespace GiveCampLondon.Website.Controllers
         {
             return View();
         }
-        
-        public ActionResult Faq()
+
+        public ActionResult FAQ(string id)
         {
-            return View();
+            // just FAQs with no section specified
+            if (string.IsNullOrEmpty(id))
+            {
+                return View();
+            }
+
+            // section specified
+            switch (id)
+            {
+                case "Charities":
+                    return (View("FAQ-Charities"));
+                case "Developers":
+                    return (View("FAQ-Developers"));
+                case "EventStaff":
+                    return (View("FAQ-EventStaff"));
+                case "Sponsors":
+                    return (View("FAQ-Sponsors"));
+                default:
+                    // someone typed in a non-existant section URL
+                    // redirect them to the 'no section specified' case
+                    return RedirectToAction("FAQ", "Home");
+            }
         }
 
         public ActionResult Agenda()
