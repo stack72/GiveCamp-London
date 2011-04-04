@@ -4,11 +4,12 @@
     <file relUrl="Scripts/jquery.validate.unobtrusive.js" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Areas/TeamAdministration/Views/Home/VolunteersToAddTable.cshtml" publishTime="03/30/2011 22:15:11" />
     <file relUrl="Views/Volunteer/ThankYou.cshtml" publishTime="03/30/2011 08:24:26" />
+    <file relUrl="Views/Home/FAQ-Charities.cshtml" publishTime="04/04/2011 20:32:37" />
     <file relUrl="Views/Account/Register.cshtml" publishTime="03/30/2011 22:17:24" />
     <file relUrl="Content/themes/base/images/ui-bg_flat_75_ffffff_40x100.png" publishTime="03/30/2011 08:24:26" />
-    <file relUrl="bin/GiveCampLondon.Website.pdb" publishTime="04/04/2011 20:07:54" />
+    <file relUrl="Views/Home/Index.cshtml" publishTime="03/30/2011 08:24:26" />
+    <file relUrl="bin/GiveCampLondon.Website.pdb" publishTime="04/04/2011 21:11:50" />
     <file relUrl="Scripts/jquery-1.4.4.js" publishTime="03/30/2011 08:24:26" />
-    <file relUrl="bin/Microsoft.Web.Infrastructure.xml" publishTime="12/20/2010 10:52:36" />
     <file relUrl="Areas/TeamAdministration/Views/Home/NoTeams.cshtml" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Views/Account/LogOn.cshtml" publishTime="03/30/2011 22:17:24" />
     <file relUrl="Content/MvcMembership.css" publishTime="03/30/2011 08:24:26" />
@@ -17,16 +18,16 @@
     <file relUrl="Scripts/jquery-1.4.4-vsdoc.js" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Views/Volunteer/Index.cshtml" publishTime="03/30/2011 08:24:26" />
     <file relUrl="bin/System.Web.Mvc.dll" publishTime="01/05/2011 17:42:16" />
-    <file relUrl="Web.config" publishTime="04/04/2011 20:09:05" />
+    <file relUrl="Web.config" publishTime="04/04/2011 21:12:19" />
     <file relUrl="Areas/UserAdministration/Views/_ViewStart.cshtml" publishTime="03/30/2011 08:24:26" />
     <file relUrl="bin/System.Web.WebPages.Deployment.xml" publishTime="12/20/2010 10:52:36" />
     <file relUrl="Content/themes/base/images/ui-icons_cd0a0a_256x240.png" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Scripts/MicrosoftMvcAjax.js" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Areas/UserAdministration/Views/UserAdministration/Role.cshtml" publishTime="03/30/2011 22:17:24" />
     <file relUrl="Areas/TeamAdministration/Views/_ViewStart.cshtml" publishTime="03/30/2011 08:24:26" />
-    <file relUrl="bin/System.Web.WebPages.xml" publishTime="12/19/2010 23:59:38" />
     <file relUrl="Global.asax" publishTime="03/30/2011 18:48:53" />
     <file relUrl="Scripts/MicrosoftAjax.js" publishTime="03/30/2011 08:24:26" />
+    <file relUrl="Views/Home/FAQ-EventStaff.cshtml" publishTime="04/04/2011 20:40:11" />
     <file relUrl="Content/themes/base/images/ui-icons_2e83ff_256x240.png" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Scripts/jquery-1.4.4.min.js" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Content/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png" publishTime="03/30/2011 08:24:26" />
@@ -39,42 +40,43 @@
     <file relUrl="bin/PagedList.xml" publishTime="03/30/2011 08:24:27" />
     <file relUrl="Areas/UserAdministration/Views/UserAdministration/Details.cshtml" publishTime="03/30/2011 22:17:24" />
     <file relUrl="Content/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png" publishTime="03/30/2011 08:24:26" />
-    <file relUrl="Views/Home/Faq.cshtml" publishTime="03/30/2011 22:30:18" />
-    <file relUrl="bin/Antlr3.Runtime.dll" publishTime="03/30/2011 08:24:27" />
-    <file relUrl="Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png" publishTime="03/30/2011 08:24:26" />
+    <file relUrl="Views/Home/Faq.cshtml" publishTime="04/04/2011 20:30:31" />
+    <file relUrl="Scripts/MicrosoftAjax.debug.js" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Views/Volunteer/SignUp.cshtml" publishTime="03/30/2011 22:18:59" />
-    <file relUrl="Views/Web.config" publishTime="03/30/2011 22:08:39" />
     <file relUrl="Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png" publishTime="03/30/2011 08:24:26" />
+    <file relUrl="Areas/UserAdministration/Views/UserAdministration/UsersRoles.cshtml" publishTime="03/30/2011 22:16:15" />
     <file relUrl="bin/System.Web.Helpers.dll" publishTime="01/05/2011 15:45:38" />
     <file relUrl="Views/Admin/JobRoles.cshtml" publishTime="03/30/2011 08:24:26" />
     <file relUrl="bin/Microsoft.Web.Infrastructure.dll" publishTime="01/05/2011 15:45:38" />
     <file relUrl="bin/System.Data.Entity.dll" publishTime="03/18/2010 18:31:26" />
+    <file relUrl="Content/scripts/jquery.faqs.js" publishTime="07/30/2010 22:14:40" />
     <file relUrl="Areas/UserAdministration/Views/UserAdministration/Index.cshtml" publishTime="03/30/2011 22:16:31" />
     <file relUrl="bin/PagedList.dll" publishTime="03/30/2011 08:24:27" />
-    <file relUrl="Views/Volunteer/Details.cshtml" publishTime="03/30/2011 22:17:24" />
-    <file relUrl="bin/System.Web.WebPages.Razor.xml" publishTime="12/20/2010 10:52:36" />
     <file relUrl="Views/Admin/ControlPanel.cshtml" publishTime="03/30/2011 22:17:24" />
     <file relUrl="Content/themes/base/images/ui-icons_222222_256x240.png" publishTime="03/30/2011 08:24:26" />
-    <file relUrl="Areas/TeamAdministration/Views/Home/CurrentVolunteersTable.cshtml" publishTime="03/30/2011 22:14:51" />
+    <file relUrl="bin/Microsoft.Web.Infrastructure.xml" publishTime="12/20/2010 10:52:36" />
     <file relUrl="Views/Charity/ThankYou.cshtml" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Views/Shared/_LogOnPartial.cshtml" publishTime="03/30/2011 08:24:26" />
     <file relUrl="bin/System.Web.WebPages.Razor.dll" publishTime="01/05/2011 15:45:38" />
     <file relUrl="Views/Charity/SignUp.cshtml" publishTime="03/30/2011 22:17:24" />
-    <file relUrl="bin/System.Web.WebPages.Administration.dll" publishTime="01/05/2011 15:45:38" />
+    <file relUrl="Views/Home/FAQ-Sponsors.cshtml" publishTime="04/04/2011 20:41:14" />
+    <file relUrl="Scripts/jquery-ui.min.js" publishTime="03/30/2011 08:24:26" />
+    <file relUrl="bin/Antlr3.Runtime.Debug.dll" publishTime="03/30/2011 08:24:27" />
     <file relUrl="Views/Home/About.cshtml" publishTime="03/30/2011 22:29:42" />
     <file relUrl="Views/Account/ChangePasswordSuccess.cshtml" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Views/Shared/Error.cshtml" publishTime="03/30/2011 08:24:26" />
+    <file relUrl="Areas/TeamAdministration/Views/Home/CurrentVolunteersTable.cshtml" publishTime="03/30/2011 22:14:51" />
     <file relUrl="Content/themes/base/images/ui-icons_454545_256x240.png" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Areas/UserAdministration/Views/UserAdministration/Password.cshtml" publishTime="03/30/2011 22:16:03" />
     <file relUrl="Views/Home/Agenda.cshtml" publishTime="03/30/2011 22:29:56" />
     <file relUrl="Areas/TeamAdministration/Views/Home/Index.cshtml" publishTime="03/30/2011 08:24:26" />
-    <file relUrl="Views/Home/Location.cshtml" publishTime="03/30/2011 22:30:11" />
+    <file relUrl="bin/System.Web.WebPages.Razor.xml" publishTime="12/20/2010 10:52:36" />
     <file relUrl="Scripts/jquery.validate.min.js" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Content/themes/base/images/ui-bg_glass_65_ffffff_1x400.png" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Views/Charity/Index.cshtml" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Content/default.css" publishTime="03/30/2011 08:24:26" />
-    <file relUrl="Views/Account/ChangePassword.cshtml" publishTime="03/30/2011 22:17:24" />
-    <file relUrl="bin/GiveCampLondon.Website.dll" publishTime="04/04/2011 20:07:54" />
+    <file relUrl="Views/Volunteer/Details.cshtml" publishTime="03/30/2011 22:17:24" />
+    <file relUrl="bin/GiveCampLondon.Website.dll" publishTime="04/04/2011 21:11:50" />
     <file relUrl="Scripts/jquery.validate-vsdoc.js" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Scripts/MicrosoftMvcAjax.debug.js" publishTime="03/30/2011 08:24:26" />
     <file relUrl="bin/StructureMap.dll" publishTime="03/30/2011 08:24:27" />
@@ -83,7 +85,7 @@
     <file relUrl="bin/MvcMembership.dll" publishTime="03/30/2011 08:24:27" />
     <file relUrl="Views/Shared/_Layout.cshtml" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Views/Admin/EditContent.cshtml" publishTime="03/30/2011 22:17:24" />
-    <file relUrl="Scripts/jquery-ui.min.js" publishTime="03/30/2011 08:24:26" />
+    <file relUrl="Views/Web.config" publishTime="03/30/2011 22:08:39" />
     <file relUrl="bin/System.Web.Helpers.xml" publishTime="12/19/2010 23:59:38" />
     <file relUrl="bin/System.Web.Razor.dll" publishTime="01/05/2011 15:45:38" />
     <file relUrl="Views/Charity/Charities.cshtml" publishTime="03/30/2011 22:18:13" />
@@ -91,24 +93,26 @@
     <file relUrl="Scripts/MicrosoftMvcValidation.js" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Content/themes/base/images/ui-icons_888888_256x240.png" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Content/themes/base/jquery-ui.css" publishTime="03/30/2011 08:24:26" />
-    <file relUrl="bin/GiveCampLondon.pdb" publishTime="04/04/2011 20:07:54" />
+    <file relUrl="bin/GiveCampLondon.pdb" publishTime="04/04/2011 21:11:49" />
     <file relUrl="Views/_ViewStart.cshtml" publishTime="03/30/2011 08:24:26" />
+    <file relUrl="Views/Charity/ApprovedCharities.cshtml" publishTime="03/30/2011 22:17:53" />
+    <file relUrl="Scripts/jquery.validate.unobtrusive.min.js" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Scripts/jquery.unobtrusive-ajax.js" publishTime="03/30/2011 08:24:26" />
     <file relUrl="bin/StructureMap.xml" publishTime="03/30/2011 08:24:27" />
-    <file relUrl="Scripts/MicrosoftAjax.debug.js" publishTime="03/30/2011 08:24:26" />
+    <file relUrl="Views/Home/Location.cshtml" publishTime="03/30/2011 22:30:11" />
     <file relUrl="Views/Admin/JobRole.cshtml" publishTime="03/30/2011 08:24:26" />
-    <file relUrl="Areas/UserAdministration/Views/UserAdministration/UsersRoles.cshtml" publishTime="03/30/2011 22:16:15" />
+    <file relUrl="bin/System.Web.WebPages.xml" publishTime="12/19/2010 23:59:38" />
     <file relUrl="Areas/UserAdministration/Views/Web.config" publishTime="03/30/2011 08:24:26" />
-    <file relUrl="bin/Antlr3.Runtime.Debug.dll" publishTime="03/30/2011 08:24:27" />
+    <file relUrl="bin/Antlr3.Runtime.dll" publishTime="03/30/2011 08:24:27" />
     <file relUrl="Content/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png" publishTime="03/30/2011 08:24:26" />
-    <file relUrl="bin/System.Web.WebPages.Deployment.dll" publishTime="01/05/2011 15:45:38" />
     <file relUrl="Scripts/jquery.validate.js" publishTime="03/30/2011 08:24:26" />
     <file relUrl="bin/NuGet.Core.dll" publishTime="12/20/2010 13:37:28" />
+    <file relUrl="Views/Account/ChangePassword.cshtml" publishTime="03/30/2011 22:17:24" />
     <file relUrl="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png" publishTime="03/30/2011 08:24:26" />
-    <file relUrl="Scripts/jquery.validate.unobtrusive.min.js" publishTime="03/30/2011 08:24:26" />
+    <file relUrl="bin/System.Web.WebPages.Administration.dll" publishTime="01/05/2011 15:45:38" />
     <file relUrl="Areas/TeamAdministration/Views/Home/Edit.cshtml" publishTime="03/30/2011 22:15:28" />
-    <file relUrl="bin/GiveCampLondon.dll" publishTime="04/04/2011 20:07:54" />
-    <file relUrl="Views/Charity/ApprovedCharities.cshtml" publishTime="03/30/2011 22:17:53" />
-    <file relUrl="Views/Home/Index.cshtml" publishTime="03/30/2011 08:24:26" />
+    <file relUrl="bin/GiveCampLondon.dll" publishTime="04/04/2011 21:11:49" />
+    <file relUrl="Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png" publishTime="03/30/2011 08:24:26" />
+    <file relUrl="bin/System.Web.WebPages.Deployment.dll" publishTime="01/05/2011 15:45:38" />
   </publishProfile>
 </publishData>

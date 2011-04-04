@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace GiveCampLondon
 {
     public class Team

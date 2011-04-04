@@ -1,5 +1,4 @@
-﻿using System;
-using GiveCampLondon.Services;
+﻿using GiveCampLondon.Services;
 using StructureMap.Configuration.DSL;
 
 namespace GiveCampLondon.Configuration

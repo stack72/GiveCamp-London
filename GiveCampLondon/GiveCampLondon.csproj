@@ -39,6 +39,7 @@
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EFCodeFirst.0.8\lib\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.1.0\lib\StructureMap.dll</HintPath>
