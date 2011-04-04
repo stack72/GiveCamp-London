@@ -1,4 +1,4 @@
-USE GiveCampStarterKit
+USE GiveCampLondon
 GO
 
 IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[Charity]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)

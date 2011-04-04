@@ -8,15 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCampLondon", "GiveCampLondon\GiveCampLondon.csproj", "{180B44E6-24C5-4B8A-B5C2-C1B781E2C107}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7A618468-9352-4283-BC2D-AB10B00C0E08}"
-	ProjectSection(SolutionItems) = preProject
-		Build\InitialMember.sql = Build\InitialMember.sql
-		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{56D62E5D-A48D-4165-BE46-4F1822EED841}"
 	ProjectSection(SolutionItems) = preProject
-		Build\AspnetMembership.sql = Build\AspnetMembership.sql
-		Build\InitialMember.sql = Build\InitialMember.sql
 		Build\SqlServerSchema.sql = Build\SqlServerSchema.sql
 	EndProjectSection
 EndProject
