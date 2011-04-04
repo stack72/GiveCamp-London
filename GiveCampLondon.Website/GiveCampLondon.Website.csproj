@@ -87,6 +87,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
+    <Compile Include="Models\LogOnViewModel.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
     <Compile Include="Controllers\CharityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Models\Volunteer\SignUpViewModel.cs" />
     <Compile Include="Models\Volunteer\VolunteerSummaryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\UserUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\MvcMembership.css" />

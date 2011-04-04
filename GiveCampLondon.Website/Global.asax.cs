@@ -44,11 +44,5 @@ namespace GiveCampLondon.Website
             });
 
         }
-
-        protected void Application_AuthenticateRequest()
-        {
-            if (HttpContext.Current.User != null)
-                Membership.GetUser(true);
-        }
     }
 }

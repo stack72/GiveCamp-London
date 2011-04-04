@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Net.Mail;
 using System.Web.Security;
+using GiveCampLondon.Repositories;
 using GiveCampLondon.Services;
 using GiveCampLondon.Website.Models;
 using MvcMembership;
@@ -19,7 +20,7 @@ namespace GiveCampLondon.Website.Configuration
                 x.WithDefaultConventions();
             });
             For<IFormsAuthentication>().Use<FormsAuthenticationService>();
-            For<IMembershipService>().Use<AccountMembershipService>();
+            For<IUserRepository>().Use<UserRepository>();
             For<MembershipProvider>().Use(Membership.Provider);
             For<IMembershipSettings>().Use(() => new AspNetMembershipProviderSettingsWrapper(Membership.Provider));
             For<IUserService>().Use<AspNetMembershipProviderWrapper>();
