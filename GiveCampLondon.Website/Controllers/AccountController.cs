@@ -38,12 +38,13 @@ namespace GiveCampLondon.Website.Controllers
         [HttpPost]
         public ActionResult LogOn(LogOnViewModel user, string returnUrl)
         {
-            if (!_userService.ValidateUser(user.UserName, EncryptPassword(user.Password)))
+            var validUser = _userService.ValidateUser(user.UserName, EncryptPassword(user.Password));
+            if (validUser == null)
             {
                 return View();
             }
 
-            FormsAuthentication.RedirectFromLoginPage(user.UserName, false);
+            FormsAuthentication.RedirectFromLoginPage(validUser.UserName, false);
             if (!String.IsNullOrEmpty(returnUrl))
             {
                 return Redirect(returnUrl);

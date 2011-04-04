@@ -30,7 +30,7 @@
                     <li id="navCharity">@Html.ActionLink("Charity", "Index", "Charity", new { area = String.Empty }, null)</li>
                     <li id="navAbout">@Html.ActionLink("About", "About", "Home", new { area = String.Empty }, null)</li>
                     <li id="navAbout">@Html.ActionLink("FAQ", "Faq", "Home", new { area = String.Empty }, null)</li>
-                    @if (ViewBag.IsAdministrator != null && User.IsAdministrator)
+                    @if (ViewBag.IsAdministrator != null && ViewBag.IsAdministrator)
                     {
                         <li id="navAdmin">@Html.ActionLink("Admin Control Panel", "ControlPanel", "Admin", new { area = String.Empty }, null)</li>
                     }
