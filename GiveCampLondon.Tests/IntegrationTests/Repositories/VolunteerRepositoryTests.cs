@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
-using NUnit.Framework;
 using GiveCampLondon.Repositories;
+using NUnit.Framework;
 
 namespace GiveCampLondon.Tests.IntegrationTests.Repositories
 {

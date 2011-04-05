@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Net.Mail;
 using System.Web.Mvc;
-using System.Web.Security;
 using GiveCampLondon.Repositories;
 using GiveCampLondon.Website.Areas.UserAdministration.Models.UserAdministration;
 using GiveCampLondon.Website.Controllers;

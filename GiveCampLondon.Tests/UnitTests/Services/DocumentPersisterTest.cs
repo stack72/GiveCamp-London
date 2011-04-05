@@ -1,11 +1,7 @@
-﻿using System;
-using System.Configuration;
-using System.Reflection;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using GiveCampLondon.Services;
+﻿using System.Configuration;
 using System.IO;
+using System.Reflection;
+using GiveCampLondon.Services;
 using NUnit.Framework;
 using Assert = NUnit.Framework.Assert;
 

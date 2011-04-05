@@ -1,7 +1,6 @@
 using System.Net.Mail;
 using GiveCampLondon.Services;
 using NUnit.Framework;
-using StructureMap.AutoMocking;
 
 namespace GiveCampLondon.Tests.UnitTests.Services
 {

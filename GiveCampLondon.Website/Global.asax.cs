@@ -2,9 +2,9 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
+using GiveCampLondon.Configuration;
 using GiveCampLondon.Website.Configuration;
 using StructureMap;
-using GiveCampLondon.Configuration;
 
 namespace GiveCampLondon.Website
 {
@@ -43,6 +43,12 @@ namespace GiveCampLondon.Website
                 x.AddRegistry<WebRegistry>();
             });
 
+        }
+
+        protected void Application_AuthenticateRequest()
+        {
+            if (HttpContext.Current.User != null)
+                Membership.GetUser(true);
         }
     }
 }

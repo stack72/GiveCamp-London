@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using System.IO;
 using System.Data.SqlServerCe;
-using NUnit.Framework;
+using System.IO;
 using GiveCampLondon.Tests.IntegrationTests.Repositories;
+using NUnit.Framework;
 
 namespace GiveCampLondon.Tests.SQLCE_Helper
 {

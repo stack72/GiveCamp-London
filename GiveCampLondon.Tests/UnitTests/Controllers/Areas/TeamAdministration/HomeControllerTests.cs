@@ -1,12 +1,11 @@
-﻿using System;
-using NUnit.Framework;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using GiveCampLondon.Repositories;
 using GiveCampLondon.Website.Areas.TeamAdministration.Controllers;
+using GiveCampLondon.Website.Areas.TeamAdministration.Models.Home;
+using NUnit.Framework;
 using Rhino.Mocks;
 using StructureMap.AutoMocking;
-using GiveCampLondon.Repositories;
-using System.Web.Mvc;
-using System.Collections.Generic;
-using GiveCampLondon.Website.Areas.TeamAdministration.Models.Home;
 
 namespace GiveCampLondon.Tests.UnitTests.Controllers.Areas.TeamAdministration
 {

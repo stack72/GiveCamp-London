@@ -28,7 +28,7 @@ namespace GiveCampLondon.Website.Areas.TeamAdministration
                 "TeamAdministration_default",
                 "teamadministration/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional },
-                new string[] { "GiveCampStarterKit.Website.Areas.TeamAdministration.Controllers" }
+                new string[] { "GiveCampLondon.Website.Areas.TeamAdministration.Controllers" }
             );
         }
     }

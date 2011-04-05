@@ -338,7 +338,7 @@ INSERT INTO dbo.Technology ([Description], DisplayOrder)
 	UNION SELECT 'Community Server', 1
 
 DECLARE @appId UNIQUEIDENTIFIER, @membershipId UNIQUEIDENTIFIER, @username VARCHAR(100)
-SET @appId = (select ApplicationId from aspnet_Applications where ApplicationName = 'GiveCampStarterKit')
+SET @appId = (select ApplicationId from aspnet_Applications where ApplicationName = 'GiveCampLondon')
 
 DECLARE @adminId UNIQUEIDENTIFIER
 SET @adminId = (SELECT TOP 1 UserId FROM dbo.aspnet_Users)

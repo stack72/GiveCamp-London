@@ -1,50 +1,59 @@
 ﻿using System;
 using System.Globalization;
+using System.Security.Principal;
 using System.Web.Mvc;
+using System.Web.Security;
+using GiveCampLondon.Repositories;
+using GiveCampLondon.Services;
 using GiveCampLondon.Website.Models;
-using GiveCampLondon.Website.Models.ServiceFacade;
-using GiveCampLondon.Website.Utils;
 
 namespace GiveCampLondon.Website.Controllers
 {
-    [HandleError]
-    public class AccountController : Controller
-    {
-        private readonly IFormsAuthentication _formsAuthentication;
-        private readonly IServiceProxy _serviceProxy;
-        private readonly IUserUtility _userUtility;
-        private readonly IConfigurationManager _configManager;
 
-        public AccountController(IFormsAuthentication formsAuth, IServiceProxy serviceProxy, IUserUtility userUtility, IConfigurationManager configurationManager)
+    [HandleError]
+    public class AccountController : BaseController
+    {
+
+        // This constructor is not used by the MVC framework but is instead provided for ease
+        // of unit testing this type. See the comments at the end of this file for more
+        // information.
+        public AccountController(IFormsAuthentication formsAuth, IMembershipService service, ISettingRepository settingRepository)
+            : base(settingRepository)
         {
-            _formsAuthentication = formsAuth;
-            _serviceProxy = serviceProxy;
-            _userUtility = userUtility;
-            _configManager = configurationManager;
+            FormsAuth = formsAuth ?? new FormsAuthenticationService();
+            MembershipService = service ?? new AccountMembershipService();
         }
 
-        //GET: /LogOn
+        public IFormsAuthentication FormsAuth
+        {
+            get;
+            private set;
+        }
+
+        public IMembershipService MembershipService
+        {
+            get;
+            private set;
+        }
+
         public ActionResult LogOn()
         {
+
             return View();
         }
 
-        //POST: /LogOn
-        [HttpPost]
-        public ActionResult LogOn(LogOnViewModel user, string returnUrl)
+        [AcceptVerbs(HttpVerbs.Post)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
+            Justification = "Needs to take same parameter type as Controller.Redirect()")]
+        public ActionResult LogOn(string userName, string password, bool rememberMe, string returnUrl)
         {
-            if (!_serviceProxy.ValidateUser(user.UserName, EncryptPassword(user.Password)))
+
+            if (!ValidateLogOn(userName, password))
             {
                 return View();
             }
 
-            var authenticatedUser = _serviceProxy.GetUserByUserName(user.UserName);
-            ViewBag.AuthenticatedUser = authenticatedUser;
-            if (authenticatedUser.RoleId == 1)
-            {
-                ViewBag.IsAdministrator = true;
-            }
-            
+            FormsAuth.SignIn(userName, rememberMe);
             if (!String.IsNullOrEmpty(returnUrl))
             {
                 return Redirect(returnUrl);
@@ -55,34 +64,41 @@ namespace GiveCampLondon.Website.Controllers
             }
         }
 
-        //GET: /LogOff
         public ActionResult LogOff()
         {
-            _formsAuthentication.SignOut();
+
+            FormsAuth.SignOut();
+
             return RedirectToAction("Index", "Home");
         }
 
-        //GET: /Register
         public ActionResult Register()
         {
-            ViewBag.PasswordLength = _configManager.GetConfigurationAppSettingValue("MinimumPasswordLength");
+
+            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+
             return View();
         }
 
-        //POST: /Register
-        [HttpPost]
-        public ActionResult Register(RegisterViewModel user, string confirmPassword)
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Register(string userName, string email, string password, string confirmPassword)
         {
-            if (ValidateRegistration(user.UserName, user.EmailAddress, user.Password, confirmPassword))
+
+            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+
+            if (ValidateRegistration(userName, email, password, confirmPassword))
             {
                 // Attempt to register the user
-                user.Password = EncryptPassword(user.Password);
-                var registeredUser = _serviceProxy.CreateNewMember(user);
+                MembershipCreateStatus createStatus = MembershipService.CreateUser(userName, password, email);
 
-                if (registeredUser != null)
+                if (createStatus == MembershipCreateStatus.Success)
                 {
-                    ViewBag.AuthenticatedUser = registeredUser;
+                    FormsAuth.SignIn(userName, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("_FORM", ErrorCodeToString(createStatus));
                 }
             }
 
@@ -90,59 +106,102 @@ namespace GiveCampLondon.Website.Controllers
             return View();
         }
 
-
-        #region passwordcode
-        
-        //[Authorize]
-        //public ActionResult ChangePassword()
-        //{
-
-        //    ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-
-        //    return View();
-        //}
-
-        //[Authorize]
-        //[AcceptVerbs(HttpVerbs.Post)]
-        //public ActionResult ChangePassword(string currentPassword, string newPassword, string confirmPassword)
-        //{
-
-        //    ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-
-        //    if (!ValidateChangePassword(currentPassword, newPassword, confirmPassword))
-        //    {
-        //        return View();
-        //    }
-
-        //    try
-        //    {
-        //        if (MembershipService.ChangePassword(User.Identity.Name, currentPassword, newPassword))
-        //        {
-        //            return RedirectToAction("ChangePasswordSuccess");
-        //        }
-        //        else
-        //        {
-        //            ModelState.AddModelError("_FORM", "The current password is incorrect or the new password is invalid.");
-        //            return View();
-        //        }
-        //    }
-        //    catch
-        //    {
-        //        ModelState.AddModelError("_FORM", "The current password is incorrect or the new password is invalid.");
-        //        return View();
-        //    }
-        //}
-
-        #endregion
-
-        private string EncryptPassword(string password)
+        [Authorize]
+        public ActionResult ChangePassword()
         {
-            var encryptedPassword = _userUtility.EncryptPassword(password.Trim(),
-                                                                 _configManager.GetConfigurationAppSettingValue("salt"),
-                                                                 _configManager.GetConfigurationAppSettingValue("encryptionPassword"),
-                                                                 _configManager.GetConfigurationAppSettingValue("initialisationVector"));
 
-            return encryptedPassword;
+            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+
+            return View();
+        }
+
+        [Authorize]
+        [AcceptVerbs(HttpVerbs.Post)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
+            Justification = "Exceptions result in password not being changed.")]
+        public ActionResult ChangePassword(string currentPassword, string newPassword, string confirmPassword)
+        {
+
+            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+
+            if (!ValidateChangePassword(currentPassword, newPassword, confirmPassword))
+            {
+                return View();
+            }
+
+            try
+            {
+                if (MembershipService.ChangePassword(User.Identity.Name, currentPassword, newPassword))
+                {
+                    return RedirectToAction("ChangePasswordSuccess");
+                }
+                else
+                {
+                    ModelState.AddModelError("_FORM", "The current password is incorrect or the new password is invalid.");
+                    return View();
+                }
+            }
+            catch
+            {
+                ModelState.AddModelError("_FORM", "The current password is incorrect or the new password is invalid.");
+                return View();
+            }
+        }
+
+        public ActionResult ChangePasswordSuccess()
+        {
+
+            return View();
+        }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (filterContext.HttpContext.User.Identity is WindowsIdentity)
+            {
+                throw new InvalidOperationException("Windows authentication is not supported.");
+            }
+        }
+
+        #region Validation Methods
+
+        private bool ValidateChangePassword(string currentPassword, string newPassword, string confirmPassword)
+        {
+            if (String.IsNullOrEmpty(currentPassword))
+            {
+                ModelState.AddModelError("currentPassword", "You must specify a current password.");
+            }
+            if (newPassword == null || newPassword.Length < MembershipService.MinPasswordLength)
+            {
+                ModelState.AddModelError("newPassword",
+                    String.Format(CultureInfo.CurrentCulture,
+                         "You must specify a new password of {0} or more characters.",
+                         MembershipService.MinPasswordLength));
+            }
+
+            if (!String.Equals(newPassword, confirmPassword, StringComparison.Ordinal))
+            {
+                ModelState.AddModelError("_FORM", "The new password and confirmation password do not match.");
+            }
+
+            return ModelState.IsValid;
+        }
+
+        private bool ValidateLogOn(string userName, string password)
+        {
+            if (String.IsNullOrEmpty(userName))
+            {
+                ModelState.AddModelError("username", "You must specify a username.");
+            }
+            if (String.IsNullOrEmpty(password))
+            {
+                ModelState.AddModelError("password", "You must specify a password.");
+            }
+            if (!MembershipService.ValidateUser(userName, password))
+            {
+                ModelState.AddModelError("_FORM", "The username or password provided is incorrect.");
+            }
+
+            return ModelState.IsValid;
         }
 
         private bool ValidateRegistration(string userName, string email, string password, string confirmPassword)
@@ -155,14 +214,12 @@ namespace GiveCampLondon.Website.Controllers
             {
                 ModelState.AddModelError("email", "You must specify an email address.");
             }
-
-            var minPasswordLength = Convert.ToInt32(_configManager.GetConfigurationAppSettingValue("MinimumPasswordLength"));
-            if (password == null || password.Length < minPasswordLength)
+            if (password == null || password.Length < MembershipService.MinPasswordLength)
             {
                 ModelState.AddModelError("password",
                     String.Format(CultureInfo.CurrentCulture,
                          "You must specify a password of {0} or more characters.",
-                         minPasswordLength));
+                         MembershipService.MinPasswordLength));
             }
             if (!String.Equals(password, confirmPassword, StringComparison.Ordinal))
             {
@@ -171,30 +228,48 @@ namespace GiveCampLondon.Website.Controllers
             return ModelState.IsValid;
         }
 
-        #region Validation Methods
+        private static string ErrorCodeToString(MembershipCreateStatus createStatus)
+        {
+            // See http://msdn.microsoft.com/en-us/library/system.web.security.membershipcreatestatus.aspx for
+            // a full list of status codes.
+            switch (createStatus)
+            {
+                case MembershipCreateStatus.DuplicateUserName:
+                    return "Username already exists. Please enter a different user name.";
 
-        //private bool ValidateChangePassword(string currentPassword, string newPassword, string confirmPassword)
-        //{
-        //    if (String.IsNullOrEmpty(currentPassword))
-        //    {
-        //        ModelState.AddModelError("currentPassword", "You must specify a current password.");
-        //    }
-        //    if (newPassword == null || newPassword.Length < MembershipService.MinPasswordLength)
-        //    {
-        //        ModelState.AddModelError("newPassword",
-        //            String.Format(CultureInfo.CurrentCulture,
-        //                 "You must specify a new password of {0} or more characters.",
-        //                 MembershipService.MinPasswordLength));
-        //    }
+                case MembershipCreateStatus.DuplicateEmail:
+                    return "A username for that e-mail address already exists. Please enter a different e-mail address.";
 
-        //    if (!String.Equals(newPassword, confirmPassword, StringComparison.Ordinal))
-        //    {
-        //        ModelState.AddModelError("_FORM", "The new password and confirmation password do not match.");
-        //    }
+                case MembershipCreateStatus.InvalidPassword:
+                    return "The password provided is invalid. Please enter a valid password value.";
 
-        //    return ModelState.IsValid;
-        //}
+                case MembershipCreateStatus.InvalidEmail:
+                    return "The e-mail address provided is invalid. Please check the value and try again.";
 
+                case MembershipCreateStatus.InvalidAnswer:
+                    return "The password retrieval answer provided is invalid. Please check the value and try again.";
+
+                case MembershipCreateStatus.InvalidQuestion:
+                    return "The password retrieval question provided is invalid. Please check the value and try again.";
+
+                case MembershipCreateStatus.InvalidUserName:
+                    return "The user name provided is invalid. Please check the value and try again.";
+
+                case MembershipCreateStatus.ProviderError:
+                    return "The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+
+                case MembershipCreateStatus.UserRejected:
+                    return "The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+
+                default:
+                    return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+            }
+        }
         #endregion
     }
+
+
+
+
+
 }

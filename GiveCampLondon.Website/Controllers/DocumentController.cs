@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using GiveCampLondon.Repositories;
 
 namespace GiveCampLondon.Website.Controllers
 {
     public class DocumentController : BaseController
     {
-
-
-
         public DocumentController(IDocumentRepository documentRepository, ISettingRepository settingRepository)
             : base(settingRepository)
         {

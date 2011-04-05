@@ -4,9 +4,8 @@ using System.Web.Security;
 using GiveCampLondon.Repositories;
 using GiveCampLondon.Services;
 using NUnit.Framework;
-using Rhino.Mocks.Constraints;
-using StructureMap.AutoMocking;
 using Rhino.Mocks;
+using StructureMap.AutoMocking;
 
 namespace GiveCampLondon.Tests.UnitTests.Services
 {
@@ -15,9 +14,8 @@ namespace GiveCampLondon.Tests.UnitTests.Services
 	{
         private RhinoAutoMocker<NotificationService> _service;
 		private MembershipUser _membershipUser;
-        private RhinoAutoMocker<IContentRepository> _contentRepositoryMock;
 
-		[SetUp]
+	    [SetUp]
 		public void Setup()
 		{
 			_membershipUser = TestHelper.CreateUser(null, null);

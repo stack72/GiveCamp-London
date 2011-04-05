@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using GiveCampLondon.Repositories;
-using GiveCampLondon.Website.Helpers;
 using GiveCampLondon.Services;
+using GiveCampLondon.Website.Helpers;
 using GiveCampLondon.Website.Models;
 using GiveCampLondon.Website.Models.Volunteer;
 using MvcMembership;
@@ -19,7 +19,7 @@ namespace GiveCampLondon.Website.Controllers
 			IJobRoleRepository jobRoleRepository, 
 			IMembershipService membershipService,
 			INotificationService notificationService, ITechnologyRepository technologyRepository, IExperienceLevelRepository xpLevelRepository, ISettingRepository settingRepository, IFormsAuthentication formsAuth, IRolesService rolesService)
-            :base(settingRepository)
+        :base(settingRepository)
         {
             _membershipService = membershipService;
             _rolesService = rolesService;

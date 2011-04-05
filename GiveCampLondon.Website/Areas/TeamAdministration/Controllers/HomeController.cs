@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using GiveCampLondon.Repositories;
 using GiveCampLondon.Website.Areas.TeamAdministration.Models.Home;
 using GiveCampLondon.Website.Controllers;
@@ -9,7 +8,7 @@ namespace GiveCampLondon.Website.Areas.TeamAdministration.Controllers
     public class HomeController: BaseController
     {
         public HomeController(ITeamRepository teamRepository, IVolunteerRepository volunteerRepository, ISettingRepository settingRepository)
-            :base(settingRepository)
+            : base(settingRepository)
         {
             _teamRepository = teamRepository;
             _volunteerRepository = volunteerRepository;

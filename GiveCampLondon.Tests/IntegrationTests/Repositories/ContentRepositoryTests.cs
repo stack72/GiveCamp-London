@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using NUnit.Framework;
 using GiveCampLondon.Repositories;
+using NUnit.Framework;
 
 namespace GiveCampLondon.Tests.IntegrationTests.Repositories
 {

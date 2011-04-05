@@ -41,15 +41,6 @@
       <HintPath>..\packages\EFCodeFirst.0.8\lib\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Simple.Data">
-      <HintPath>..\packages\Simple.Data.Core.0.5.6.0\lib\net40\Simple.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Simple.Data.Ado">
-      <HintPath>..\packages\Simple.Data.Ado.0.5.6.0\lib\net40\Simple.Data.Ado.dll</HintPath>
-    </Reference>
-    <Reference Include="Simple.Data.SqlServer">
-      <HintPath>..\packages\Simple.Data.SqlServer.0.5.6.0\lib\net40\Simple.Data.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.1.0\lib\StructureMap.dll</HintPath>
     </Reference>
@@ -57,15 +48,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.CoreEx">
-      <HintPath>..\packages\Rx-Core.1.0.2856.0\lib\Net4\System.CoreEx.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Data.Entity">
       <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive">
-      <HintPath>..\packages\Rx-Main.1.0.2856.0\lib\Net4\System.Reactive.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -105,13 +90,11 @@
     <Compile Include="Repositories\IContentRepository.cs" />
     <Compile Include="Repositories\IDocumentRepository.cs" />
     <Compile Include="Repositories\IExperienceLevelRepository.cs" />
-    <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\SettingRepository.cs" />
     <Compile Include="Repositories\ITechnologyRepository.cs" />
     <Compile Include="Repositories\TechnologyRepository.cs">
       <DependentUpon>ITechnologyRepository.cs</DependentUpon>
     </Compile>
-    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Services\AccountMembershipService.cs" />
     <Compile Include="Services\DocumentPersister.cs" />
     <Compile Include="Services\IDocumentPersister.cs" />

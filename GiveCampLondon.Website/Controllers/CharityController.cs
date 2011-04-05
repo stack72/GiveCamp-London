@@ -5,11 +5,9 @@ using System.Web.Mvc;
 using System.Web.Security;
 using GiveCampLondon.Repositories;
 using GiveCampLondon.Services;
-using GiveCampLondon.Website.Helpers;
 using GiveCampLondon.Website.Models;
 using GiveCampLondon.Website.Models.Charity;
 using MvcMembership;
-using PagedList;
 
 
 namespace GiveCampLondon.Website.Controllers
@@ -17,7 +15,7 @@ namespace GiveCampLondon.Website.Controllers
     public class CharityController: BaseController
     {
 		public CharityController(IContentRepository contentRepository, ICharityRepository charityRepository, IMembershipService membershipService, IRolesService rolesService, IFormsAuthentication formsAuth, ISettingRepository settingRepository, INotificationService notificationService)
-            :base(settingRepository)
+            : base(settingRepository)
         {
             _settingRepository = settingRepository;
             _formsAuth = formsAuth;
