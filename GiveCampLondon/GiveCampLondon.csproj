@@ -88,6 +88,7 @@
     <Compile Include="Content.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="JobRole.cs" />
+    <Compile Include="Member.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CharityRepository.cs">
       <DependentUpon>ICharityRepository.cs</DependentUpon>

@@ -4,15 +4,15 @@ namespace GiveCampLondon.Repositories
 {
     public class UserRepository: IUserRepository
     {
-        public dynamic GetUserByUserName(string userName)
+        public Member GetUserByUserName(string userName)
         {
-            dynamic db = Database.Open();
+            dynamic db = Database.OpenNamedConnection("SiteDataContext");
             var user = db.User.FindByUserName(userName);
 
             return user;
         }
 
-        public dynamic ValidateUser(string userName, string password)
+        public bool ValidateUser(string userName, string password)
         {
             var validUser = false;
             dynamic db = Database.OpenNamedConnection("SiteDataContext");
@@ -23,6 +23,15 @@ namespace GiveCampLondon.Repositories
             }
 
             return validUser;
+        }
+    
+        public Member CreateUser(Member newMember)
+        {
+            dynamic db = Database.OpenNamedConnection("SiteDataContext");
+            db.User.Insert(newMember);
+
+            var user = GetUserByUserName(newMember.UserName);
+            return user;
         }
     }
 }

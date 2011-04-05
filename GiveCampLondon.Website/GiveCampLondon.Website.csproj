@@ -101,6 +101,9 @@
     <Compile Include="Models\Charity\CharitySummaryModel.cs" />
     <Compile Include="Models\ContentModels.cs" />
     <Compile Include="Models\Charity\SignUpViewModel.cs" />
+    <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\ServiceFacade\ConfigurationManager.cs" />
+    <Compile Include="Models\ServiceFacade\ServiceProxy.cs" />
     <Compile Include="Models\Volunteer\SignUpViewModel.cs" />
     <Compile Include="Models\Volunteer\VolunteerSummaryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
