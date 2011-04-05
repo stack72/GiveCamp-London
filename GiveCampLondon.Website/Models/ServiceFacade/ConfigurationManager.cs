@@ -12,5 +12,4 @@
             return System.Configuration.ConfigurationManager.AppSettings.Get(key);
         }
     }
-
 }

@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Globalization;
-using System.Security.Principal;
 using System.Web.Mvc;
-using System.Web.Security;
 using GiveCampLondon.Website.Models;
 using GiveCampLondon.Website.Models.ServiceFacade;
 using GiveCampLondon.Website.Utils;
 
 namespace GiveCampLondon.Website.Controllers
 {
-
     [HandleError]
     public class AccountController : Controller
     {
-
         private readonly IFormsAuthentication _formsAuthentication;
         private readonly IServiceProxy _serviceProxy;
         private readonly IUserUtility _userUtility;
@@ -42,7 +38,12 @@ namespace GiveCampLondon.Website.Controllers
                 return View();
             }
 
-            ViewBag.AuthenticatedUser = _serviceProxy.GetUserByUserName(user.UserName);
+            var authenticatedUser = _serviceProxy.GetUserByUserName(user.UserName);
+            ViewBag.AuthenticatedUser = authenticatedUser;
+            if (authenticatedUser.RoleId == 1)
+            {
+                ViewBag.IsAdministrator = true;
+            }
             
             if (!String.IsNullOrEmpty(returnUrl))
             {
@@ -75,6 +76,7 @@ namespace GiveCampLondon.Website.Controllers
             if (ValidateRegistration(user.UserName, user.EmailAddress, user.Password, confirmPassword))
             {
                 // Attempt to register the user
+                user.Password = EncryptPassword(user.Password);
                 var registeredUser = _serviceProxy.CreateNewMember(user);
 
                 if (registeredUser != null)
@@ -89,7 +91,8 @@ namespace GiveCampLondon.Website.Controllers
         }
 
 
-
+        #region passwordcode
+        
         //[Authorize]
         //public ActionResult ChangePassword()
         //{
@@ -130,11 +133,7 @@ namespace GiveCampLondon.Website.Controllers
         //    }
         //}
 
-        public ActionResult ChangePasswordSuccess()
-        {
-
-            return View();
-        }
+        #endregion
 
         private string EncryptPassword(string password)
         {
