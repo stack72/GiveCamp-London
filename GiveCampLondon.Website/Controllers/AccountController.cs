@@ -64,7 +64,7 @@ namespace GiveCampLondon.Website.Controllers
         //GET: /Register
         public ActionResult Register()
         {
-            //ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            ViewBag.PasswordLength = _configManager.GetConfigurationAppSettingValue("MinimumPasswordLength");
             return View();
         }
 
@@ -157,8 +157,7 @@ namespace GiveCampLondon.Website.Controllers
                 ModelState.AddModelError("email", "You must specify an email address.");
             }
 
-            var minPasswordLength =
-                Convert.ToInt32(_configManager.GetConfigurationAppSettingValue("MinimumPasswordLength"));
+            var minPasswordLength = Convert.ToInt32(_configManager.GetConfigurationAppSettingValue("MinimumPasswordLength"));
             if (password == null || password.Length < minPasswordLength)
             {
                 ModelState.AddModelError("password",
