@@ -3,12 +3,10 @@
     ViewBag.Title = "SignUp";
     ViewBag.PageId = "charity-sign-up";
 }
-
-<h2>Sign Up Your Charity</h2>
-
-@using (Html.BeginForm()) {
-
+<h1>Sign Up Your Charity</h1>
+<br />
+@using (Html.BeginForm())
+{
     @Html.EditorForModel()
-
     <input type="submit" value="Register" />
 }

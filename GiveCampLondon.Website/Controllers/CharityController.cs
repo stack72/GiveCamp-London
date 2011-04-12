@@ -52,10 +52,7 @@ namespace GiveCampLondon.Website.Controllers
             {
                 return RedirectToAction("ApprovedCharities");
             }
-            var content = _contentRepository.Get("charity-index", "blurb");
-            if (content != null)
-                ViewBag.Content = content;
-
+            
             return View();
         }
 

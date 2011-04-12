@@ -2,4 +2,10 @@
     ViewBag.Title = "Index";
 }
 
-@Html.Raw(ViewBag.Content.ToString())
+<h1>Information For Charities</h1>
+	
+<p>Below is a link to a form to fill out. Please read the FAQ prior to submitting the form. Keep in 
+mind scoped work should be able to be accomplished in one weekend’s time.</p>
+
+<p>
+<a href="@Url.Action("SignUp", "Charity")">Submit your proposal</a>
