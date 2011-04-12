@@ -49,5 +49,11 @@ namespace GiveCampLondon.Website.Controllers
         {
             return View();
         }
+    
+        [ActionName("Contact-Us")]
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
     }
 }

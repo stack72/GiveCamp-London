@@ -87,7 +87,6 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
-    <Compile Include="Controllers\SponsorsController.cs" />
     <Compile Include="Models\LogOnViewModel.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
     <Compile Include="Controllers\CharityController.cs" />
@@ -110,53 +109,14 @@
     <Compile Include="Utils\UserUtility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\images\bg01.jpg" />
-    <Content Include="Content\images\bg02.jpg" />
-    <Content Include="Content\images\bg04.jpg" />
-    <Content Include="Content\images\bgrd_main_site.jpg" />
-    <Content Include="Content\images\bg_button_a.gif" />
-    <Content Include="Content\images\bg_button_span.gif" />
-    <Content Include="Content\images\brdcmb_divider.png" />
-    <Content Include="Content\images\divider_main_nav.gif" />
-    <Content Include="Content\images\givecamp.jpg" />
-    <Content Include="Content\images\GiveCamp_FINAL_small.png" />
-    <Content Include="Content\images\give_camp_logo.png" />
-    <Content Include="Content\images\icn_32x32_facebook.png" />
-    <Content Include="Content\images\icn_32x32_flickr.png" />
-    <Content Include="Content\images\icn_32x32_twitter.png" />
-    <Content Include="Content\images\icn_32x32_youtube.png" />
-    <Content Include="Content\images\img01.jpg" />
-    <Content Include="Content\images\img02.gif" />
-    <Content Include="Content\images\img03.gif" />
-    <Content Include="Content\images\img04.gif" />
-    <Content Include="Content\images\img05.gif" />
-    <Content Include="Content\images\img06.gif" />
-    <Content Include="Content\images\img06.jpg" />
-    <Content Include="Content\images\img07.gif" />
-    <Content Include="Content\images\img08.gif" />
-    <Content Include="Content\images\img09.gif" />
-    <Content Include="Content\images\img10.gif" />
-    <Content Include="Content\images\img11.gif" />
-    <Content Include="Content\images\img12.gif" />
-    <Content Include="Content\images\img13.gif" />
-    <Content Include="Content\images\img14.gif" />
-    <Content Include="Content\images\rss.gif" />
-    <Content Include="Content\images\spacer.gif" />
-    <Content Include="Content\images\temp_article_image.jpg" />
-    <Content Include="Content\images\temp_mpu_300x250.jpg" />
-    <Content Include="Content\images\tile_main_nav.jpg" />
-    <Content Include="Content\images\tile_main_nav_hover.jpg" />
-    <Content Include="Content\images\tile_module_divider.gif" />
-    <Content Include="Content\images\tile_module_heading.jpg" />
     <Content Include="Content\MvcMembership.css" />
     <Content Include="Content\scripts\jquery.faqs.js" />
-    <Content Include="Content\template.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Views\Admin\tagAjax.js" />
     <Content Include="config\connectionstrings.Dev.config" />
     <Content Include="config\connectionstrings.Sandbox.config" />
     <Content Include="config\appSettings.config" />
-    <None Include="Content\less\template.less" />
+    <Content Include="Views\Home\Contact-Us.cshtml" />
     <None Include="Views\Home\FAQ-Developers.cshtml" />
     <Content Include="Views\Home\FAQ-EventStaff.cshtml">
       <SubType>Code</SubType>
@@ -173,6 +133,21 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Content\default.css" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Scripts\jquery-1.4.4.js" />
     <Content Include="Scripts\jquery-1.4.4.min.js" />
     <Content Include="Scripts\jquery-1.4.4-vsdoc.js" />
@@ -185,12 +160,6 @@
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
-    <Content Include="Scripts\MicrosoftAjax.js" />
-    <Content Include="Scripts\MicrosoftAjax.debug.js" />
-    <Content Include="Scripts\MicrosoftMvcAjax.js" />
-    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
-    <Content Include="Scripts\MicrosoftMvcValidation.js" />
-    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
@@ -206,7 +175,6 @@
     </Content>
     <Content Include="Views\Home\FAQ-Charities.cshtml" />
     <Content Include="Views\Shared\_TwitterPanel.cshtml" />
-    <Content Include="Views\Sponsors\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.xml" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.xml" />
