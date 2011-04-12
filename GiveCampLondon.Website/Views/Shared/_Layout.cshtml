@@ -40,7 +40,7 @@
                         <a href="@Url.Action("Index", "Home")">Home</a></dd>
                     <dd><a href="@Url.Action("Index", "Volunteer")">Volunteer</a></dd>
                     <dd><a href="@Url.Action("Index", "Charity")">Charity</a></dd>
-                    <dd><a href="/">Sponsor</a></dd>
+                    <dd><a href="@Url.Action("Index", "Sponsors")">Sponsors</a></dd>
                     <dd><a href="@Url.Action("About", "Home")">About GiveCamp</a></dd>
                     <dd><a href="@Url.Action("Faq", "Home")">FAQ</a></dd>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
