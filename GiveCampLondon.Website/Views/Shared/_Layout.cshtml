@@ -1,8 +1,8 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <title>@ViewBag.Title</title>
-    <link href="@Url.Content("~/Content/default.css")" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/content/template.css")" type="text/css" media="screen" />
     <script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
@@ -10,46 +10,120 @@
     @RenderSection("headInclude", false)
 </head>
 <body>
-    <div id="siteWrapper">
-        <div id="header">
+    <div id="wrapper">
+        <div id="header" class="clearfix">
             <div id="logo">
-                <a href="/">
-                    <h2>
-                        Coding For Charity</h2>
-                </a>
-                <h3>
-                    London</h3>
-            </div>
-            <div id="logindisplay">
+                <a href="/">Give Camp UK</a></div>
+            @*<div id="logindisplay">
                 @Html.Partial("_LogOnPartial")
-            </div>
-            <div id="menu">
-                <ul>
-                    <li id="navHome">@Html.ActionLink("Home", "Index", "Home", new { area = String.Empty }, null)</li>
-                    <li id="navVolunteer">@Html.ActionLink("Volunteer", "Index", "Volunteer", new { area = String.Empty }, null)</li>
-                    <li id="navCharity">@Html.ActionLink("Charity", "Index", "Charity", new { area = String.Empty }, null)</li>
-                    <li id="navAbout">@Html.ActionLink("About", "About", "Home", new { area = String.Empty }, null)</li>
-                    <li id="navAbout">@Html.ActionLink("FAQ", "Faq", "Home", new { area = String.Empty }, null)</li>
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
-                    {
-                        <li id="navAdmin">@Html.ActionLink("Admin Control Panel", "ControlPanel", "Admin", new { area = String.Empty }, null)</li>
-                    }
-                </ul>
+            </div>*@
+            <div id="header-items" class="clearfix">
+                <div id="social-channels" class="clearfix">
+                    <ul>
+                        <li class="facebook"><a href="http://www.facebook.com" target="_blank">Find Give Camp
+                            on Facebook - facebook.com/givecamp</a></li>
+                        <li class="twitter"><a href="">Follow us on Twitter - http://www.twitter.com/givecampuk</a></li>
+                    </ul>
+                </div>
+                <div id="breadcrumbs" class="clear clearfix">
+                    <ul>
+                        <li><a href="/">Agenda</a></li>
+                        <li><a href="/">Location</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div id="page">
-            <div id="content">
+        <div id="main-navigation-wrapper">
+            <div id="main-navigation" class="clearfix">
+                <dl>
+                    <dd>
+                        <a href="@Url.Action("Index", "Home")">Home</a></dd>
+                    <dd><a href="@Url.Action("Index", "Volunteer")">Volunteer</a></dd>
+                    <dd><a href="@Url.Action("Index", "Charity")">Charity</a></dd>
+                    <dd><a href="/">Sponsor</a></dd>
+                    <dd><a href="@Url.Action("About", "Home")">About GiveCamp</a></dd>
+                    <dd><a href="@Url.Action("Faq", "Home")">FAQ</a></dd>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                    {
+                        <dd><a href="@Url.Action("ControlPanel", "Admin")">Admin Control Panel</a></dd>
+                    }
+                </dl>
+            </div>
+            <div id="sub-wrapper" class="clearfix">
+                <div id="feature-panel" class="clearfix">
+                    <div id="feature-panel-image">
+                        <img src="" alt=""></div>
+                    <div id="feature-panel-content">
+                        <h1>
+                            This is the title for the feature panel on the site.</h1>
+                        <p>
+                            This is the feature articles body copy for the site. This is the feature articles
+                            body copy for the site. This is the feature articles body copy for the site. This
+                            is the feature articles body copy for the site. This is the feature articles body
+                            copy for the site. This is the feature articles body copy for the site.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="column-right-540">
+            <div class="article">
                 @RenderBody()
             </div>
+        </div>
+
+        <div id="column-left-360">
+            <div class="content-module">
+                <h2>Advertisement</h2>
+                <div class="ad-mpu">
+                    <img src="@Url.Content("~/content/images/temp_mpu_300x250.jpg")" width="300" height="250" alt="text" />
+                </div>
+            </div>
+            <div class="content-module">
+                <h2>Global GiveCamp Sites</h2>
+                <div class="content">
+                    <ul>
+                    <li><a href="/">Give Camp Site</a></li>
+                    <li><a href="/">Give Camp Site</a></li>
+                    <li><a href="/">Give Camp Site</a></li>
+                    <li><a href="/">Give Camp Site</a></li>
+                    <li><a href="/">Give Camp Site</a></li>
+                    <li><a href="/">Give Camp Site</a></li>
+                    <li><a href="/">Give Camp Site</a></li>
+                    <li><a href="/">Give Camp Site</a></li>
+                    <li><a href="/">Give Camp Site</a></li>
+                    <li><a href="/">Give Camp Site</a></li>
+                    <li><a href="/">Give Camp Site</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="page">
+            
+
+            <div id="content">
+                
+            </div>
             <div id="sidebar">
-                @RenderSection("sidebar", false)
                 @Html.Partial("_TwitterPanel")
             </div>
             <p style="clear: both;">
                 &nbsp;</p>
         </div>
-        <div id="footer">
-            
+        <div id="footer" class="clear">
+            <div id="footer-divider">
+                <span id="copyright">&copy; Copyright Give Camp 2011. All rights reserved.</span>
+                <dl id="footer-navigation">
+                    <dd>
+                        <a href="/site-map">Site Map</a></dd>
+                    <dd>
+                        <a href="/about-give-camp">About Give Camp</a></dd>
+                    <dd>
+                        <a href="/contact">Contact Us</a></dd>
+                </dl>
+            </div>
         </div>
     </div>
 </body>
