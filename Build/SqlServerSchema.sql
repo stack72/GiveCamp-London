@@ -203,94 +203,14 @@ GO
 */ ---------------------------------------------------------------------
 
 
-INSERT INTO dbo.Content (IsPublished, Title, Slug, Tag, PostDate, ContentText)
-	SELECT 1, 'Home Page', 'sidebar', 'blurb', GETDATE(), '<ul><li>
-            <h3>Event Resources</h2>
-            <ul>
-                <li id="menuAgenda">
-                    <a href="/Home/Agenda">Agenda</a></li>
-                <li id="menuLocation">
-                    <a href="/Home/Location">Location</a></li>
-            </ul>
-        </li>
-    </ul>
-
-    <ul>
-        <li>
-            <h2>@DallasGiveCamp</h2>
-            <div>
-                <script src="http://widgets.twimg.com/j/2/widget.js"></script>
-                <script>
-                    new TWTR.Widget({
-                        version: 2,
-                        type: "profile",
-                        rpp: 4,
-                        interval: 6000,
-                        width: 250,
-                        height: 300,
-                        theme: {
-                            shell: {
-                                background: "#333333",
-                                color: "#ffffff"
-                            },
-                            tweets: {
-                                background: "#000000",
-                                color: "#ffffff",
-                                links: "#4aed05"
-                            }
-                        },
-                        features: {
-                            scrollbar: false,
-                            loop: false,
-                            live: false,
-                            hashtags: true,
-                            timestamp: true,
-                            avatars: false,
-                            behavior: "all"
-                        }
-                    }).render().setUser("dallasgivecamp").start();
-                </script>
-            </div>
-        </li>
-    </ul>'
-
-
 /* ---------------------------------------------------------------------
 	Charity Content
 */ ---------------------------------------------------------------------
-
-INSERT INTO dbo.Content (IsPublished, Title, Slug, Tag, PostDate, ContentText)
-	SELECT 1, 'Charity Page', 'charity-index', 'blurb', GETDATE(), '<h2>Information For Charities</h2>
-	
-<p>Below is a link to a form to fill out. Please read the FAQ prior to submitting the form. Keep in 
-mind scoped work should be able to be accomplished in one weekend’s time.</p>
-
-<p><a href="/charity/signup">Submit your proposal</a></p>'
-
-INSERT INTO dbo.Content (IsPublished, Title, Slug, Tag, PostDate, ContentText)
-	SELECT 1, 'Charity Thank You', 'charity-thankyou', 'blurb', GETDATE(), '<h2>Thanks for Signing Up!</h2>
-	
-<p>We will get back to you soon. Need better text here, yo.</p>'
 
 
 /* ---------------------------------------------------------------------
 	Volunteer Content
 */ ---------------------------------------------------------------------
-
-INSERT INTO dbo.Content (IsPublished, Title, Slug, Tag, PostDate, ContentText)
-	SELECT 1, 'Volunteer Sign-up', 'volunteer-signup-index', 'blurb', getdate(), 
-'<h2>Volunteer Sign-Up Form</h2>
-
-<p>To volunteer for Give Camp, please fill out this form in it''s entirety. Any additional information about yourself can be included in the comments box at the bottom of the form. Thank you for participating in Give Camp!</p><br/>
-<p>* = Required field</p><br/>
-<p>It is also an opportunity for you to grow as a professional, work with different people, be a mentor or be mentored. Please review the <a href="/Home/faqs">FAQ</a> for more information.</p><br/>
-
-<p><a href="/Volunteer/SignUp">Sign up to be a volunteer</a></p>'
-
-INSERT INTO dbo.Content (IsPublished, Title, Slug, Tag, PostDate, ContentText)
-	SELECT 1, 'Volunteer Thank You', 'volunteer-thankyou', 'blurb', GETDATE(), '<h2>Thanks for Signing Up!</h2>
-	
-<p>We will get back to you soon. Need better text here, yo.</p>'
 
 INSERT INTO dbo.Team (TeamName, IsApproved) SELECT 'The Fighting Vigilanties', 1
 INSERT INTO dbo.Team (TeamName, IsApproved) SELECT 'Pizzamongers', 0

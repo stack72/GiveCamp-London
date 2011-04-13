@@ -146,8 +146,6 @@ namespace GiveCampLondon.Website.Controllers
 
         public ActionResult ThankYou()
         {
-            ViewBag.Content = _contentRepository.Get("charity-thankyou", "blurb");
-
             return View();
         }
 

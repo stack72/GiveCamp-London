@@ -109,14 +109,55 @@
     <Compile Include="Utils\UserUtility.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\admintemplate.css" />
+    <Content Include="Content\images\bg01.jpg" />
+    <Content Include="Content\images\bg02.jpg" />
+    <Content Include="Content\images\bg04.jpg" />
+    <Content Include="Content\images\bgrd_main_site.jpg" />
+    <Content Include="Content\images\bg_button_a.gif" />
+    <Content Include="Content\images\bg_button_span.gif" />
+    <Content Include="Content\images\brdcmb_divider.png" />
+    <Content Include="Content\images\divider_main_nav.gif" />
+    <Content Include="Content\images\givecamp.jpg" />
+    <Content Include="Content\images\GiveCamp_FINAL_small.png" />
+    <Content Include="Content\images\give_camp_logo.png" />
+    <Content Include="Content\images\icn_32x32_facebook.png" />
+    <Content Include="Content\images\icn_32x32_flickr.png" />
+    <Content Include="Content\images\icn_32x32_twitter.png" />
+    <Content Include="Content\images\icn_32x32_youtube.png" />
+    <Content Include="Content\images\img01.jpg" />
+    <Content Include="Content\images\img02.gif" />
+    <Content Include="Content\images\img03.gif" />
+    <Content Include="Content\images\img04.gif" />
+    <Content Include="Content\images\img05.gif" />
+    <Content Include="Content\images\img06.gif" />
+    <Content Include="Content\images\img06.jpg" />
+    <Content Include="Content\images\img07.gif" />
+    <Content Include="Content\images\img08.gif" />
+    <Content Include="Content\images\img09.gif" />
+    <Content Include="Content\images\img10.gif" />
+    <Content Include="Content\images\img11.gif" />
+    <Content Include="Content\images\img12.gif" />
+    <Content Include="Content\images\img13.gif" />
+    <Content Include="Content\images\img14.gif" />
+    <Content Include="Content\images\rss.gif" />
+    <Content Include="Content\images\spacer.gif" />
+    <Content Include="Content\images\temp_article_image.jpg" />
+    <Content Include="Content\images\temp_mpu_300x250.jpg" />
+    <Content Include="Content\images\tile_main_nav.jpg" />
+    <Content Include="Content\images\tile_main_nav_hover.jpg" />
+    <Content Include="Content\images\tile_module_divider.gif" />
+    <Content Include="Content\images\tile_module_heading.jpg" />
     <Content Include="Content\MvcMembership.css" />
     <Content Include="Content\scripts\jquery.faqs.js" />
+    <Content Include="Content\template.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Views\Admin\tagAjax.js" />
     <Content Include="config\connectionstrings.Dev.config" />
     <Content Include="config\connectionstrings.Sandbox.config" />
     <Content Include="config\appSettings.config" />
     <Content Include="Views\Home\Contact-Us.cshtml" />
+    <None Include="Content\less\template.less" />
     <None Include="Views\Home\FAQ-Developers.cshtml" />
     <Content Include="Views\Home\FAQ-EventStaff.cshtml">
       <SubType>Code</SubType>
@@ -133,7 +174,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\default.css" />
     <Content Include="Content\themes\base\jquery-ui.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -175,6 +215,7 @@
     </Content>
     <Content Include="Views\Home\FAQ-Charities.cshtml" />
     <Content Include="Views\Shared\_TwitterPanel.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.xml" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.xml" />
