@@ -36,12 +36,12 @@
         <div id="main-navigation-wrapper">
             <div id="main-navigation" class="clearfix">
                 <dl>
-                    <dd><a href="@Url.Action("Index", "home")">Home</a></dd>
-                    <dd><a href="@Url.Action("About", "home")">About GiveCamp</a></dd>
-                    <dd><a href="@Url.Action("Index", "volunteer")">Volunteer</a></dd>
-                    <dd><a href="@Url.Action("Index", "charity")">Charity</a></dd>
-                    <dd><a href="@Url.Action("Index", "sponsors")">Sponsors</a></dd>
-                    <dd><a href="@Url.Action("Faq", "home")">FAQ</a></dd>
+                    <dd><a href="@Url.Action("index", "home")">Home</a></dd>
+                    <dd><a href="@Url.Action("about-givecamp", "home")">About GiveCamp</a></dd>
+                    <dd><a href="@Url.Action("index", "volunteer")">Volunteer</a></dd>
+                    <dd><a href="@Url.Action("index", "charity")">Charity</a></dd>
+                    <dd><a href="@Url.Action("index", "sponsors")">Sponsors</a></dd>
+                    <dd><a href="@Url.Action("faq", "home")">FAQ</a></dd>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
                     {
                         <dd><a href="@Url.Action("ControlPanel", "admin")">Admin Control Panel</a></dd>
@@ -102,11 +102,11 @@
                 <dl id="footer-navigation">
                     
                     <dd>
-                        <a href="@Url.Action("Index", "siteMap")">Site Map</a></dd>
+                        <a href="@Url.Action("index", "siteMap")">Site Map</a></dd>
                     <dd>
-                        <a href="@Url.Action("About", "home")">About GiveCamp</a></dd>
+                        <a href="@Url.Action("about", "home")">About GiveCamp</a></dd>
                     <dd>
-                        <a href="@Url.Action("Contact-Us", "home")">Contact Us</a></dd>
+                        <a href="@Url.Action("contact-us", "home")">Contact Us</a></dd>
                 </dl>
             </div>
         </div>

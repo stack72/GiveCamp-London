@@ -20,6 +20,20 @@ namespace GiveCampLondon.Website
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                null, // Route name
+                "about-givecamp", // URL with parameters
+                new { controller = "Home", action = "About-GiveCamp" },
+                new[] { "GiveCampLondon.Website.Controllers" }
+            );
+
+            routes.MapRoute(
+                null, // Route name
+                "faq/{id}", // URL with parameters
+                new { controller = "Home", action = "FAQ", id = UrlParameter.Optional },
+                new[] { "GiveCampLondon.Website.Controllers" }
+            );
+
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional },
