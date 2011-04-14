@@ -27,7 +27,7 @@ a:hover,a:visited:hover{text-decoration:underline;}
 .ad-skyscraper{width:120px;height:600px;}
 .ad-super-sky{width:160px;height:600px;}
 #wrapper{width:900px;margin:0 auto;}
-#column-full-width{float:right;width:840px;20px 20px 0 20px;margin-right:20px;}
+#column-full-width{float:right;width:840px;20px 20px 0 20px;margin-right:20px;background-color:#dff3ff;}
 #header{width:900px;position:relative;height:153px;padding-top:10px;}
 #logo{float:left;text-indent:-10000px;width:227px;height:123px;}
 #logo a:link{display:block;background:url(../content/images/give_camp_logo.png) no-repeat;height:123px;width:227px;}
