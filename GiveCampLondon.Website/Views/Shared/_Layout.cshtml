@@ -36,15 +36,15 @@
         <div id="main-navigation-wrapper">
             <div id="main-navigation" class="clearfix">
                 <dl>
-                    <dd><a href="@Url.Action("Index", "Home")">Home</a></dd>
-                    <dd><a href="@Url.Action("About", "Home")">About GiveCamp</a></dd>
-                    <dd><a href="@Url.Action("Index", "Volunteer")">Volunteer</a></dd>
-                    <dd><a href="@Url.Action("Index", "Charity")">Charity</a></dd>
-                    <dd><a href="@Url.Action("Index", "Sponsors")">Sponsors</a></dd>
-                    <dd><a href="@Url.Action("Faq", "Home")">FAQ</a></dd>
+                    <dd><a href="@Url.Action("Index", "home")">Home</a></dd>
+                    <dd><a href="@Url.Action("About", "home")">About GiveCamp</a></dd>
+                    <dd><a href="@Url.Action("Index", "volunteer")">Volunteer</a></dd>
+                    <dd><a href="@Url.Action("Index", "charity")">Charity</a></dd>
+                    <dd><a href="@Url.Action("Index", "sponsors")">Sponsors</a></dd>
+                    <dd><a href="@Url.Action("Faq", "home")">FAQ</a></dd>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
                     {
-                        <dd><a href="@Url.Action("ControlPanel", "Admin")">Admin Control Panel</a></dd>
+                        <dd><a href="@Url.Action("ControlPanel", "admin")">Admin Control Panel</a></dd>
                     }
                 </dl>
             </div>
@@ -102,11 +102,11 @@
                 <dl id="footer-navigation">
                     
                     <dd>
-                        <a href="@Url.Action("Index", "SiteMap")">Site Map</a></dd>
+                        <a href="@Url.Action("Index", "siteMap")">Site Map</a></dd>
                     <dd>
-                        <a href="@Url.Action("About", "Home")">About GiveCamp</a></dd>
+                        <a href="@Url.Action("About", "home")">About GiveCamp</a></dd>
                     <dd>
-                        <a href="@Url.Action("Contact-Us", "Home")">Contact Us</a></dd>
+                        <a href="@Url.Action("Contact-Us", "home")">Contact Us</a></dd>
                 </dl>
             </div>
         </div>

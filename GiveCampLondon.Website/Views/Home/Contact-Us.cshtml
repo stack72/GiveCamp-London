@@ -1,6 +1,16 @@
-﻿@{
+﻿@model GiveCampLondon.Website.Models.ContactUsViewModel
+@{
     ViewBag.Title = "Contact-Us";
 }
 
 <h1>Contact-Us</h1>
-<p>contact Details here</p>
+@if (ViewBag.RequestSent != null && ViewBag.RequestSent)
+{ 
+    <p>This is a message to say thanks for getting in touch</p>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.EditorForModel()
+    <input type="submit" value="contactus" />
+}
