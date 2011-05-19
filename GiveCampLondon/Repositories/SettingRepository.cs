@@ -9,7 +9,7 @@ namespace GiveCampLondon.Repositories
     }
     public class SettingRepository : ISettingRepository
     {
-        private SiteDataContext _dataContext;
+        private readonly SiteDataContext _dataContext;
 
         public SettingRepository(SiteDataContext dataContext)
         {

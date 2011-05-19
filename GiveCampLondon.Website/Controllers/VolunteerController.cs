@@ -207,7 +207,7 @@ namespace GiveCampLondon.Website.Controllers
             return true;
         }
 
-        private IList<int> GetSelectedValues(FormCollection collection, string formObjectName, bool isRequired, string isRequiredErrorMessage)
+        private IEnumerable<int> GetSelectedValues(FormCollection collection, string formObjectName, bool isRequired, string isRequiredErrorMessage)
         {
             var list = new List<int>();
             if (collection[formObjectName] != null)
@@ -228,6 +228,5 @@ namespace GiveCampLondon.Website.Controllers
             ViewBag.Technologies = _technologyRepository.FindAll().ToSelectList(t => t.Description, t => t.Id.ToString(), t => model != null && model.TechnologyIds != null && model.TechnologyIds.Contains(t.Id));
             ViewBag.ExperienceLevels = _xpLevelRepository.FindAll().ToSelectList(e => e.Description, e => e.Id.ToString(), e => model != null && model.ExperienceLevel == e.Id);
         }
-
     }
 }
