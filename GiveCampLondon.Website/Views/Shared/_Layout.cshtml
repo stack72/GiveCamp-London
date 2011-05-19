@@ -14,9 +14,6 @@
         <div id="header" class="clearfix">
             <div id="logo">
                 <a href="/">Give Camp UK</a></div>
-            @*<div id="logindisplay">
-                @Html.Partial("_LogOnPartial")
-            </div>*@
             <div id="header-items" class="clearfix">
                 <div id="social-channels" class="clearfix">
                     <ul>
@@ -26,10 +23,6 @@
                     </ul>
                 </div>
                 <div id="breadcrumbs" class="clear clearfix">
-                    <ul>
-                        <li><a href="/">Agenda</a></li>
-                        <li><a href="/">Location</a></li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -42,6 +35,7 @@
                     <dd><a href="@Url.Action("index", "charity")">Charity</a></dd>
                     <dd><a href="@Url.Action("index", "sponsors")">Sponsors</a></dd>
                     <dd><a href="@Url.Action("faq", "home")">FAQ</a></dd>
+                    <dd><a href="@Url.Action("schedule", "home")">Schedule</a></dd>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
                     {
                         <dd><a href="@Url.Action("ControlPanel", "admin")">Admin Control Panel</a></dd>

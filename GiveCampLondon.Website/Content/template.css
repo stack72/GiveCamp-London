@@ -141,10 +141,15 @@ del {
   text-decoration: line-through;
 }
 /* tables still need 'cellspacing="0"' in the markup */
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
+table { border-collapse: collapse; border-spacing: 0; margin: 10px; }
+tr strong { font-size: larger; font-weight: bold}
+tr { height: 30px; }
+td { padding-left: 11px; padding-right: 11px; border-left: 1px solid #E8E8E8; border-bottom: 1px solid #DFDFDF; }
+td.first, th.first { border-left: 0px; }
+tr.row-a { background: #F8F8F8; }
+tr.row-b { background: #EFEFEF; }
+
+
 /* END OF RESETS ------------------------------------------ */
 /* BASIC CLEAR
 ------------------------------------------ */
@@ -331,7 +336,7 @@ a:hover, a:visited:hover {
   padding: 0 15px 0 0;
   color: #50a758;
   display: block;
-  background: url("../content/images/brdcmb_divider.png") center right no-repeat;
+  background: url("/images/brdcmb_divider.png") center right no-repeat;
   font-weight: normal;
 }
 #main-navigation-wrapper {

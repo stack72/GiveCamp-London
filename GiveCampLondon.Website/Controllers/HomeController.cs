@@ -43,7 +43,7 @@ namespace GiveCampLondon.Website.Controllers
             }
         }
 
-        public ActionResult Agenda()
+        public ActionResult Schedule()
         {
             return View();
         }

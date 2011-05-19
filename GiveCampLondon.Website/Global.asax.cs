@@ -28,6 +28,13 @@ namespace GiveCampLondon.Website
 
             routes.MapRoute(
                 null, // Route name
+                "schedule", // URL with parameters
+                new { controller = "Home", action = "Schedule" },
+                new[] { "GiveCampLondon.Website.Controllers" }
+            );
+
+            routes.MapRoute(
+                null, // Route name
                 "faq/{id}", // URL with parameters
                 new { controller = "Home", action = "FAQ", id = UrlParameter.Optional },
                 new[] { "GiveCampLondon.Website.Controllers" }
