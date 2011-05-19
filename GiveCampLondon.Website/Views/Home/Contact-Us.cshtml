@@ -9,8 +9,34 @@
     <p>Thanks for getting in contact with us - we will try and get back to you as soon as possible!</p>
 }
 
+<p>For more information or to inquire about GiveCamp, please contact: <a href="mailto:enquiries@givecamp.org.uk>enquiries@givecamp.org.uk</a></p>
+<br />
+<br />
 @using (Html.BeginForm())
 {
-    @Html.EditorForModel()
+    <div class="editor-label">
+	    <label for="Name">Your Name</label>
+	</div>	
+	<div class="editor-field">
+        @Html.TextBoxFor(m => m.Name, new { required = "required" })
+        @Html.ValidationMessageFor(m => m.Name)
+	</div>
+    
+    <div class="editor-label">
+	    <label for="Email">Email Address</label>
+	</div>	
+	<div class="editor-field">
+        @Html.TextBoxFor(m => m.EmailAddress, new { required = "required" })
+        @Html.ValidationMessageFor(m => m.EmailAddress)
+	</div>
+    
+    <div class="editor-label">
+	    <label for="Enquiry">Enquiry</label>
+	</div>	
+	<div class="editor-field">
+        @Html.TextAreaFor(m => m.Enquiry, new { required = "required" })
+        @Html.ValidationMessageFor(m => m.Enquiry)
+	</div>
+    
     <input type="submit" value="contactus" />
 }
