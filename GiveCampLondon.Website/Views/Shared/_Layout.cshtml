@@ -7,6 +7,8 @@
     <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.showoff.min.js")" type="text/javascript"></script>
+    <link rel="stylesheet" href="@Url.Content("~/content/jshowoff.css")" type="text/css" />
     @RenderSection("headInclude", false)
 </head>
 <body>
@@ -29,16 +31,22 @@
         <div id="main-navigation-wrapper">
             <div id="main-navigation" class="clearfix">
                 <dl>
-                    <dd><a href="@Url.Action("index", "home")">Home</a></dd>
-                    @*<dd><a href="@Url.Action("about-givecamp", "home")">About GiveCamp</a></dd>*@
-                    <dd><a href="@Url.Action("index", "volunteer")">Volunteer</a></dd>
-                    <dd><a href="@Url.Action("index", "charity")">Charity</a></dd>
-                    <dd><a href="@Url.Action("index", "sponsors")">Sponsors</a></dd>
-                    <dd><a href="@Url.Action("faq", "home")">FAQ</a></dd>
-                    <dd><a href="@Url.Action("schedule", "home")">Schedule</a></dd>
+                    <dd>
+                        <a href="@Url.Action("index", "home")">Home</a></dd>
+                    <dd>
+                        <a href="@Url.Action("index", "volunteer")">Volunteer</a></dd>
+                    <dd>
+                        <a href="@Url.Action("index", "charity")">Charity</a></dd>
+                    <dd>
+                        <a href="@Url.Action("index", "sponsors")">Sponsors</a></dd>
+                    <dd>
+                        <a href="@Url.Action("faq", "home")">FAQ</a></dd>
+                    <dd>
+                        <a href="@Url.Action("schedule", "home")">Schedule</a></dd>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
                     {
-                        <dd><a href="@Url.Action("ControlPanel", "admin")">Admin Control Panel</a></dd>
+                        <dd>
+                            <a href="@Url.Action("ControlPanel", "admin")">Admin Control Panel</a></dd>
                     }
                 </dl>
             </div>
@@ -50,31 +58,41 @@
         </div>
         <div id="column-left-360">
             <div class="content-module">
-                <h2>Advertisement</h2>
-                <div class="ad-mpu">
+                <h2>
+                    Sponsors</h2>
+                <div class="ad-mpu" id="rotator">
                     <img src="@Url.Content("~/content/images/temp_mpu_300x250.jpg")" width="300" height="250" alt="text" />
+                    <img src="@Url.Content("~/content/images/1.jpg")" width="300" height="250" alt="text" />
+                    <img src="@Url.Content("~/content/images/2.jpg")" width="300" height="250" alt="text" />
+                    <img src="@Url.Content("~/content/images/3.jpg")" width="300" height="250" alt="text" />
                 </div>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#rotator').jshowoff({
+                            links: false,
+                            controls: false,
+                            effect: 'none',
+                            cssClass: 'basicFeatures',
+                            hoverPause: false 
+                        });
+                    });
+                </script>
             </div>
             <div class="content-module">
-                <div class="content">
-                    <h2>Date and Location here</h2>
-                </div>
-            </div>
-            <div class="content-module">
-                <h2>Sponsors</h2>
+                <h2>
+                    Contibutors</h2>
                 <div class="content">
                     <ul>
-                    <li><a href="/">Give Camp Site</a></li>
-                    <li><a href="/">Give Camp Site</a></li>
-                    <li><a href="/">Give Camp Site</a></li>
-                    <li><a href="/">Give Camp Site</a></li>
-                    <li><a href="/">Give Camp Site</a></li>
-                    <li><a href="/">Give Camp Site</a></li>
-                    <li><a href="/">Give Camp Site</a></li>
-                    <li><a href="/">Give Camp Site</a></li>
-                    <li><a href="/">Give Camp Site</a></li>
-                    <li><a href="/">Give Camp Site</a></li>
-                    <li><a href="/">Give Camp Site</a></li>
+                        <li><a href="/">Contributor 1</a></li>
+                        <li><a href="/">Contributor 2</a></li>
+                        <li><a href="/">Contributor 3</a></li>
+                        <li><a href="/">Contributor 4</a></li>
+                        <li><a href="/">Contributor 5</a></li>
+                        <li><a href="/">Contributor 6</a></li>
+                        <li><a href="/">Contributor 7</a></li>
+                        <li><a href="/">Contributor 8</a></li>
+                        <li><a href="/">Contributor 9</a></li>
+                        <li><a href="/">Contributor 10</a></li>
                     </ul>
                 </div>
             </div>
@@ -83,11 +101,8 @@
             <div id="footer-divider">
                 <span id="copyright">&copy; Copyright Give Camp 2011. All rights reserved.</span>
                 <dl id="footer-navigation">
-                    
                     <dd>
                         <a href="@Url.Action("index", "siteMap")">Site Map</a></dd>
-                    @*<dd>
-                        <a href="@Url.Action("about", "home")">About GiveCamp</a></dd>*@
                     <dd>
                         <a href="@Url.Action("contact-us", "home")">Contact Us</a></dd>
                 </dl>
