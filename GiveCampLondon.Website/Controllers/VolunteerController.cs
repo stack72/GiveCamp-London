@@ -6,9 +6,7 @@ using System.Web.Security;
 using GiveCampLondon.Repositories;
 using GiveCampLondon.Services;
 using GiveCampLondon.Website.Helpers;
-using GiveCampLondon.Website.Models;
 using GiveCampLondon.Website.Models.Volunteer;
-using MvcMembership;
 
 namespace GiveCampLondon.Website.Controllers
 {
@@ -18,29 +16,23 @@ namespace GiveCampLondon.Website.Controllers
             IVolunteerRepository volunteerRepository,
 			IJobRoleRepository jobRoleRepository, 
 			IMembershipService membershipService,
-			INotificationService notificationService, ITechnologyRepository technologyRepository, IExperienceLevelRepository xpLevelRepository, ISettingRepository settingRepository, IFormsAuthentication formsAuth, IRolesService rolesService)
+			INotificationService notificationService, ITechnologyRepository technologyRepository, IExperienceLevelRepository xpLevelRepository, ISettingRepository settingRepository)
         :base(settingRepository)
         {
             _membershipService = membershipService;
-            _rolesService = rolesService;
-            _formsAuth = formsAuth;
             _xpLevelRepository = xpLevelRepository;
             _technologyRepository = technologyRepository;
-            _contentRepository = contentRepository;
             _jobRoleRepository = jobRoleRepository;
             _volunteerRepository = volunteerRepository;
         	_notificationService = notificationService;
         }
 
-        private IContentRepository _contentRepository;
-        private IVolunteerRepository _volunteerRepository;
-        private IJobRoleRepository _jobRoleRepository;
-        private ITechnologyRepository _technologyRepository;
-        private IMembershipService _membershipService;
-    	private INotificationService _notificationService;
-        private IExperienceLevelRepository _xpLevelRepository;
-        private IFormsAuthentication _formsAuth;
-        private IRolesService _rolesService;
+        private readonly IVolunteerRepository _volunteerRepository;
+        private readonly IJobRoleRepository _jobRoleRepository;
+        private readonly ITechnologyRepository _technologyRepository;
+        private readonly IMembershipService _membershipService;
+    	private readonly INotificationService _notificationService;
+        private readonly IExperienceLevelRepository _xpLevelRepository;
 
         public ActionResult Index()
         {
@@ -61,13 +53,6 @@ namespace GiveCampLondon.Website.Controllers
             return View();
         }
         
-        private void InitializeViewBag(SignUpViewModel model)
-        {
-            ViewBag.JobRoles = _jobRoleRepository.FindAll().ToSelectList(j => j.Description, j => j.Id.ToString(), j => model != null && model.JobRoleIds != null && model.JobRoleIds.Contains(j.Id));
-            ViewBag.Technologies = _technologyRepository.FindAll().ToSelectList(t => t.Description, t => t.Id.ToString(), t => model != null && model.TechnologyIds != null && model.TechnologyIds.Contains(t.Id));
-            ViewBag.ExperienceLevels = _xpLevelRepository.FindAll().ToSelectList(e => e.Description, e => e.Id.ToString(), e => model != null && model.ExperienceLevel == e.Id);
-        }
-
         [HttpPost]
         public ActionResult SignUp(SignUpViewModel model, FormCollection collection)
         {
@@ -98,42 +83,44 @@ namespace GiveCampLondon.Website.Controllers
             return View();
         }
 
+        public ActionResult ThankYou()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public ActionResult Volunteers()
+        {
+            IEnumerable<VolunteerSummaryModel> volunteerSummaries = _volunteerRepository.FindAll()
+                .Select(volunteer => new VolunteerSummaryModel
+                {
+                    Id = volunteer.Id,
+                    LastName = volunteer.LastName,
+                    FirstName = volunteer.FirstName,
+                    Email = volunteer.Email,
+                    PhoneNumber = volunteer.PhoneNumber,
+                    TeamName = volunteer.TeamName,
+                    TwitterHandle = volunteer.TwitterHandle
+                });
+            return View(volunteerSummaries);
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public ActionResult Details(int id)
+        {
+            var volunteer = _volunteerRepository.Get(id);
+
+            volunteer.JobRoles = _volunteerRepository.FindJobRolesFor(volunteer.Id);
+            volunteer.Technologies = _volunteerRepository.FindTechnologiesFor(volunteer.Id);
+            volunteer.ExperienceLevel = _xpLevelRepository.GetForVolunteerId(volunteer.Id);
+            return View(volunteer);
+        }
+
         private bool SaveVolunteer(SignUpViewModel model, IEnumerable<int> selectedJobRoleIds, IEnumerable<int> selectedTechnologyIds)
         {
             if (ModelState.IsValid)
             {
-                //_rolesService.AddToRole(user, "Volunteer");
-                var volunteer = new Volunteer
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Bio = model.Bio,
-                    Comments = model.Comments,
-                    DietaryNeeds = model.DietaryNeeds,
-                    Email = model.Email,
-                    ExperienceLevel = _xpLevelRepository.Get(model.ExperienceLevel),
-                    HasExtraLaptop = model.HasExtraLaptop,
-                    HasLaptop = model.HasLaptop,
-                    IsGoodGuiDesigner = model.IsGoodGuiDesigner,
-                    IsStudent = model.IsStudent,
-                    JobDescription = model.JobDescription,
-                    PhoneNumber = model.PhoneNumber,
-                    ShirtSize = model.ShirtSize,
-                    ShirtStyle = model.ShirtStyle,
-                    TeamName = model.TeamName,
-                    TwitterHandle = model.TwitterHandle,
-                    YearsOfExperience = model.YearsOfExperience
-                };
-                foreach (var jobRoleId in selectedJobRoleIds)
-                {
-                    volunteer.JobRoles.Add(_jobRoleRepository.Get(jobRoleId));
-                }
-
-                foreach (var selectedTechnologyId in selectedTechnologyIds)
-                {
-                    volunteer.Technologies.Add(_technologyRepository.Get(selectedTechnologyId));
-                }
-
+                var volunteer = CreateVolunteer(model, selectedJobRoleIds, selectedTechnologyIds);
                 _volunteerRepository.Save(volunteer);
                 _notificationService.SendVolunteerNotification(volunteer, VolunteerNotificationTemplate.WelcomeVolunteer);
 
@@ -141,8 +128,43 @@ namespace GiveCampLondon.Website.Controllers
             }
             return false;
         }
-        
-        private bool UpdateVolunteer(SignUpViewModel model, IList<int> selectedJobRoleIds, IList<int> selectedTechnologyIds)
+
+        private Volunteer CreateVolunteer(SignUpViewModel model, IEnumerable<int> selectedJobRoleIds, IEnumerable<int> selectedTechnologyIds)
+        {
+            var volunteer = new Volunteer
+                                {
+                                    FirstName = model.FirstName,
+                                    LastName = model.LastName,
+                                    Bio = model.Bio,
+                                    Comments = model.Comments,
+                                    DietaryNeeds = model.DietaryNeeds,
+                                    Email = model.Email,
+                                    ExperienceLevel = _xpLevelRepository.Get(model.ExperienceLevel),
+                                    HasExtraLaptop = model.HasExtraLaptop,
+                                    HasLaptop = model.HasLaptop,
+                                    IsGoodGuiDesigner = model.IsGoodGuiDesigner,
+                                    IsStudent = model.IsStudent,
+                                    JobDescription = model.JobDescription,
+                                    PhoneNumber = model.PhoneNumber,
+                                    ShirtSize = model.ShirtSize,
+                                    ShirtStyle = model.ShirtStyle,
+                                    TeamName = model.TeamName,
+                                    TwitterHandle = model.TwitterHandle,
+                                    YearsOfExperience = model.YearsOfExperience
+                                };
+            foreach (var jobRoleId in selectedJobRoleIds)
+            {
+                volunteer.JobRoles.Add(_jobRoleRepository.Get(jobRoleId));
+            }
+
+            foreach (var selectedTechnologyId in selectedTechnologyIds)
+            {
+                volunteer.Technologies.Add(_technologyRepository.Get(selectedTechnologyId));
+            }
+            return volunteer;
+        }
+
+        private bool UpdateVolunteer(SignUpViewModel model, IEnumerable<int> selectedJobRoleIds, IEnumerable<int> selectedTechnologyIds)
         {
             MembershipUser user = _membershipService.GetUserByName(User.Identity.Name);
             var volunteer = _volunteerRepository.Get((Guid)user.ProviderUserKey);
@@ -185,39 +207,6 @@ namespace GiveCampLondon.Website.Controllers
             return true;
         }
 
-        public ActionResult ThankYou()
-        {
-            return View();
-        }
-
-        [Authorize(Roles = "Administrator")]
-        public ActionResult Volunteers()
-        {
-            IEnumerable<VolunteerSummaryModel> volunteerSummaries = _volunteerRepository.FindAll()
-                .Select(volunteer => new VolunteerSummaryModel
-                                         {
-                                             Id = volunteer.Id, 
-                                             LastName = volunteer.LastName,
-                                             FirstName = volunteer.FirstName, 
-                                             Email = volunteer.Email, 
-                                             PhoneNumber = volunteer.PhoneNumber,
-                                             TeamName = volunteer.TeamName,
-                                             TwitterHandle = volunteer.TwitterHandle
-                                         });
-            return View(volunteerSummaries);
-        }
-
-        [Authorize(Roles = "Administrator")]
-        public ActionResult Details(int id)
-        {
-            var volunteer = _volunteerRepository.Get(id);
-
-            volunteer.JobRoles = _volunteerRepository.FindJobRolesFor(volunteer.Id);
-            volunteer.Technologies = _volunteerRepository.FindTechnologiesFor(volunteer.Id);
-            volunteer.ExperienceLevel = _xpLevelRepository.GetForVolunteerId(volunteer.Id);
-            return View(volunteer);
-        }
-
         private IList<int> GetSelectedValues(FormCollection collection, string formObjectName, bool isRequired, string isRequiredErrorMessage)
         {
             var list = new List<int>();
@@ -232,5 +221,13 @@ namespace GiveCampLondon.Website.Controllers
                 ModelState.AddModelError(formObjectName, isRequiredErrorMessage);
             return list;
         }
+
+        private void InitializeViewBag(SignUpViewModel model)
+        {
+            ViewBag.JobRoles = _jobRoleRepository.FindAll().ToSelectList(j => j.Description, j => j.Id.ToString(), j => model != null && model.JobRoleIds != null && model.JobRoleIds.Contains(j.Id));
+            ViewBag.Technologies = _technologyRepository.FindAll().ToSelectList(t => t.Description, t => t.Id.ToString(), t => model != null && model.TechnologyIds != null && model.TechnologyIds.Contains(t.Id));
+            ViewBag.ExperienceLevels = _xpLevelRepository.FindAll().ToSelectList(e => e.Description, e => e.Id.ToString(), e => model != null && model.ExperienceLevel == e.Id);
+        }
+
     }
 }
