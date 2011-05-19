@@ -14,8 +14,8 @@ namespace GiveCampLondon.Services
 
 		public bool Send(MailMessage message)
 		{
-			var client = new SmtpClient();
-			try
+			var client = new SmtpClient {EnableSsl = true};
+		    try
 			{
 				client.Send(message);
 			}

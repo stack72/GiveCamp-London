@@ -31,21 +31,6 @@ License: 	Dual licensed under the MIT and GPL licenses.
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
 	}
-.thumbFeatures .jshowoff-slidelinks a.jshowoff-active {
-	border: 1px solid #fff;
-	}
-.thumbFeatures .jshowoff-slidelink-0 {
-	background-image: url(http://farm5.static.flickr.com/4065/4439060414_c11002d183_o_d.jpg);
-	}
-.thumbFeatures .jshowoff-slidelink-1 {
-	background-image: url(http://farm5.static.flickr.com/4049/4438283469_5ddf465356_o_d.jpg);
-	}
-.thumbFeatures .jshowoff-slidelink-2 {
-	background-image: url(http://farm5.static.flickr.com/4033/4439060472_02efbb3955_o_d.jpg);
-	}
-.thumbFeatures .jshowoff-slidelink-3 {
-	background-image: url(http://farm5.static.flickr.com/4041/4438283519_4f08cb4a57_o_d.jpg);
-	}
 .thumbFeatures p.jshowoff-controls {
 	background: none;
 	height: 38px;
@@ -66,18 +51,6 @@ License: 	Dual licensed under the MIT and GPL licenses.
 	padding: 0;
 	text-indent: -10000em;
 	position: absolute;
-	}
-
-.thumbFeatures .jshowoff-controls a.jshowoff-prev {
-	left: 15px;
-	background-image: url(http://farm5.static.flickr.com/4035/4438728886_fd55756fc5_o_d.gif);
-	}
-.thumbFeatures .jshowoff-controls a.jshowoff-next {
-	right: 15px;
-	background-image: url(http://farm3.static.flickr.com/2743/4438728872_07e935da40_o_d.gif);
-	}
-.thumbFeatures .jshowoff-controls a.jshowoff-play {
-	display: none;
 	}
 .jshowoff.thumbFeatures {
 	height: 250px;

@@ -1,3 +1,4 @@
+using System;
 using System.Net.Mail;
 using Antlr3.ST;
 using GiveCampLondon.Repositories;
@@ -64,7 +65,7 @@ namespace GiveCampLondon.Services
 			return _sender.Send(message);
 		}
 
-		private string GetTemplate(string templateSlug, EmailContext context)
+	    private string GetTemplate(string templateSlug, EmailContext context)
 		{
 			var template = new StringTemplate(_contentRepository.Get(templateSlug, "email-template").ContentText);
 			template.SetAttribute("FirstName", context.FirstName ?? "");

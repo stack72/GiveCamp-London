@@ -102,7 +102,6 @@ namespace GiveCampLondon.Website.Controllers
                 _charityRepository.Save(charity);
 
                 _notificationService.SendCharityNotification(charity, CharityNotificationTemplate.WelcomeCharity);
-
                 return true; 
             }
             return false;
