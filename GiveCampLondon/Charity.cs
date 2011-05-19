@@ -17,7 +17,7 @@ namespace GiveCampLondon
         public string Email { get; set; }
 
         [DisplayName("Charity Name")]
-        public string Name { get; set; }
+        public string CharityName { get; set; }
         
         [DisplayName("Background Information")]
         public string BackgroundInformation { get; set; }
@@ -30,6 +30,15 @@ namespace GiveCampLondon
         
         [DisplayName("Other Support Skills")]
         public string OtherSupportSkills { get; set; }
+
+        [DisplayName("Website")]
+        public string Website { get; set; }
+
+        [DisplayName("ContactName")]
+        public string ContactName { get; set; }
+
+        [DisplayName("ContactPhone")]
+        public string ContactPhone { get; set; }
 
         [ScaffoldColumn(false)]
         public bool Approved { get; set; }

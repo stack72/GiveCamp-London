@@ -14,24 +14,9 @@ namespace GiveCampLondon.Website.Models.Volunteer
         }
 
         [Required]
-        [DisplayName("User Name:")]
-        public string UserName { get; set; }
-
-        [Required]
         [DataType(DataType.EmailAddress)]
         [DisplayName("Email Address:")]
         public string Email { get; set; }
-
-        [Required]
-        [ValidatePasswordLength]
-        [DataType(DataType.Password)]
-        [DisplayName("Password:")]
-        public string Password { get; set; }
-
-        [DataType(DataType.Password)]
-        [DisplayName("Confirm Password:")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
 
         [Required]
         [StringLength(30)]
@@ -49,7 +34,6 @@ namespace GiveCampLondon.Website.Models.Volunteer
         [DisplayName("Team Name:")]
         public string TeamName { get; set; }
 
-        [Required]
         [StringLength(50)]
         [DataType(DataType.PhoneNumber)]
         [DisplayName("Phone:")]
@@ -70,7 +54,6 @@ namespace GiveCampLondon.Website.Models.Volunteer
         [DisplayName("I am a student:")]
         public bool IsStudent { get; set; }
 
-        [Required]
         [StringLength(100)]
         [DataType(DataType.Text)]
         [DisplayName("Your day job (e.g. write ASP.NET code):")]
@@ -85,7 +68,6 @@ namespace GiveCampLondon.Website.Models.Volunteer
         [DisplayName("I am a GUI designer:")]
         public bool IsGoodGuiDesigner { get; set; }
 
-        [Required]
         [DataType(DataType.Text)]
         [DisplayName("Experience Level:")]
         public int ExperienceLevel { get; set; }

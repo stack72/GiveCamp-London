@@ -17,7 +17,7 @@ namespace GiveCampLondon.Tests.IntegrationTests.Repositories
 
             var charity = new Charity
             {
-                Name = "Bob's House",
+                CharityName = "Bob's House",
                 BackgroundInformation = "teh backgroundz",
                 OtherInfrastructure = "i need teh serverz",
                 OtherSupportSkills = "i need teh skillz",

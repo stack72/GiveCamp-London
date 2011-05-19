@@ -35,10 +35,6 @@ namespace GiveCampLondon
 
             modelBuilder.Entity<Charity>().Property(c => c.Id)
                 .HasColumnName("CharityId");
-            modelBuilder.Entity<Charity>().Property(c => c.Name)
-                .HasColumnName("CharityName");
-            modelBuilder.Entity<Charity>().Property(c => c.MembershipId)
-                .HasColumnName("MembershipId");
             modelBuilder.Entity<Charity>().HasKey(c => c.Id);
             modelBuilder.Entity<Charity>().ToTable("dbo.Charity");
 
@@ -71,7 +67,7 @@ namespace GiveCampLondon
                 .HasColumnName("TeamName");
             modelBuilder.Entity<Team>().HasKey(t => t.Id);
             modelBuilder.Entity<Team>().ToTable("dbo.Team");
-            
+
             modelBuilder.Entity<Setting>().Property(s => s.Id).HasColumnName("SettingId");
             modelBuilder.Entity<Setting>().HasKey(s => s.Id);
             modelBuilder.Entity<Setting>().ToTable("dbo.Setting");

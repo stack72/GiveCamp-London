@@ -67,14 +67,10 @@ namespace GiveCampLondon.Website.Controllers
                                             {
                                                 BackgroundInformation = charity.BackgroundInformation,
                                                 Email = user.Email,
-                                                Name = charity.Name,
-                                                UserName = user.UserName,
+                                                Name = charity.CharityName,
                                                 OtherInfrastructure = charity.OtherInfrastructure,
                                                 OtherSupportSkills = charity.OtherSupportSkills,
-                                                WorkRequested = charity.WorkRequested,
-                                                Password = fakePassword,
-                                                ConfirmPassword = fakePassword
-
+                                                WorkRequested = charity.WorkRequested
                                             };
                 return View(model);
 
@@ -87,61 +83,36 @@ namespace GiveCampLondon.Website.Controllers
         {
             if (!ModelState.IsValid)
                 return View();
-            bool success = User.Identity.IsAuthenticated && User.IsInRole("Charity") ? UpdateCharity(vm) : SaveCharity(vm);
+            bool success = SaveCharity(vm);
 
             return RedirectToAction(success ? "thankyou" : "SignUp");
         }
 
         private bool SaveCharity(SignUpViewModel vm)
         {
-            MembershipCreateStatus signupStatus = _membershipService.CreateUser(vm.UserName, vm.Password, vm.Email);
-            if (signupStatus == MembershipCreateStatus.Success)
+            if (ModelState.IsValid)
             {
-                MembershipUser user = _membershipService.GetUserByName(vm.UserName);
-                _rolesService.AddToRole(user, "Charity");
                 var charity = new Charity
-                {
-                    Name = vm.Name,
-                    MembershipId = (Guid)user.ProviderUserKey,
-                    BackgroundInformation = vm.BackgroundInformation,
-                    OtherInfrastructure = vm.OtherInfrastructure,
-                    OtherSupportSkills = vm.OtherSupportSkills,
-                    WorkRequested = vm.WorkRequested,
-                    Email = vm.Email,
-                    Approved = false
-                };
+                        {
+                            CharityName = vm.Name,
+                            BackgroundInformation = vm.BackgroundInformation,
+                            OtherInfrastructure = vm.OtherInfrastructure,
+                            OtherSupportSkills = vm.OtherSupportSkills,
+                            WorkRequested = vm.WorkRequested,
+                            Email = vm.Email,
+                            Website = vm.Website,
+                            ContactName = vm.ContactName,
+                            ContactPhone = vm.ContactPhone,
+                            Approved = false
+                        };
 
                 _charityRepository.Save(charity);
 
-            	_notificationService.SendCharityNotification(charity, CharityNotificationTemplate.WelcomeCharity);
+                _notificationService.SendCharityNotification(charity, CharityNotificationTemplate.WelcomeCharity);
 
-				_formsAuth.SignIn(vm.UserName, false);
-
-                return true;
+                return true; 
             }
             return false;
-        }
-
-        private bool UpdateCharity(SignUpViewModel vm)
-        {
-            MembershipUser user = _membershipService.GetUserByName(User.Identity.Name);
-            Charity charity = _charityRepository.Get((Guid)user.ProviderUserKey);
-
-            charity.Name = vm.Name;
-            charity.BackgroundInformation = vm.BackgroundInformation;
-            charity.OtherInfrastructure = vm.OtherInfrastructure;
-            charity.OtherSupportSkills = vm.OtherSupportSkills;
-            charity.WorkRequested = vm.WorkRequested;
-            charity.Email = vm.Email;
-
-            if(user.Email != vm.Email)
-            {
-                user.Email = vm.Email;
-                _membershipService.UpdateUser(user);
-            }
-
-            _charityRepository.Save(charity);
-            return true;
         }
 
         public ActionResult ThankYou()
@@ -169,7 +140,7 @@ namespace GiveCampLondon.Website.Controllers
             return _rolesService.FindUserNamesByRole("Charity")
                 .Select(username => _membershipService.GetUserByName(username))
                 .Select(membership => _charityRepository.Get((Guid)membership.ProviderUserKey))
-                .Select(charity => new CharitySummaryModel{ Email = charity.Email, Name = charity.Name, Id = charity.Id, Approved = charity.Approved });
+                .Select(charity => new CharitySummaryModel{ Email = charity.Email, Name = charity.CharityName, Id = charity.Id, Approved = charity.Approved });
         }
 
         public ActionResult Details(int id)

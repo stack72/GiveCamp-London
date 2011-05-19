@@ -7,6 +7,73 @@
 <br />
 @using (Html.BeginForm())
 {
-    @Html.EditorForModel()
+    <div class="editor-label">
+	    <label for="Name">Charity Name</label>
+	</div>	
+	<div class="editor-field">
+        @Html.TextBoxFor(m => m.Name, new { required = "required" })
+        @Html.ValidationMessageFor(m => m.Name)
+	</div>
+    
+    <div class="editor-label">
+	    <label for="WebSite">Website</label>
+	</div>	
+	<div class="editor-field">
+        @Html.TextBoxFor(m => m.Website)
+        @Html.ValidationMessageFor(m => m.Website)
+	</div>
+    
+    <div class="editor-label">
+	    <label for="ContactName">Contact Name</label>
+	</div>	
+	<div class="editor-field">
+        @Html.TextBoxFor(m => m.ContactName, new { required = "required" })
+        @Html.ValidationMessageFor(m => m.ContactName)
+	</div>
+    
+    <div class="editor-label">
+	    <label for="ContactEmail">Contact Email</label>
+	</div>	
+	<div class="editor-field">
+        @Html.TextBoxFor(m => m.Email, new { required = "required" })
+        @Html.ValidationMessageFor(m => m.Email)
+	</div>
+    
+    <div class="editor-label">
+	    <label for="ContactPhone">Contact Phone</label>
+	</div>	
+	<div class="editor-field">
+        @Html.TextBoxFor(m => m.ContactPhone)
+	</div>
+    
+    <div class="editor-label">
+	    <label for="ProjectRequest">Project Request</label>
+	</div>	
+	<div class="editor-field">
+        @Html.TextAreaFor(m => m.WorkRequested)
+	</div>
+    
+    <div class="editor-label">
+	    <label for="BackGroundInformation">Background To Desired Project</label>
+	</div>	
+	<div class="editor-field">
+        @Html.TextAreaFor(m => m.BackgroundInformation)
+	</div>
+    
+    <div class="editor-label">
+	    <label for="Infrastructure">Current System Infrastructure</label>
+	</div>	
+	<div class="editor-field">
+        @Html.TextAreaFor(m => m.OtherInfrastructure)
+	</div>
+    
+    <div class="editor-label">
+	    <label for="SkillSets">Current Staff Skillsets</label>
+	</div>	
+	<div class="editor-field">
+        @Html.TextAreaFor(m => m.OtherSupportSkills)
+	</div>
+    
+    
     <input type="submit" value="Register" />
 }

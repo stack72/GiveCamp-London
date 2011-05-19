@@ -57,47 +57,6 @@ namespace GiveCampLondon.Website.Controllers
 
         public ActionResult SignUp()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                MembershipUser user = _membershipService.GetUserByName(User.Identity.Name);
-                var volunteer = _volunteerRepository.Get((Guid)user.ProviderUserKey);
-                string fakePassword = Guid.NewGuid().ToString();
-                var model = new SignUpViewModel()
-                {
-                    FirstName = volunteer.FirstName,
-                    LastName = volunteer.LastName,
-                    Bio = volunteer.Bio,
-                    Comments = volunteer.Comments,
-                    DietaryNeeds = volunteer.DietaryNeeds,
-                    ExperienceLevel = _xpLevelRepository.GetForVolunteerId(volunteer.Id).Id,
-                    HasExtraLaptop = volunteer.HasExtraLaptop,
-                    HasLaptop = volunteer.HasLaptop,
-                    IsGoodGuiDesigner = volunteer.IsGoodGuiDesigner,
-                    IsStudent = volunteer.IsStudent,
-                    JobDescription = volunteer.JobDescription,
-                    PhoneNumber = volunteer.PhoneNumber,
-                    ShirtSize = volunteer.ShirtSize,
-                    ShirtStyle = volunteer.ShirtStyle,
-                    TeamName = volunteer.TeamName,
-                    TwitterHandle = volunteer.TwitterHandle,
-                    YearsOfExperience = volunteer.YearsOfExperience,
-                    Email = user.Email,
-                    UserName = user.UserName,
-                    Password = fakePassword,
-                    ConfirmPassword = fakePassword
-                };
-                foreach (var jobRole in _volunteerRepository.FindJobRolesFor(volunteer.Id))
-                {
-                    model.JobRoleIds.Add(jobRole.Id);
-                }
-                foreach (var technology in _volunteerRepository.FindTechnologiesFor(volunteer.Id))
-                {
-                    model.TechnologyIds.Add(technology.Id);
-                }
-                InitializeViewBag(model);
-                return View(model);
-            }
-
             InitializeViewBag(null);
             return View();
         }
@@ -128,47 +87,43 @@ namespace GiveCampLondon.Website.Controllers
                 InitializeViewBag(model);
                 return View();
             }
-            var signupStatus = SaveVolunteer(model, selectedJobRoleIds, selectedTechnologyIds);
-            if (signupStatus == MembershipCreateStatus.Success)
+            
+            if (SaveVolunteer(model, selectedJobRoleIds, selectedTechnologyIds))
             {
                 return RedirectToAction("ThankYou");
             }
 
-            ModelState.AddModelError("SignUpStatus", "Could not sign you up because of " + signupStatus);
+            ModelState.AddModelError("SignUpStatus", "Could not sign you up - please try again");
             InitializeViewBag(model);
             return View();
         }
 
-        private MembershipCreateStatus SaveVolunteer(SignUpViewModel model, IList<int> selectedJobRoleIds, IList<int> selectedTechnologyIds)
+        private bool SaveVolunteer(SignUpViewModel model, IEnumerable<int> selectedJobRoleIds, IEnumerable<int> selectedTechnologyIds)
         {
-            MembershipCreateStatus signupStatus = _membershipService.CreateUser(model.UserName, model.Password,
-                                                                                model.Email);
-            if (signupStatus == MembershipCreateStatus.Success)
+            if (ModelState.IsValid)
             {
-                MembershipUser user = _membershipService.GetUserByName(model.UserName);
                 //_rolesService.AddToRole(user, "Volunteer");
                 var volunteer = new Volunteer
-                                    {
-                                        MembershipId = (Guid) user.ProviderUserKey,
-                                        FirstName = model.FirstName,
-                                        LastName = model.LastName,
-                                        Bio = model.Bio,
-                                        Comments = model.Comments,
-                                        DietaryNeeds = model.DietaryNeeds,
-                                        Email = user.Email,
-                                        ExperienceLevel = _xpLevelRepository.Get(model.ExperienceLevel),
-                                        HasExtraLaptop = model.HasExtraLaptop,
-                                        HasLaptop = model.HasLaptop,
-                                        IsGoodGuiDesigner = model.IsGoodGuiDesigner,
-                                        IsStudent = model.IsStudent,
-                                        JobDescription = model.JobDescription,
-                                        PhoneNumber = model.PhoneNumber,
-                                        ShirtSize = model.ShirtSize,
-                                        ShirtStyle = model.ShirtStyle,
-                                        TeamName = model.TeamName,
-                                        TwitterHandle = model.TwitterHandle,
-                                        YearsOfExperience = model.YearsOfExperience
-                                    };
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Bio = model.Bio,
+                    Comments = model.Comments,
+                    DietaryNeeds = model.DietaryNeeds,
+                    Email = model.Email,
+                    ExperienceLevel = _xpLevelRepository.Get(model.ExperienceLevel),
+                    HasExtraLaptop = model.HasExtraLaptop,
+                    HasLaptop = model.HasLaptop,
+                    IsGoodGuiDesigner = model.IsGoodGuiDesigner,
+                    IsStudent = model.IsStudent,
+                    JobDescription = model.JobDescription,
+                    PhoneNumber = model.PhoneNumber,
+                    ShirtSize = model.ShirtSize,
+                    ShirtStyle = model.ShirtStyle,
+                    TeamName = model.TeamName,
+                    TwitterHandle = model.TwitterHandle,
+                    YearsOfExperience = model.YearsOfExperience
+                };
                 foreach (var jobRoleId in selectedJobRoleIds)
                 {
                     volunteer.JobRoles.Add(_jobRoleRepository.Get(jobRoleId));
@@ -181,9 +136,10 @@ namespace GiveCampLondon.Website.Controllers
 
                 _volunteerRepository.Save(volunteer);
                 _notificationService.SendVolunteerNotification(volunteer, VolunteerNotificationTemplate.WelcomeVolunteer);
-                _formsAuth.SignIn(model.UserName, false);
+
+                return true;
             }
-            return signupStatus;
+            return false;
         }
         
         private bool UpdateVolunteer(SignUpViewModel model, IList<int> selectedJobRoleIds, IList<int> selectedTechnologyIds)

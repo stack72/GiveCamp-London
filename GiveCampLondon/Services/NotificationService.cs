@@ -9,15 +9,13 @@ namespace GiveCampLondon.Services
 		private IContentRepository _contentRepository;
 		private ISmtpSender _sender;
 		private MailConfiguration _mailConfiguration;
-        private readonly IMembershipService _membershipProvider;
-		  
+
 
 	    public NotificationService(IContentRepository contentRepository, ISmtpSender sender, MailConfiguration mailConfiguration, IMembershipService membershipService)
 		{
 			_contentRepository = contentRepository;
 			_sender = sender;
 			_mailConfiguration = mailConfiguration;
-            _membershipProvider = membershipService;
 		}
 
 		public class EmailContext
@@ -31,17 +29,14 @@ namespace GiveCampLondon.Services
 
 		public bool SendVolunteerNotification(Volunteer user, VolunteerNotificationTemplate volunteerNotificationType)
 		{
-		    var membershipUser = _membershipProvider.GetUserById(user.MembershipId);
-
-			var context = new EmailContext
+		    var context = new EmailContext
 			              	{
 			              		FirstName = user.FirstName,
 								LastName = user.LastName,
-								SiteName = _mailConfiguration.SiteName,
-								UserName = membershipUser.UserName
+								SiteName = _mailConfiguration.SiteName
 			              	};
 
-			var message = new MailMessage(_mailConfiguration.SiteEmailAddress, membershipUser.Email)
+			var message = new MailMessage(_mailConfiguration.SiteEmailAddress, user.Email)
 							{
 								Subject = GetTemplate(volunteerNotificationType.ToString().ToLower() + "-subject", context),
 								Body = GetTemplate(volunteerNotificationType.ToString().ToLower() + "-body", context),
@@ -53,16 +48,14 @@ namespace GiveCampLondon.Services
 
 		public bool SendCharityNotification(Charity charity, CharityNotificationTemplate charityNotificationType)
 		{
-			var membershipUser = _membershipProvider.GetUserById(charity.MembershipId);
-
 			var context = new EmailContext
 			{
-				Name = charity.Name,
+				Name = charity.CharityName,
 				SiteName = _mailConfiguration.SiteName,
-				UserName = membershipUser.UserName
+				UserName = charity.ContactName
 			};
 
-			var message = new MailMessage(_mailConfiguration.SiteEmailAddress, membershipUser.Email)
+			var message = new MailMessage(_mailConfiguration.SiteEmailAddress, charity.Email)
 			{
 				Subject = GetTemplate(charityNotificationType.ToString().ToLower() + "-subject", context),
 				Body = GetTemplate(charityNotificationType.ToString().ToLower() + "-body", context),
