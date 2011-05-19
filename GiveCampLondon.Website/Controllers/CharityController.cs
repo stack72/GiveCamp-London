@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.Security;
 using GiveCampLondon.Repositories;
 using GiveCampLondon.Services;
 using GiveCampLondon.Website.Models;
 using GiveCampLondon.Website.Models.Charity;
 using MvcMembership;
-
 
 namespace GiveCampLondon.Website.Controllers
 {
@@ -18,21 +16,17 @@ namespace GiveCampLondon.Website.Controllers
             : base(settingRepository)
         {
             _settingRepository = settingRepository;
-            _formsAuth = formsAuth;
-            _rolesService = rolesService;
+		    _rolesService = rolesService;
             _membershipService = membershipService;
-            _contentRepository = contentRepository;
-            _charityRepository = charityRepository;
+		    _charityRepository = charityRepository;
         	_notificationService = notificationService;
         }
 
-        private IContentRepository _contentRepository;
-        private ICharityRepository _charityRepository;
-        private IMembershipService _membershipService;
-        private IRolesService _rolesService;
-        private IFormsAuthentication _formsAuth;
-        private ISettingRepository _settingRepository;
-		private INotificationService _notificationService;
+        private readonly ICharityRepository _charityRepository;
+        private readonly IMembershipService _membershipService;
+        private readonly IRolesService _rolesService;
+        private readonly ISettingRepository _settingRepository;
+		private readonly INotificationService _notificationService;
 
         public ActionResult Index()
         {
@@ -60,10 +54,9 @@ namespace GiveCampLondon.Website.Controllers
         {
             if(User.Identity.IsAuthenticated && User.IsInRole("Charity"))
             {
-                MembershipUser user = _membershipService.GetUserByName(User.Identity.Name);
-                Charity charity =  _charityRepository.Get((Guid) user.ProviderUserKey);
-                string fakePassword = Guid.NewGuid().ToString();
-                SignUpViewModel model = new SignUpViewModel()
+                var user = _membershipService.GetUserByName(User.Identity.Name);
+                var charity =  _charityRepository.Get((Guid) user.ProviderUserKey);
+                var model = new SignUpViewModel
                                             {
                                                 BackgroundInformation = charity.BackgroundInformation,
                                                 Email = user.Email,

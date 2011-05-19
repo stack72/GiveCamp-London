@@ -10,7 +10,7 @@ namespace GiveCampLondon.Repositories
             _dataContext = dataContext;
         }
 
-        private SiteDataContext _dataContext;
+        private readonly SiteDataContext _dataContext;
 
         public void Save(Charity charity)
         {

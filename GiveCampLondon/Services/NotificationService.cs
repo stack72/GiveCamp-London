@@ -6,12 +6,11 @@ namespace GiveCampLondon.Services
 {
 	public class NotificationService : INotificationService
 	{
-		private IContentRepository _contentRepository;
-		private ISmtpSender _sender;
-		private MailConfiguration _mailConfiguration;
+		private readonly IContentRepository _contentRepository;
+		private readonly ISmtpSender _sender;
+		private readonly MailConfiguration _mailConfiguration;
 
-
-	    public NotificationService(IContentRepository contentRepository, ISmtpSender sender, MailConfiguration mailConfiguration, IMembershipService membershipService)
+	    public NotificationService(IContentRepository contentRepository, ISmtpSender sender, MailConfiguration mailConfiguration)
 		{
 			_contentRepository = contentRepository;
 			_sender = sender;
