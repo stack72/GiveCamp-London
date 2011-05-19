@@ -30,7 +30,7 @@
             <div id="main-navigation" class="clearfix">
                 <dl>
                     <dd><a href="@Url.Action("index", "home")">Home</a></dd>
-                    <dd><a href="@Url.Action("about-givecamp", "home")">About GiveCamp</a></dd>
+                    @*<dd><a href="@Url.Action("about-givecamp", "home")">About GiveCamp</a></dd>*@
                     <dd><a href="@Url.Action("index", "volunteer")">Volunteer</a></dd>
                     <dd><a href="@Url.Action("index", "charity")">Charity</a></dd>
                     <dd><a href="@Url.Action("index", "sponsors")">Sponsors</a></dd>
@@ -50,14 +50,14 @@
         </div>
         <div id="column-left-360">
             <div class="content-module">
-                <h2>Location</h2>
+                <h2>Advertisement</h2>
                 <div class="ad-mpu">
                     <img src="@Url.Content("~/content/images/temp_mpu_300x250.jpg")" width="300" height="250" alt="text" />
                 </div>
             </div>
             <div class="content-module">
                 <div class="content">
-                    <p>This will potentially be where the venue goes if they give us it for free</p>
+                    <h2>Date and Location here</h2>
                 </div>
             </div>
             <div class="content-module">
@@ -86,8 +86,8 @@
                     
                     <dd>
                         <a href="@Url.Action("index", "siteMap")">Site Map</a></dd>
-                    <dd>
-                        <a href="@Url.Action("about", "home")">About GiveCamp</a></dd>
+                    @*<dd>
+                        <a href="@Url.Action("about", "home")">About GiveCamp</a></dd>*@
                     <dd>
                         <a href="@Url.Action("contact-us", "home")">Contact Us</a></dd>
                 </dl>
