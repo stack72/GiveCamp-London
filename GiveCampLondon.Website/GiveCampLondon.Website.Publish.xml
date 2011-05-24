@@ -2,7 +2,7 @@
 <publishData>
   <publishProfile publishUrl="C:\Deploys\GiveCamp" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
     <file relUrl="Views/Charity/Index.cshtml" publishTime="05/24/2011 22:12:38" />
-    <file relUrl="Views/Home/Contact-Us.cshtml" publishTime="05/19/2011 20:09:45" />
+    <file relUrl="Views/Home/Contact-Us.cshtml" publishTime="05/24/2011 22:43:21" />
     <file relUrl="bin/Antlr3.Runtime.dll" publishTime="03/30/2011 08:24:27" />
     <file relUrl="Content/images/bg_button_a.gif" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Views/Charity/Charities.cshtml" publishTime="03/30/2011 22:18:13" />
@@ -30,7 +30,6 @@
     <file relUrl="Scripts/jquery-ui.min.js" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Content/images/img11.gif" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Views/Volunteer/Details.cshtml" publishTime="03/30/2011 22:17:24" />
-    <file relUrl="Views/Home/FAQ-Charities.cshtml" publishTime="05/24/2011 13:04:57" />
     <file relUrl="Views/Shared/Error.cshtml" publishTime="04/05/2011 20:39:25" />
     <file relUrl="Content/images/spacer.gif" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Content/images/bg01.jpg" publishTime="03/30/2011 08:24:26" />
@@ -53,13 +52,11 @@
     <file relUrl="Content/jshowoff.css" publishTime="05/19/2011 21:40:05" />
     <file relUrl="Content/images/icn_32x32_facebook.png" publishTime="04/13/2011 00:25:46" />
     <file relUrl="bin/System.Data.Entity.dll" publishTime="03/18/2010 18:31:26" />
-    <file relUrl="bin/GiveCampLondon.dll" publishTime="05/24/2011 22:28:39" />
-    <file relUrl="Views/Home/FAQ-Sponsors.cshtml" publishTime="05/24/2011 13:05:02" />
+    <file relUrl="bin/GiveCampLondon.dll" publishTime="05/24/2011 22:47:41" />
     <file relUrl="Views/Volunteer/Volunteers.cshtml" publishTime="03/30/2011 22:18:37" />
     <file relUrl="Scripts/jquery-1.4.4.min.js" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Global.asax" publishTime="03/30/2011 18:48:53" />
     <file relUrl="Views/Home/schedule.cshtml" publishTime="05/24/2011 22:32:19" />
-    <file relUrl="Views/Home/Faq.cshtml" publishTime="05/24/2011 22:28:31" />
     <file relUrl="Views/Admin/JobRoles.cshtml" publishTime="04/13/2011 00:59:03" />
     <file relUrl="Views/Home/about-givecamp.cshtml" publishTime="04/13/2011 00:25:46" />
     <file relUrl="Views/Admin/ControlPanel.cshtml" publishTime="04/13/2011 00:55:17" />
@@ -72,7 +69,7 @@
     <file relUrl="Content/images/img04.gif" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Content/images/img05.gif" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Content/images/icn_32x32_flickr.png" publishTime="04/13/2011 00:25:46" />
-    <file relUrl="bin/GiveCampLondon.Website.dll" publishTime="05/24/2011 22:28:40" />
+    <file relUrl="bin/GiveCampLondon.Website.dll" publishTime="05/24/2011 22:50:38" />
     <file relUrl="Areas/TeamAdministration/Views/Web.config" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Content/images/img06.jpg" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Content/images/img06.gif" publishTime="03/30/2011 08:24:26" />
@@ -97,6 +94,7 @@
     <file relUrl="Scripts/jquery.unobtrusive-ajax.js" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Views/SiteMap/Index.cshtml" publishTime="04/14/2011 06:53:09" />
     <file relUrl="Views/Account/ChangePassword.cshtml" publishTime="03/30/2011 22:17:24" />
+    <file relUrl="Views/FAQ/Faq.cshtml" publishTime="05/24/2011 22:45:58" />
     <file relUrl="Content/images/bg02.jpg" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Content/images/btn_submit.jpg" publishTime="05/24/2011 13:06:16" />
     <file relUrl="Areas/UserAdministration/Views/UserAdministration/Details.cshtml" publishTime="03/30/2011 22:17:24" />
@@ -106,26 +104,28 @@
     <file relUrl="Content/images/bg_button_span.gif" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Areas/TeamAdministration/Views/Home/NoTeams.cshtml" publishTime="03/30/2011 08:24:26" />
     <file relUrl="config/connectionstrings.Sandbox.config" publishTime="05/18/2011 23:31:51" />
-    <file relUrl="Views/Shared/_Layout.cshtml" publishTime="05/23/2011 22:08:55" />
+    <file relUrl="Views/Shared/_Layout.cshtml" publishTime="05/24/2011 22:52:20" />
+    <file relUrl="Views/FAQ/FAQ-Developers.cshtml" publishTime="05/24/2011 08:33:01" />
     <file relUrl="Content/images/icn_32x32_youtube.png" publishTime="04/13/2011 00:25:46" />
+    <file relUrl="Views/FAQ/FAQ-Sponsors.cshtml" publishTime="05/24/2011 13:05:02" />
     <file relUrl="Scripts/Views/Admin/tagAjax.js" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Views/Web.config" publishTime="04/04/2011 22:40:15" />
     <file relUrl="bin/PagedList.xml" publishTime="03/30/2011 08:24:27" />
     <file relUrl="Content/images/bg04.jpg" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Content/images/divider_main_nav.gif" publishTime="04/13/2011 00:25:46" />
-    <file relUrl="Views/Sponsors/Index.cshtml" publishTime="05/23/2011 22:19:33" />
+    <file relUrl="Views/Sponsors/Index.cshtml" publishTime="05/24/2011 22:35:11" />
+    <file relUrl="Views/FAQ/FAQ-Charities.cshtml" publishTime="05/24/2011 13:04:57" />
     <file relUrl="Content/template.css" publishTime="05/24/2011 22:09:13" />
-    <file relUrl="Web.config" publishTime="05/24/2011 22:28:51" />
+    <file relUrl="Web.config" publishTime="05/24/2011 22:48:09" />
     <file relUrl="Content/images/give_camp_logo.png" publishTime="04/13/2011 00:25:46" />
     <file relUrl="Content/scripts/jquery.faqs.js" publishTime="07/30/2010 22:14:40" />
-    <file relUrl="bin/GiveCampLondon.Website.pdb" publishTime="05/24/2011 22:28:40" />
+    <file relUrl="bin/GiveCampLondon.Website.pdb" publishTime="05/24/2011 22:50:38" />
     <file relUrl="Content/images/img01.jpg" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Areas/UserAdministration/Views/_ViewStart.cshtml" publishTime="04/13/2011 01:00:28" />
     <file relUrl="bin/System.Web.WebPages.Razor.dll" publishTime="01/05/2011 15:45:38" />
-    <file relUrl="Views/Home/FAQ-Developers.cshtml" publishTime="05/24/2011 08:33:01" />
     <file relUrl="Content/images/img13.gif" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Content/images/icn_32x32_twitter.png" publishTime="04/13/2011 00:25:46" />
-    <file relUrl="bin/GiveCampLondon.pdb" publishTime="05/24/2011 22:28:39" />
+    <file relUrl="bin/GiveCampLondon.pdb" publishTime="05/24/2011 22:47:41" />
     <file relUrl="bin/EntityFramework.dll" publishTime="03/30/2011 08:24:27" />
     <file relUrl="Content/images/temp_mpu_300x250.jpg" publishTime="04/13/2011 00:25:46" />
     <file relUrl="Content/images/img08.gif" publishTime="03/30/2011 08:24:26" />
@@ -133,9 +133,9 @@
     <file relUrl="bin/System.Web.Helpers.dll" publishTime="01/05/2011 15:45:38" />
     <file relUrl="Content/images/tile_module_divider.gif" publishTime="04/13/2011 00:25:46" />
     <file relUrl="Content/images/img07.gif" publishTime="03/30/2011 08:24:26" />
-    <file relUrl="Views/Home/FAQ-EventStaff.cshtml" publishTime="05/24/2011 13:04:49" />
     <file relUrl="Areas/UserAdministration/Views/UserAdministration/UsersRoles.cshtml" publishTime="03/30/2011 22:16:15" />
     <file relUrl="Views/Charity/ThankYou.cshtml" publishTime="05/19/2011 18:01:36" />
+    <file relUrl="Views/FAQ/FAQ-EventStaff.cshtml" publishTime="05/24/2011 13:04:49" />
     <file relUrl="Content/images/img14.gif" publishTime="03/30/2011 08:24:26" />
     <file relUrl="Views/Account/Register.cshtml" publishTime="04/05/2011 08:44:42" />
     <file relUrl="config/appSettings.config" publishTime="05/19/2011 21:55:58" />

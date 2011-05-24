@@ -87,6 +87,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
+    <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\SiteMapController.cs" />
     <Compile Include="Controllers\SponsorsController.cs" />
     <Compile Include="Models\ContactUsViewModel.cs" />
@@ -166,11 +167,11 @@
     </Content>
     <Content Include="Views\Home\Contact-Us.cshtml" />
     <None Include="Content\less\template.less" />
-    <Content Include="Views\Home\FAQ-Developers.cshtml" />
-    <Content Include="Views\Home\FAQ-EventStaff.cshtml">
+    <Content Include="Views\FAQ\FAQ-Developers.cshtml" />
+    <Content Include="Views\FAQ\FAQ-EventStaff.cshtml">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Views\Home\FAQ-Sponsors.cshtml">
+    <Content Include="Views\FAQ\FAQ-Sponsors.cshtml">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Web.config">
@@ -207,7 +208,7 @@
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Home\FAQ-Charities.cshtml" />
+    <Content Include="Views\FAQ\FAQ-Charities.cshtml" />
     <Content Include="Views\Shared\_TwitterPanel.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\SiteMap\Index.cshtml" />
@@ -261,7 +262,7 @@
     <Content Include="Views\Charity\ThankYou.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\Faq.cshtml" />
+    <Content Include="Views\FAQ\Faq.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\UserAdministration\Views\UserAdministration\Details.cshtml" />

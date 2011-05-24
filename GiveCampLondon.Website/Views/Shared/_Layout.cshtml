@@ -40,7 +40,7 @@
                     <dd>
                         <a href="@Url.Action("index", "sponsors")">Sponsors</a></dd>
                     <dd>
-                        <a href="@Url.Action("faq", "home")">FAQ</a></dd>
+                        <a href="/faq">FAQ</a></dd>
                     <dd>
                         <a href="@Url.Action("schedule", "home")">Schedule</a></dd>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
@@ -101,8 +101,6 @@
             <div id="footer-divider">
                 <span id="copyright">&copy; Copyright Give Camp 2011. All rights reserved.</span>
                 <dl id="footer-navigation">
-                    <dd>
-                        <a href="@Url.Action("index", "siteMap")">Site Map</a></dd>
                     <dd>
                         <a href="@Url.Action("contact-us", "home")">Contact Us</a></dd>
                 </dl>
