@@ -160,7 +160,9 @@
     <Content Include="Scripts\Views\Admin\tagAjax.js" />
     <Content Include="config\connectionstrings.Dev.config" />
     <Content Include="config\connectionstrings.Sandbox.config" />
-    <Content Include="config\appSettings.config" />
+    <Content Include="config\appSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Home\Contact-Us.cshtml" />
     <None Include="Content\less\template.less" />
     <None Include="Views\Home\FAQ-Developers.cshtml" />
