@@ -26,15 +26,15 @@ namespace GiveCampLondon.Website.Controllers
             }
 
             // section specified
-            switch (id)
+            switch (id.ToLower())
             {
-                case "Charities":
+                case "charities":
                     return (View("FAQ-Charities"));
-                case "Developers":
+                case "developers":
                     return (View("FAQ-Developers"));
-                case "EventStaff":
+                case "eventstaff":
                     return (View("FAQ-EventStaff"));
-                case "Sponsors":
+                case "sponsors":
                     return (View("FAQ-Sponsors"));
                 default:
                     // someone typed in a non-existant section URL

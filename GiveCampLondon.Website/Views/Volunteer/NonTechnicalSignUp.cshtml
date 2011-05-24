@@ -1,7 +1,10 @@
 ﻿@model GiveCampLondon.Website.Models.Volunteer.SignUpViewModel
 @{
-    ViewBag.Title = "Volunteer Sign-up";
+    ViewBag.Title = "NonTechnicalSignUp";
 }
+
+<h2>NonTechnicalSignUp</h2>
+
 <h1>
     Volunteer Sign-Up</h1>
 <br />
@@ -39,49 +42,18 @@
         @Html.ValidationMessageFor(m => m.PhoneNumber)
 	</div>
     
-    <div class="editor-label">
-	    <label for="PrimaryRole">Primary role</label>
-	</div>	
-	<div class="editor-field">
-        @Html.Raw(Html.CheckBoxList("jobRoles", ViewBag.JobRoles as List<SelectListItem>))
-        @Html.ValidationMessageFor(m => m.JobRoleIds)
-	</div>
+    
     
     <div class="editor-label">
-	    <label for="Student">Student</label>
+	    <label for="JobDescription">Current Job Title</label>
 	</div>
     <div class="editor-field">
-		@Html.CheckBoxFor(m => m.IsStudent)
-	</div>
-    
-    <div class="editor-label">
-	    <label for="JobDescription">Current Job Description</label>
-	</div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.JobDescription)
+        @Html.EditorFor(model => model.JobDescription, Model.)
      </div>
     
-    <div class="editor-label">
-	    <label for="Technologies">Technologies</label>
-	</div>
-    <div class="editor-field">
-        @Html.Raw(Html.CheckBoxList("technologies", ViewBag.Technologies as List<SelectListItem>))
-    </div>
     
-    <div class="editor-label">
-	    <label for="Experience">Experience Level</label>
-	</div>
-    <div class="editor-field">
-		@Html.DropDownListFor(m => m.ExperienceLevel, ViewBag.ExperienceLevels as List<SelectListItem>)
-        @Html.ValidationMessageFor(m => m.ExperienceLevel)
-	</div>
     
-    <div class="editor-label">
-        <label for="YearsOfExperience">Years Of Experience</label>
-    </div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.YearsOfExperience)
-    </div>
+    
     
     <div class="editor-label">
         <label for="DietaryNeeds">Dietary Needs</label>
@@ -97,19 +69,7 @@
         @Html.EditorFor(model => model.TwitterHandle)
     </div>
     
-    <div class="editor-label">
-        <label for="SpareLaptop">Spare Laptop</label>
-    </div>
-    <div class="editor-field">
-        @Html.CheckBoxFor(model => model.HasExtraLaptop)
-    </div>
     
-    <div class="editor-label">
-            @Html.LabelFor(model => model.ShirtStyle)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.ShirtStyle, new SelectList(GiveCampLondon.ShirtStyleValues.ShirtStyles))
-        </div>
     
     <div class="editor-label">
         <label for="Bio">Brief Bio</label>

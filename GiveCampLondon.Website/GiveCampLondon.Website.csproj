@@ -120,6 +120,7 @@
     <Content Include="Content\images\bg_button_a.gif" />
     <Content Include="Content\images\bg_button_span.gif" />
     <Content Include="Content\images\brdcmb_divider.png" />
+    <Content Include="Content\images\btn_submit.jpg" />
     <Content Include="Content\images\divider_main_nav.gif" />
     <Content Include="Content\images\givecamp.jpg" />
     <Content Include="Content\images\GiveCamp_FINAL_small.png" />
@@ -165,7 +166,7 @@
     </Content>
     <Content Include="Views\Home\Contact-Us.cshtml" />
     <None Include="Content\less\template.less" />
-    <None Include="Views\Home\FAQ-Developers.cshtml" />
+    <Content Include="Views\Home\FAQ-Developers.cshtml" />
     <Content Include="Views\Home\FAQ-EventStaff.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -211,6 +212,7 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\SiteMap\Index.cshtml" />
     <Content Include="Views\Sponsors\Index.cshtml" />
+    <Content Include="Views\Volunteer\NonTechnicalSignUp.cshtml" />
     <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.xml" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.xml" />

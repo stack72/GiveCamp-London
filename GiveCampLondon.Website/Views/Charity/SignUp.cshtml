@@ -47,33 +47,33 @@
 	</div>
     
     <div class="editor-label">
-	    <label for="ProjectRequest">Project Request</label>
+	    <label for="ProjectRequest">Please outline your project request</label>
 	</div>	
 	<div class="editor-field">
         @Html.TextAreaFor(m => m.WorkRequested)
 	</div>
     
     <div class="editor-label">
-	    <label for="BackGroundInformation">Background To Desired Project</label>
+	    <label for="BackGroundInformation">What is the background to this project and why do you feel GiveCamp UK can help?</label>
 	</div>	
 	<div class="editor-field">
         @Html.TextAreaFor(m => m.BackgroundInformation)
 	</div>
     
     <div class="editor-label">
-	    <label for="Infrastructure">Current System Infrastructure</label>
+	    <label for="Infrastructure">What is your current system infrastructure?</label>
 	</div>	
 	<div class="editor-field">
         @Html.TextAreaFor(m => m.OtherInfrastructure)
 	</div>
     
     <div class="editor-label">
-	    <label for="SkillSets">Current Staff Skillsets</label>
+	    <label for="SkillSets">What technical skill sets do your current staff have?</label>
 	</div>	
 	<div class="editor-field">
         @Html.TextAreaFor(m => m.OtherSupportSkills)
 	</div>
     
     
-    <input type="submit" value="Register" />
+    <input type="submit" value="Submit" class="formSubmit" />
 }

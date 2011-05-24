@@ -34,13 +34,6 @@ namespace GiveCampLondon.Website
             );
 
             routes.MapRoute(
-                null, // Route name
-                "faq/{id}", // URL with parameters
-                new { controller = "Home", action = "FAQ", id = UrlParameter.Optional },
-                new[] { "GiveCampLondon.Website.Controllers" }
-            );
-
-            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional },

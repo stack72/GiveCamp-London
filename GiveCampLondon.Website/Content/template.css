@@ -528,7 +528,19 @@ a:hover, a:visited:hover {
   color: #50a758;
 }
 /* FORMS
------------------------------------------- */form#charity-signup {
+------------------------------------------ */ 
+.formSubmit {
+  background: url("../content/images/btn_submit.jpg") no-repeat;
+  border: 0px none;
+  text-indent: -10000px;
+  padding: 0px;
+  margin: 0px;
+  display: block;
+  height: 43px ;
+  width: 100px ;
+  cursor: pointer;
+}
+form#charity-signup {
   padding: 15px 0 0 0 ;
 }
 .editor-label {

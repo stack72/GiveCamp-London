@@ -83,6 +83,12 @@ namespace GiveCampLondon.Website.Controllers
             return View();
         }
 
+        public ActionResult NonTechnicalSignUp()
+        {
+            InitializeViewBag(null);
+            return View();
+        }
+
         public ActionResult ThankYou()
         {
             return View();
