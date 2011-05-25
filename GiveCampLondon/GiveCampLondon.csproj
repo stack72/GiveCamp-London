@@ -71,6 +71,9 @@
     <Compile Include="Configuration\StructureMapControllerFactory.cs" />
     <Compile Include="Configuration\StructureMapRegistry.cs" />
     <Compile Include="Content.cs" />
+    <Compile Include="NonTechVolunteerExpertise.cs" />
+    <Compile Include="Expertise.cs" />
+    <Compile Include="NonTechVolunteer.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="JobRole.cs" />
     <Compile Include="Member.cs" />
@@ -82,6 +85,14 @@
       <DependentUpon>IContentRepository.cs</DependentUpon>
     </Compile>
     <Compile Include="ExperienceLevel.cs" />
+    <Compile Include="Repositories\IExpertiseRepository.cs" />
+    <Compile Include="Repositories\ExpertiseRepository.cs">
+      <DependentUpon>IExpertiseRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\INonTechVolunteerRepository.cs" />
+    <Compile Include="Repositories\NonTechVolunteerRepository.cs">
+      <DependentUpon>INonTechVolunteerRepository.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\DocumentRepository.cs" />
     <Compile Include="Repositories\ExperienceLevelRepository.cs">
       <DependentUpon>IExperienceLevelRepository.cs</DependentUpon>

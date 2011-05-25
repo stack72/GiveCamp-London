@@ -1,0 +1,107 @@
+﻿@model GiveCampLondon.Website.Models.Volunteer.NonTechVolunteerViewModel
+@{
+    ViewBag.Title = "Business Focused Volunteer Sign-up - GiveCamp UK";
+}
+<h1>
+    Volunteer Sign-Up</h1>
+<br />
+@using (Html.BeginForm("signup", "nontechvolunteer", FormMethod.Post))
+{ 
+    <div class="editor-label">
+	    <label for="FirstName">First Name </label><span>* Required</span>
+	</div>	
+	<div class="editor-field">
+        @Html.TextBoxFor(m => m.FirstName, new { required = "required" })
+        @Html.ValidationMessageFor(m => m.FirstName)
+	</div>
+    
+    <div class="editor-label">
+	    <label for="LastName">Last Name </label><span>* Required</span>
+	</div>	
+	<div class="editor-field">
+        @Html.TextBoxFor(m => m.LastName, new { required = "required" })
+        @Html.ValidationMessageFor(m => m.LastName)
+	</div>
+    
+    <div class="editor-label">
+	    <label for="Email">Email </label><span>* Required</span>
+	</div>	
+	<div class="editor-field">
+        @Html.TextBoxFor(m => m.Email, new { required = "required" })
+        @Html.ValidationMessageFor(m => m.Email)
+	</div>
+    
+    <div class="editor-label">
+	    <label for="Phone">Phone Number</label>
+	</div>	
+	<div class="editor-field">
+        @Html.TextBoxFor(m => m.PhoneNumber)
+        @Html.ValidationMessageFor(m => m.PhoneNumber)
+	</div>
+    
+    <div class="editor-label">
+	    <label for="PrimaryRole">Area of Expertise</label>
+	</div>	
+	<div class="editor-field">
+        @Html.Raw(Html.CheckBoxList("areaseOfExpertise", ViewBag.Expertise as List<SelectListItem>))
+        @Html.ValidationMessageFor(m => m.NonTechJobRoleIds)
+	</div>
+    
+    <div class="editor-label">
+	    <label for="JobDescription">Current Job Description</label>
+	</div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.JobDescription)
+     </div>
+    
+    <div class="editor-label">
+        <label for="DietaryNeeds">Dietary Needs</label>
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.DietaryNeeds)
+    </div>
+    
+    <div class="editor-label">
+        <label for="Twitter">Twitter Handle</label>
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.TwitterHandle)
+    </div>
+    
+    <div class="editor-label">
+            @Html.LabelFor(model => model.ShirtStyle)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.ShirtStyle, new SelectList(GiveCampLondon.ShirtStyleValues.ShirtStyles))
+        </div>
+    
+    <div class="editor-label">
+            @Html.LabelFor(model => model.ShirtSize)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.ShirtSize, new SelectList(GiveCampLondon.ShirtSizeValues.ShirtSizes))
+        </div>
+    
+    <div class="editor-label">
+        <label for="Bio">Brief Bio</label>
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Bio)
+    </div>
+    
+    <div class="editor-label">
+        <label for="SkillSet">Outline the skills that you can offer</label>
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.SkillsOutline)
+    </div>
+    
+    <div class="editor-label">
+        <label for="SessionDetails">Would you be willing to present a short session to our charities on an area of your expertise? If yes, please offer a suggested 15 minute topic below:</label>
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.ExpertiseTopic)
+    </div>
+    
+    <input type="submit" value="Submit" class="formSubmit" />
+}

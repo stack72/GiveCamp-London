@@ -2,13 +2,13 @@
     ViewBag.Title = "FAQ for Technical Volunteers - GiveCamp UK";
 }
 <h1 class="pagetitle">
-    FAQ – Technical Volunteers</h1>
+    Information for Technical Volunteers</h1>
 <br />
 <br />
 <h2>
     WHAT TECHNOLOGIES CAN I USE?</h2>
 <p>
-    GiveCamp is a technology agnostic program. Developers with all backgrounds are encouraged
+    GiveCamp is a technology agnostic program. Developers, designers and DBAs from all backgrounds are encouraged
     to participate.</p>
 <p>
     It is highly recommended that your team adopts a technology that at least one person
@@ -25,10 +25,11 @@
 <p>
     GiveCamp UK has partnered with a number of technical providers that will be able
     to supply:</p>
+    <br />
 <ul>
-    <li>Hosting</li>
-    <li>Electronic task planning</li>
-    <li>Version control systems (Git & TFS)</li>
+    <li>- Hosting</li>
+    <li>- Electronic task planning</li>
+    <li>- Version control systems (Git & TFS)</li>
 </ul>
 <br />
 <h2>
@@ -39,7 +40,7 @@
     Every project selected for GiveCamp has been chosen based on its viability. All
     projects are scoped to be completed within one weekend.</p>
 <p>
-    View the schedule to see how the weekend will break down. We hope to begin coding
+    View the <a href="@Url.Action("schedule", "home")">schedule</a> to see how the weekend will break down. We hope to begin coding
     on the projects right after the kick-off meeting. After that, it is up to you how
     much time you want to put into working with your team.</p>
 <p>
@@ -58,10 +59,11 @@
 <p>
     Many GiveCampers will literally camp out over the course of the weekend. So, in
     addition to a sleeping bag, pillow and perhaps even a tent, you will need:</p>
+    <br />
 <ul>
-    <li>Your laptop and any software you cannot live without</li>
-    <li>Toothbrush and handy wipes</li>
-    <li>Photographic ID to enter the venue after hours</li>
+    <li>- Your laptop and any software you cannot live without</li>
+    <li>- Toothbrush and handy wipes</li>
+    <li>- Photographic ID to enter the venue after hours</li>
 </ul>
 <br />
 <h2>
@@ -72,6 +74,3 @@
 <p>
     You will be teamed with experienced professional developers and the GiveCamp UK
     team will be on hand to offer support throughout the weekend.</p>
-@section headInclude{
-    <script src="@Url.Content("~/Content/Scripts/jquery.faqs.js")" type="text/javascript"></script>
-}

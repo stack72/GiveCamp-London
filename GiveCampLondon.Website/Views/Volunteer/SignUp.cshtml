@@ -8,111 +8,138 @@
 @using (Html.BeginForm("signup", "volunteer", FormMethod.Post))
 { 
     <div class="editor-label">
-	    <label for="FirstName">First Name <span>* Required</span></label>
-	</div>	
-	<div class="editor-field">
+        <label for="FirstName">
+            First Name
+        </label>
+        <span>* Required</span>
+    </div>	
+    <div class="editor-field">
         @Html.TextBoxFor(m => m.FirstName, new { required = "required" })
         @Html.ValidationMessageFor(m => m.FirstName)
-	</div>
+    </div>
     
     <div class="editor-label">
-	    <label for="LastName">Last Name <span>* Required</span></label>
-	</div>	
-	<div class="editor-field">
+        <label for="LastName">
+            Last Name
+        </label>
+        <span>* Required</span>
+    </div>	
+    <div class="editor-field">
         @Html.TextBoxFor(m => m.LastName, new { required = "required" })
         @Html.ValidationMessageFor(m => m.LastName)
-	</div>
+    </div>
     
     <div class="editor-label">
-	    <label for="Email">Email <span>* Required</span></label>
-	</div>	
-	<div class="editor-field">
+        <label for="Email">
+            Email
+        </label>
+        <span>* Required</span>
+    </div>	
+    <div class="editor-field">
         @Html.TextBoxFor(m => m.Email, new { required = "required" })
         @Html.ValidationMessageFor(m => m.Email)
-	</div>
+    </div>
     
     <div class="editor-label">
-	    <label for="Phone">Phone Number</label>
-	</div>	
-	<div class="editor-field">
+        <label for="Phone">
+            Phone Number</label>
+    </div>	
+    <div class="editor-field">
         @Html.TextBoxFor(m => m.PhoneNumber)
         @Html.ValidationMessageFor(m => m.PhoneNumber)
-	</div>
+    </div>
     
     <div class="editor-label">
-	    <label for="PrimaryRole">Primary role</label>
-	</div>	
-	<div class="editor-field">
+        <label for="PrimaryRole">
+            Primary role</label>
+    </div>	
+    <div class="editor-field">
         @Html.Raw(Html.CheckBoxList("jobRoles", ViewBag.JobRoles as List<SelectListItem>))
         @Html.ValidationMessageFor(m => m.JobRoleIds)
-	</div>
+    </div>
     
     <div class="editor-label">
-	    <label for="Student">Student</label>
-	</div>
+        <label for="Student">
+            Student</label>
+    </div>
     <div class="editor-field">
-		@Html.CheckBoxFor(m => m.IsStudent)
-	</div>
+        @Html.CheckBoxFor(m => m.IsStudent)
+    </div>
     
     <div class="editor-label">
-	    <label for="JobDescription">Current Job Description</label>
-	</div>
+        <label for="JobDescription">
+            Current Job Description</label>
+    </div>
     <div class="editor-field">
         @Html.EditorFor(model => model.JobDescription)
-     </div>
+    </div>
     
     <div class="editor-label">
-	    <label for="Technologies">Technologies</label>
-	</div>
+        <label for="Technologies">
+            Technologies</label>
+    </div>
     <div class="editor-field">
         @Html.Raw(Html.CheckBoxList("technologies", ViewBag.Technologies as List<SelectListItem>))
     </div>
     
     <div class="editor-label">
-	    <label for="Experience">Experience Level</label>
-	</div>
+        <label for="Experience">
+            Experience Level</label>
+    </div>
     <div class="editor-field">
-		@Html.DropDownListFor(m => m.ExperienceLevel, ViewBag.ExperienceLevels as List<SelectListItem>)
+        @Html.DropDownListFor(m => m.ExperienceLevel, ViewBag.ExperienceLevels as List<SelectListItem>)
         @Html.ValidationMessageFor(m => m.ExperienceLevel)
-	</div>
+    </div>
     
     <div class="editor-label">
-        <label for="YearsOfExperience">Years Of Experience</label>
+        <label for="YearsOfExperience">
+            Years Of Experience</label>
     </div>
     <div class="editor-field">
         @Html.EditorFor(model => model.YearsOfExperience)
     </div>
     
     <div class="editor-label">
-        <label for="DietaryNeeds">Dietary Needs</label>
+        <label for="DietaryNeeds">
+            Dietary Needs</label>
     </div>
     <div class="editor-field">
         @Html.EditorFor(model => model.DietaryNeeds)
     </div>
     
     <div class="editor-label">
-        <label for="Twitter">Twitter Handle</label>
+        <label for="Twitter">
+            Twitter Handle</label>
     </div>
     <div class="editor-field">
         @Html.EditorFor(model => model.TwitterHandle)
     </div>
     
     <div class="editor-label">
-        <label for="SpareLaptop">Spare Laptop</label>
+        <label for="SpareLaptop">
+            Spare Laptop</label>
     </div>
     <div class="editor-field">
         @Html.CheckBoxFor(model => model.HasExtraLaptop)
     </div>
     
     <div class="editor-label">
-            @Html.LabelFor(model => model.ShirtStyle)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.ShirtStyle, new SelectList(GiveCampLondon.ShirtStyleValues.ShirtStyles))
-        </div>
+        @Html.LabelFor(model => model.ShirtStyle)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.ShirtStyle, new SelectList(GiveCampLondon.ShirtStyleValues.ShirtStyles))
+    </div>
     
     <div class="editor-label">
-        <label for="Bio">Brief Bio</label>
+        @Html.LabelFor(model => model.ShirtSize)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.ShirtSize, new SelectList(GiveCampLondon.ShirtSizeValues.ShirtSizes))
+    </div>
+    
+    <div class="editor-label">
+        <label for="Bio">
+            Brief Bio</label>
     </div>
     <div class="editor-field">
         @Html.EditorFor(model => model.Bio)

@@ -88,6 +88,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
+    <Compile Include="Controllers\NonTechVolunteerController.cs" />
     <Compile Include="Controllers\SiteMapController.cs" />
     <Compile Include="Controllers\SponsorsController.cs" />
     <Compile Include="Models\ContactUsViewModel.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Models\Charity\SignUpViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\ServiceFacade\ConfigurationManager.cs" />
+    <Compile Include="Models\Volunteer\NonTechVolunteerViewModel.cs" />
     <Compile Include="Models\Volunteer\SignUpViewModel.cs" />
     <Compile Include="Models\Volunteer\VolunteerSummaryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -212,7 +214,8 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\SiteMap\Index.cshtml" />
     <Content Include="Views\Sponsors\Index.cshtml" />
-    <Content Include="Views\Volunteer\NonTechnicalSignUp.cshtml" />
+    <Content Include="Views\NonTechVolunteer\ThankYou.cshtml" />
+    <Content Include="Views\NonTechVolunteer\SignUp.cshtml" />
     <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.xml" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.xml" />

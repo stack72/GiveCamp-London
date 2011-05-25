@@ -2,9 +2,9 @@
     ViewBag.Title = "FAQ for Charity Organisations - GiveCamp UK";
 }
 <h1 class="pagetitle">
-    FAQ – Charity Organisations</h1>
-    <br />
-    <br />
+    Information for Charities</h1>
+<br />
+<br />
 <h2>
     WHEN IS THE DEADLINE FOR SUBMITTING MY CHARITY’S PROPOSAL?</h2>
 <p>
@@ -16,16 +16,17 @@
     In our experience, projects are rarely successful if the charity stakeholder(s)
     cannot be present. To get the best out of this experience we strongly recommend
     that a person who understand the needs of your project and has been involved in
-    the submission process is available throughout the process. Although you don't need
-    to camp out with the volunteers we request that you are present for both the kick
-    off ceremony on the Friday and the demonstrations on the Sunday. It is also recommended
+    the submission process is available during the event. Although you don't need to
+    camp out with the volunteers we request that you are present for both the kick off
+    ceremony on the Friday and the demonstrations on the Sunday. It is also recommended
     that you are available for your project team either in person or on the telephone
     during working hours of Saturday 22nd October.</p>
 <br />
 <h2>
     HOW DO I SUBMIT MY PROPOSAL?</h2>
 <p>
-    Please use the submission outline to send us details of your project.</p>
+    Please use the <a href="@Url.Action("signup", "charity")">submission outline</a>
+    to send us details of your project.</p>
 <p>
     Please be as thorough as you can, because the more information that we get from
     you about what you are trying to achieve, the better our chances of successfully
@@ -44,16 +45,18 @@
     building a huge variety of applications.</p>
 <p>
     Some suggestions for projects might be:</p>
+<br />
 <ul>
-    <li>Establishing a web presence through a simple website</li>
-    <li>Updating your charity’s existing website</li>
-    <li>Developing a calendar application to show your charity’s upcoming events</li>
-    <li>Creating a database to allow you to keep in contact with your donors</li>
+    <li>- Establishing a web presence through a simple website</li>
+    <li>- Updating your charity’s existing website</li>
+    <li>- Developing a calendar application to show your charity’s upcoming events</li>
+    <li>- Creating a database to allow you to keep in contact with your donors</li>
 </ul>
 <p>
     If you are unsure as to whether your project is suitable for GiveCamp UK, please
-    submit it via the submission form and we will see if it is viable to be completed
-    in whole or in part over the course of the GiveCamp UK weekend.</p>
+    submit it via the <a href="@Url.Action("signup", "charity")">submission form</a>
+    and we will see if it is viable to be completed in whole or in part over the course
+    of the GiveCamp UK weekend.</p>
 <br />
 <h2>
     WHAT WILL HAPPEN AFTER MY PROJECT PROPOSAL HAS BEEN ACCEPTED?</h2>
@@ -61,6 +64,6 @@
     Once you have received news that your project has been selected, one of our technical
     architects will contact you to talk in more detail about the proposal. We will want
     to find out if there are technical solutions that we need to put into place before
-    GiveCamp UK kicks off such as setting up website hosting or collecting user login
+    GiveCamp UK kicks off such as setting up website hosting, collecting user login
     information, logos, non-copyrighted website images, or other items that your team
     will need for the weekend.</p>

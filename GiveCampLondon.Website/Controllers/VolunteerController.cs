@@ -83,12 +83,6 @@ namespace GiveCampLondon.Website.Controllers
             return View();
         }
 
-        public ActionResult NonTechnicalSignUp()
-        {
-            InitializeViewBag(null);
-            return View();
-        }
-
         public ActionResult ThankYou()
         {
             return View();
@@ -128,8 +122,7 @@ namespace GiveCampLondon.Website.Controllers
             {
                 var volunteer = CreateVolunteer(model, selectedJobRoleIds, selectedTechnologyIds);
                 _volunteerRepository.Save(volunteer);
-                _notificationService.SendVolunteerNotification(volunteer, VolunteerNotificationTemplate.WelcomeVolunteer);
-
+                
                 return true;
             }
             return false;

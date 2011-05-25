@@ -25,6 +25,9 @@ namespace GiveCampLondon
         public DbSet<VolunteerTechnology> VolunteerTechnologies { get; set; }
         public DbSet<ExperienceLevel> ExperienceLevels { get; set; }
         public DbSet<Document> Documents { get; set; }
+        public DbSet<Expertise> Expertise { get; set; }
+        public DbSet<NonTechVolunteer> NonTechVolunteers { get; set; }
+        public DbSet<NonTechVolunteerExpertise> NonTechVolunteerExpertise { get; set; }
         
         protected override void OnModelCreating(System.Data.Entity.ModelConfiguration.ModelBuilder modelBuilder)
         {
@@ -80,6 +83,19 @@ namespace GiveCampLondon
             modelBuilder.Entity<Document>().HasKey(s => s.DocumentId);
             modelBuilder.Entity<Document>().ToTable("dbo.Documents");
 
+            modelBuilder.Entity<NonTechVolunteer>().HasKey(v => v.Id);
+            modelBuilder.Entity<NonTechVolunteer>().Property(v => v.Id)
+                .HasColumnName("VolunteerId");
+            modelBuilder.Entity<NonTechVolunteer>().Ignore(v => v.AreasOfExpertise);
+            modelBuilder.Entity<NonTechVolunteer>().ToTable("dbo.NonTechVolunteer");
+
+            modelBuilder.Entity<NonTechVolunteerExpertise>().HasKey(v => new { v.ExpertiseId, v.VolunteerId });
+            modelBuilder.Entity<NonTechVolunteerExpertise>().ToTable("dbo.NonTechVolunteerExpertise");
+
+            modelBuilder.Entity<Expertise>().HasKey(v => v.Id);
+            modelBuilder.Entity<Expertise>().Property(e => e.Id).HasColumnName("ExpertiseId");
+            modelBuilder.Entity<Expertise>().ToTable("dbo.Expertise");
+            
 
             base.OnModelCreating(modelBuilder);
         }
