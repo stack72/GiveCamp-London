@@ -11,12 +11,6 @@ namespace GiveCampLondon.Website.Controllers
             return View();
         }
 
-        [ActionName("about-givecamp")]
-        public ActionResult About()
-        {
-            return View();
-        }
-
         public ActionResult Schedule()
         {
             return View();
