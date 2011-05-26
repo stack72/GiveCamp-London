@@ -125,6 +125,7 @@
     <Content Include="Content\images\brdcmb_divider.png" />
     <Content Include="Content\images\btn_submit.jpg" />
     <Content Include="Content\images\divider_main_nav.gif" />
+    <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\givecamp.jpg" />
     <Content Include="Content\images\GiveCamp_FINAL_small.png" />
     <Content Include="Content\images\give_camp_logo.png" />
