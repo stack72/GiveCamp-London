@@ -122,6 +122,7 @@ namespace GiveCampLondon.Website.Controllers
             {
                 var volunteer = CreateVolunteer(model, selectedJobRoleIds, selectedTechnologyIds);
                 _volunteerRepository.Save(volunteer);
+                _notificationService.SendNotification(model.Email, VolunteerNotificationTemplate.WelcomeVolunteer);
                 
                 return true;
             }

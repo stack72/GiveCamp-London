@@ -16,17 +16,20 @@ namespace GiveCampLondon.Website.Controllers
             INonTechVolunteerRepository volunteerRepository,
             IExpertiseRepository expertiseRepository,
             IMembershipService membershipService,
-            ISettingRepository settingRepository)
+            ISettingRepository settingRepository,
+            INotificationService notificationService)
             : base(settingRepository)
         {
             _membershipService = membershipService;
             _expertiseRepository = expertiseRepository;
             _volunteerRepository = volunteerRepository;
+            _notificationService = notificationService;
         }
 
         private readonly INonTechVolunteerRepository _volunteerRepository;
         private readonly IExpertiseRepository _expertiseRepository;
         private readonly IMembershipService _membershipService;
+        private readonly INotificationService _notificationService;
 
         public ActionResult SignUp()
         {
@@ -74,6 +77,7 @@ namespace GiveCampLondon.Website.Controllers
             {
                 var volunteer = CreateVolunteer(model, selectedExpertiseLevels);
                 _volunteerRepository.Save(volunteer);
+                _notificationService.SendNotification(model.Email, VolunteerNotificationTemplate.WelcomeVolunteer);
 
                 return true;
             }

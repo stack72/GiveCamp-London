@@ -77,7 +77,7 @@ namespace GiveCampLondon.Website.Controllers
             if (!ModelState.IsValid)
                 return View();
             bool success = SaveCharity(vm);
-
+            
             return RedirectToAction(success ? "thankyou" : "SignUp");
         }
 
@@ -100,6 +100,7 @@ namespace GiveCampLondon.Website.Controllers
                         };
 
                 _charityRepository.Save(charity);
+                _notificationService.SendNotification(vm.Email, VolunteerNotificationTemplate.WelcomeVolunteer);
 
                 return true; 
             }
