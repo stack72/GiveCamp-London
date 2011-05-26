@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Exceptioneer.WebClient">
+      <HintPath>..\lib\Exceptioneer.WebClient.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MvcMembership, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -87,6 +90,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\NonTechVolunteerController.cs" />
     <Compile Include="Controllers\SiteMapController.cs" />
@@ -164,11 +168,12 @@
     <Content Include="Scripts\jquery.showoff.min.js" />
     <Content Include="Scripts\Views\Admin\tagAjax.js" />
     <Content Include="config\connectionstrings.Dev.config" />
-    <Content Include="config\connectionstrings.Sandbox.config" />
+    <Content Include="config\connectionstrings.Live.config" />
     <Content Include="config\appSettings.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Home\Contact-Us.cshtml" />
+    <Content Include="config\connectionstrings.Sandbox.config" />
     <None Include="Content\less\template.less" />
     <Content Include="Views\FAQ\FAQ-Developers.cshtml" />
     <Content Include="Views\FAQ\FAQ-EventStaff.cshtml">
@@ -217,6 +222,7 @@
     <Content Include="Views\Sponsors\Index.cshtml" />
     <Content Include="Views\NonTechVolunteer\ThankYou.cshtml" />
     <Content Include="Views\NonTechVolunteer\SignUp.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.xml" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.xml" />

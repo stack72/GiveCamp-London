@@ -1,7 +1,9 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
+using Exceptioneer.WebClient;
 using GiveCampLondon.Configuration;
 using GiveCampLondon.Website.Configuration;
 using StructureMap;
@@ -77,6 +79,27 @@ namespace GiveCampLondon.Website
         {
             if (HttpContext.Current.User != null)
                 Membership.GetUser(true);
+        }
+
+        protected void Application_Error(Object sender, EventArgs e)
+        {
+            try
+            {
+                var wc = new Client()
+                                 {
+                                     ApiKey = "C98ADB4D-3100-4DA7-9100-4A6693D1D3CB",
+                                     ApplicationName = "GiveCamp UK",
+                                     CurrentException = Server.GetLastError()
+                                 };
+
+                wc.Submit();
+            }
+            catch (Exception)
+            {
+                //this is handled quietly as we dont want exceptioneer errors affecting the site
+            }
+
+            Response.Redirect("~/Error");
         }
     }
 }
