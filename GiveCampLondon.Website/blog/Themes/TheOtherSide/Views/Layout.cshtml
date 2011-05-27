@@ -1,0 +1,50 @@
+﻿@{
+    /* Global includes for the theme
+    ***************************************************************/
+    Script.Require("ShapesBase");
+	Style.Include("http://fonts.googleapis.com/css?family=Philosopher&subset=latin");
+    Style.Include("prettify/prettify.css");
+    Style.Include("theme.css");
+    Script.Include("prettify/prettify.js");
+    Script.Include("http://w.sharethis.com/button/buttons.js");
+    Script.Include("script.js");
+	
+    /* Inserting some ad hoc shapes
+    ***************************************************************/
+    //WorkContext.Layout.Header.Add(New.Branding(), "5"); // Site name and link to the home page
+    //WorkContext.Layout.Footer.Add(New.User(), "10"); // Login and dashboard links
+	//WorkContext.Layout.Header.Add(New.Top(), "5");
+	WorkContext.Layout.Sidebar.Add(New.Sidebar(), "5");
+    WorkContext.Layout.Footer.Add(New.Footer(), "5"); // Powered by Orchard
+}
+
+<div id="header">
+    <div id="branding">
+        <h1><a href="@Href("~/")">@WorkContext.CurrentSite.SiteName</a></h1>
+    </div>
+</div>
+<div id="layout-navigation" class="group">
+    @Display(Model.Navigation)
+</div>
+<div id="main" class="group">
+    <div id="content-wrapper">
+        @if (Model.Messages != null) {
+        <div id="messages">
+            @Display(Model.Messages)
+        </div>
+        }
+        <div id="content">
+            @Display(Model.Content)
+        </div>
+    </div>
+    <div id="sidebar-wrapper">
+        <div id="sidebar">
+            @Display(Model.Sidebar)
+        </div>
+    </div>
+</div>
+<div id="footer-wrapper">
+    <footer>
+        @Display(Model.Footer)
+    </footer>
+</div>

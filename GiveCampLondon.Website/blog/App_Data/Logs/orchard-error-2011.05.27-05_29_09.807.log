@@ -1,0 +1,12 @@
+2011-05-27 17:34:06,523 [33] Orchard.Packaging.Controllers.PackagingServicesController - Package installation failed.
+Orchard.OrchardException: There was an error installing the requested package. This can happen if the server does not have write access to the '~/Modules' or '~/Themes' folder of the web site. If the site is running in shared hosted environement, adding write access to these folders sometimes needs to be done manually through the Hoster control panel. Once Themes and Modules have been installed, it is recommended to remove write access to these folders. ---> System.Net.WebException: The operation has timed out
+   at System.Net.HttpWebRequest.GetResponse()
+   at NuGet.HttpClient.GetRedirectedUri(Uri uri)
+   at NuGet.PackageRepositoryFactory.CreateRepository(PackageSource packageSource)
+   at Orchard.Packaging.Services.PackageInstaller.Install(String packageId, String version, String location, String applicationPath)
+   at Orchard.Packaging.Services.PackageManager.<>c__DisplayClass8.<Install>b__7()
+   at Orchard.Packaging.Services.PackageManager.DoInstall(Func`1 installer)
+   --- End of inner exception stack trace ---
+   at Orchard.Packaging.Services.PackageManager.DoInstall(Func`1 installer)
+   at Orchard.Packaging.Services.PackageManager.Install(String packageId, String version, String location, String applicationPath)
+   at Orchard.Packaging.Controllers.PackagingServicesController.InstallGallery(String packageId, String version, Int32 sourceId, String redirectUrl)
