@@ -1,0 +1,13 @@
+Name: LatestTwitter
+AntiForgery: enabled
+Author: Maarten Balliauw
+Website: http://blog.maartenballiauw.be
+Version: 0.6
+OrchardVersion: 1.0
+Description: Display latest Tweets for a user in a widget.
+
+Features:
+    LatestTwitter:
+        Description: Display latest Tweets for a user in a widget.
+        Category: Widget
+        Dependencies: Orchard.Widgets

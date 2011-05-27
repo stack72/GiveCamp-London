@@ -1,0 +1,48 @@
+﻿@model LatestTwitter.Models.TwitterWidgetPart
+
+<fieldset>
+  <legend>Latest Twitter</legend>
+
+  <div class="editor-label">
+    @T("Twitter username"):
+  </div>
+  <div class="editor-field">
+    @@@Html.TextBoxFor(model => model.Username)
+    @Html.ValidationMessageFor(model => model.Username)
+  </div>
+
+  <div class="editor-label">
+    @T("Number of Tweets to display"):
+  </div>
+  <div class="editor-field">
+    @Html.TextBoxFor(model => model.Count)
+    @Html.ValidationMessageFor(model => model.Count)
+  </div>
+
+  <div class="editor-label">
+    @T("Time to cache Tweets (in minutes)"):
+  </div>
+  <div class="editor-field">
+    @Html.TextBoxFor(model => model.CacheMinutes)
+    @Html.ValidationMessageFor(model => model.CacheMinutes)
+  </div>
+
+  <div class="editor-label">
+    @T("Additional options"):
+  </div>
+  <div class="editor-field">
+    @Html.CheckBoxFor(model => model.ShowAvatars) @T("Show avatars")
+  </div>
+
+  <div class="editor-field">
+    @Html.CheckBoxFor(model => model.ShowTimestamps) @T("Show timestamps")
+  </div>
+    
+  <div class="editor-field">
+    @Html.CheckBoxFor(model => model.ShowMentionsAsLinks) @T("Show mentions as links")
+  </div>
+    
+  <div class="editor-field">
+    @Html.CheckBoxFor(model => model.ShowHashtagsAsLinks) @T("Show hashtags as links")
+  </div>
+</fieldset>

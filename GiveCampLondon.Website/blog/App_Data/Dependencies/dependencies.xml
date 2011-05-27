@@ -37,6 +37,12 @@
     <References />
   </Dependency>
   <Dependency>
+    <ModuleName>LatestTwitter</ModuleName>
+    <VirtualPath>~/Modules/LatestTwitter/LatestTwitter.csproj</VirtualPath>
+    <LoaderName>DynamicExtensionLoader</LoaderName>
+    <References />
+  </Dependency>
+  <Dependency>
     <ModuleName>Navigation</ModuleName>
     <VirtualPath>~/Core/Navigation</VirtualPath>
     <LoaderName>CoreExtensionLoader</LoaderName>

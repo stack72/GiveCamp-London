@@ -1,0 +1,37 @@
+﻿<text><div class="latest-twitter-follow-link"><a href="http://www.twitter.com/@Model.Username" rel="external">@T("follow") @@@Model.Username @T("on twitter")</a></div><br></text>
+
+<ul class="latest-twitter-list">
+@foreach (var tweet in Model.Tweets) {
+    <text>
+        <li>
+            @if (Model.ShowAvatars) { 
+            <img src="@tweet.Avatar" class="latest-twitter-avatar" height="24" width="24" />
+            } 
+            <a href="http://www.twitter.com/@tweet.Username" rel="external">@tweet.Username</a>:<br/>
+            @foreach(string substring in tweet.Message.Split(' ')) {
+                if(substring == string.Empty) { 
+                    continue;
+                }
+                if(Model.ShowMentionsAsLinks && substring.StartsWith("@")) {
+                    string username = substring.Replace("@", string.Empty);
+                    <a href="http://www.twitter.com/@username" title="Follow @username on twitter" rel="external">@substring</a>
+                }
+                else if(Model.ShowHashtagsAsLinks && substring.StartsWith("#")) {
+                    string hashTag = substring.Replace("#", string.Empty);
+                    string searchUrl = "http://twitter.com/#!/search?q=%23" + hashTag;
+                    <a href="@searchUrl" title="Search for mentions of @substring on twitter" rel="external">@substring</a>
+                }
+                else if(substring.StartsWith("http://")) {
+                    <a href="@substring" title="Open link" rel="external">@substring</a>
+                }
+                else {
+                    @substring @T(" ");
+                }
+            }
+            @if (Model.ShowTimestamps) { 
+            <br/><span class="latest-twitter-timestamp">@T(tweet.Timestamp)</span> 
+            }
+        </li>
+    </text>
+}
+</ul>
