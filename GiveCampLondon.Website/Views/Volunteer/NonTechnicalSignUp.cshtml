@@ -1,0 +1,82 @@
+﻿@model GiveCampLondon.Website.Models.Volunteer.SignUpViewModel
+@{
+    ViewBag.Title = "NonTechnicalSignUp";
+}
+
+<h2>NonTechnicalSignUp</h2>
+
+<h1>
+    Volunteer Sign-Up</h1>
+<br />
+@using (Html.BeginForm("signup", "volunteer", FormMethod.Post))
+{ 
+    <div class="editor-label">
+	    <label for="FirstName">First Name <span>* Required</span></label>
+	</div>	
+	<div class="editor-field">
+        @Html.TextBoxFor(m => m.FirstName, new { required = "required" })
+        @Html.ValidationMessageFor(m => m.FirstName)
+	</div>
+    
+    <div class="editor-label">
+	    <label for="LastName">Last Name <span>* Required</span></label>
+	</div>	
+	<div class="editor-field">
+        @Html.TextBoxFor(m => m.LastName, new { required = "required" })
+        @Html.ValidationMessageFor(m => m.LastName)
+	</div>
+    
+    <div class="editor-label">
+	    <label for="Email">Email <span>* Required</span></label>
+	</div>	
+	<div class="editor-field">
+        @Html.TextBoxFor(m => m.Email, new { required = "required" })
+        @Html.ValidationMessageFor(m => m.Email)
+	</div>
+    
+    <div class="editor-label">
+	    <label for="Phone">Phone Number</label>
+	</div>	
+	<div class="editor-field">
+        @Html.TextBoxFor(m => m.PhoneNumber)
+        @Html.ValidationMessageFor(m => m.PhoneNumber)
+	</div>
+    
+    
+    
+    <div class="editor-label">
+	    <label for="JobDescription">Current Job Title</label>
+	</div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.JobDescription, Model.)
+     </div>
+    
+    
+    
+    
+    
+    <div class="editor-label">
+        <label for="DietaryNeeds">Dietary Needs</label>
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.DietaryNeeds)
+    </div>
+    
+    <div class="editor-label">
+        <label for="Twitter">Twitter Handle</label>
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.TwitterHandle)
+    </div>
+    
+    
+    
+    <div class="editor-label">
+        <label for="Bio">Brief Bio</label>
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Bio)
+    </div>
+    
+    <input type="submit" value="Submit" class="formSubmit" />
+}

@@ -141,15 +141,10 @@ del {
   text-decoration: line-through;
 }
 /* tables still need 'cellspacing="0"' in the markup */
-table { border-collapse: collapse; border-spacing: 0; margin: 10px; }
-tr strong { font-size: larger; font-weight: bold}
-tr { height: 30px; }
-td { padding-left: 11px; padding-right: 11px; border-left: 1px solid #E8E8E8; border-bottom: 1px solid #DFDFDF; }
-td.first, th.first { border-left: 0px; }
-tr.row-a { background: #F8F8F8; }
-tr.row-b { background: #EFEFEF; }
-
-
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
 /* END OF RESETS ------------------------------------------ */
 /* BASIC CLEAR
 ------------------------------------------ */
@@ -274,16 +269,17 @@ a:hover, a:visited:hover {
   text-indent: -10000px;
   width: 227px;
   height: 123px;
+  padding-left: 5px;
 }
-#logo a:link {
+#logo a {
   display: block;
-  background: url(../content/images/give_camp_logo.png) no-repeat;
   height: 123px;
   width: 227px;
+  background: url(../content/images/give_camp_logo.gif) no-repeat;
 }
 #header-items {
   float: right;
-  width: 673px;
+  width: 573px;
 }
 #social-channels {
   float: right;
@@ -336,7 +332,7 @@ a:hover, a:visited:hover {
   padding: 0 15px 0 0;
   color: #50a758;
   display: block;
-  background: url("/images/brdcmb_divider.png") center right no-repeat;
+  background: url("../content/images/brdcmb_divider.png") center right no-repeat;
   font-weight: normal;
 }
 #main-navigation-wrapper {
@@ -527,10 +523,29 @@ a:hover, a:visited:hover {
   text-decoration: none;
   color: #50a758;
 }
-
+ul#content-list {
+  padding: 20px 0 20px 0 ;
+}
+ul#content-list li {
+  width: 200px;
+  margin-bottom: 5px;
+  background: #0a3657 url(../content/images/btn_list_tile.jpg) repeat-x 0 top;
+}
+ul#content-list a {
+  display: block;
+  background: url(../content/images/btn_arrow_end.jpg) no-repeat 178px 6px;
+  color: white;
+  text-decoration: none;
+}
+ul#content-list a:hover {
+  text-decoration: underline;
+}
+ul#content-list span {
+  padding: 8px;
+  display: block;
+}
 /* FORMS
------------------------------------------- */ 
-.formSubmit {
+------------------------------------------ */.article form #submit {
   background: url("../content/images/btn_submit.jpg") no-repeat;
   border: 0px none;
   text-indent: -10000px;
@@ -548,19 +563,7 @@ form#charity-signup {
   padding: 0 0 3px 0;
   font-weight: bold;
   font-size: 110%;
-  width: 310px;
 }
-
-.editor-label span
-{
-    top: 2px;
-    position:relative;
-	float: right;
-	font-size:0.7em;
-	font-weight:normal;
-	color:#666666;
-}
-
 .editor-field {
   padding: 0 0 10px 0;
 }
