@@ -77,14 +77,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\TeamAdministration\Controllers\HomeController.cs" />
-    <Compile Include="Areas\TeamAdministration\Models\Home\EditViewModel.cs" />
-    <Compile Include="Areas\TeamAdministration\TeamAdministrationAreaRegistration.cs" />
-    <Compile Include="Areas\UserAdministration\Controllers\UserAdministrationController.cs" />
-    <Compile Include="Areas\UserAdministration\Models\UserAdministration\DetailsViewModel.cs" />
-    <Compile Include="Areas\UserAdministration\Models\UserAdministration\IndexViewModel.cs" />
-    <Compile Include="Areas\UserAdministration\Models\UserAdministration\RoleViewModel.cs" />
-    <Compile Include="Areas\UserAdministration\UserAdministrationAreaRegistration.cs" />
     <Compile Include="Configuration\WebRegistry.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -112,6 +104,7 @@
     <Compile Include="Models\Charity\SignUpViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\ServiceFacade\ConfigurationManager.cs" />
+    <Compile Include="Models\Volunteer\NonTechieVolunteerSummaryModel.cs" />
     <Compile Include="Models\Volunteer\NonTechVolunteerViewModel.cs" />
     <Compile Include="Models\Volunteer\SignUpViewModel.cs" />
     <Compile Include="Models\Volunteer\VolunteerSummaryModel.cs" />
@@ -223,6 +216,9 @@
     <Content Include="Views\NonTechVolunteer\ThankYou.cshtml" />
     <Content Include="Views\NonTechVolunteer\SignUp.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Admin\Techies.cshtml" />
+    <Content Include="Views\Admin\TechieDetails.cshtml" />
+    <Content Include="Views\Admin\NonTechies.cshtml" />
     <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.xml" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.xml" />
@@ -241,7 +237,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\TeamAdministration\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GiveCampLondon\GiveCampLondon.csproj">
@@ -274,48 +269,13 @@
     <Content Include="Views\FAQ\Faq.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\UserAdministration\Views\UserAdministration\Details.cshtml" />
-    <Content Include="Areas\UserAdministration\Views\UserAdministration\Index.cshtml" />
-    <Content Include="Areas\UserAdministration\Views\UserAdministration\Password.cshtml" />
-    <Content Include="Areas\UserAdministration\Views\UserAdministration\Role.cshtml" />
-    <Content Include="Areas\UserAdministration\Views\UserAdministration\UsersRoles.cshtml" />
-    <Content Include="Areas\UserAdministration\Views\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\TeamAdministration\Views\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\TeamAdministration\Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\TeamAdministration\Views\_ViewStart.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\TeamAdministration\Views\Home\NoTeams.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\UserAdministration\Views\_ViewStart.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\TeamAdministration\Views\Home\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Volunteer\ThankYou.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\TeamAdministration\Views\Home\VolunteersToAddTable.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\TeamAdministration\Views\Home\CurrentVolunteersTable.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Charity\Charities.cshtml" />
+    <Content Include="Views\Admin\Charities.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Charity\Details.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Volunteer\Volunteers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\File.cshtml" />

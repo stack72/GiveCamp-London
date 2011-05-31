@@ -38,8 +38,6 @@ namespace GiveCampLondon.Website.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                if (User.IsInRole("Administrator"))
-                    return RedirectToAction("Volunteers");
                 if (!User.IsInRole("Charity"))
                     return RedirectToAction("SignUp");
             }
@@ -86,23 +84,6 @@ namespace GiveCampLondon.Website.Controllers
         public ActionResult ThankYou()
         {
             return View();
-        }
-
-        [Authorize(Roles = "Administrator")]
-        public ActionResult Volunteers()
-        {
-            IEnumerable<VolunteerSummaryModel> volunteerSummaries = _volunteerRepository.FindAll()
-                .Select(volunteer => new VolunteerSummaryModel
-                {
-                    Id = volunteer.Id,
-                    LastName = volunteer.LastName,
-                    FirstName = volunteer.FirstName,
-                    Email = volunteer.Email,
-                    PhoneNumber = volunteer.PhoneNumber,
-                    TeamName = volunteer.TeamName,
-                    TwitterHandle = volunteer.TwitterHandle
-                });
-            return View(volunteerSummaries);
         }
 
         [Authorize(Roles = "Administrator")]

@@ -1,73 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using GiveCampLondon.Repositories;
+using GiveCampLondon.Services;
 using GiveCampLondon.Website.Models;
-using GiveCampLondon.Website.Models.Admin;
+using GiveCampLondon.Website.Models.Charity;
+using GiveCampLondon.Website.Models.Volunteer;
+using MvcMembership;
 
 namespace GiveCampLondon.Website.Controllers
 {
     [Authorize(Roles = "Administrator")]
-    public class AdminController: BaseController
+    public class AdminController : Controller
     {
-        public AdminController(IContentRepository contentRepository,IJobRoleRepository jobRoleRepository,  IVolunteerRepository volunteerRepository, ISettingRepository settingRepository, IDocumentRepository documentRepository)
-            : base(settingRepository)
+        public AdminController(IContentRepository contentRepository, IJobRoleRepository jobRoleRepository,
+            IVolunteerRepository volunteerRepository, INonTechVolunteerRepository nonTechieVolunteerRepository,
+            IExperienceLevelRepository xpLevelRepository, IRolesService rolesService, IMembershipService membershipService, ICharityRepository charityRepository)
         {
             _jobRoleRepository = jobRoleRepository;
             _volunteerRepository = volunteerRepository;
-            _settingRepository = settingRepository;
+            _nonTechieVolunteerRepository = nonTechieVolunteerRepository;
             _contentRepository = contentRepository;
-            _documentRepository = documentRepository;
+            _xpLevelRepository = xpLevelRepository;
+            _rolesService = rolesService;
+            _membershipService = membershipService;
+            _charityRepository = charityRepository;
             _slugs = _contentRepository.GetSlugs();
             _slugSelectList = PopulateSlugDropdown();
-
         }
 
-        private IContentRepository _contentRepository;
-        private IDocumentRepository _documentRepository;
+        private readonly IExperienceLevelRepository _xpLevelRepository;
+        private readonly IContentRepository _contentRepository;
         private static List<string> _slugs;
         private static List<SelectListItem> _slugSelectList;
-        private ISettingRepository _settingRepository;
-        private IVolunteerRepository _volunteerRepository;
-        private IJobRoleRepository _jobRoleRepository;
+        private readonly IVolunteerRepository _volunteerRepository;
+        private readonly INonTechVolunteerRepository _nonTechieVolunteerRepository;
+        private readonly IJobRoleRepository _jobRoleRepository;
+        private readonly IRolesService _rolesService;
+        private readonly IMembershipService _membershipService;
+        private readonly ICharityRepository _charityRepository;
 
         public ActionResult ControlPanel()
         {
-            var setting = _settingRepository.GetSetting() ?? new Setting();
-            var settingModel = new SettingModel
-                                   {
-                                       City = setting.City,
-                                       ContactEmail = setting.ContactEmail,
-                                       ContactName = setting.ContactName,
-                                       PublishCharities = setting.PublishCharities,
-                                       PublishVolunteers = setting.PublishVolunteers,
-                                       TwitterTag = setting.TwitterTag
-                                   };
-
-            ViewBag.AdminFiles = _documentRepository.GetAllByType("Admin").OrderBy(d => d.Name);
-
-            return View(settingModel);
-        }
-
-        [HttpPost]
-        public ActionResult ControlPanel(SettingModel settingModel)
-        {
-            var setting = _settingRepository.GetSetting() ?? new Setting();
-
-            setting.City = settingModel.City;
-            setting.ContactEmail = settingModel.ContactEmail;
-            setting.ContactName = settingModel.ContactName;
-            setting.PublishCharities = settingModel.PublishCharities;
-            setting.PublishVolunteers = settingModel.PublishVolunteers;
-            setting.TwitterTag = settingModel.TwitterTag;
-   
-            _settingRepository.SaveSetting(setting);
-
-            ViewBag.AdminFiles = _documentRepository.GetAllByType("Admin").OrderBy(d => d.Name);
-            return View(settingModel);
+            return View();
         }
 
         public ActionResult EditContent()
@@ -81,7 +58,7 @@ namespace GiveCampLondon.Website.Controllers
         [HttpPost]
         public ActionResult EditContent(EditContentViewModel contentViewModel)
         {
-            
+
             if (contentViewModel != null)
             {
                 if (ModelState.IsValid)
@@ -104,14 +81,14 @@ namespace GiveCampLondon.Website.Controllers
 
         public ActionResult GetTags(string slug)
         {
-            StringBuilder tagList =new StringBuilder();
+            var tagList = new StringBuilder();
 
-            if(!string.IsNullOrEmpty(slug))
+            if (!string.IsNullOrEmpty(slug))
             {
                 _contentRepository.GetTags(slug).ForEach(t => tagList.Append(string.Format("<option value='{0}'>{0}</option>", t)));
             }
 
-            return base.Content(tagList.ToString());
+            return Content(tagList.ToString());
         }
 
 
@@ -127,7 +104,7 @@ namespace GiveCampLondon.Website.Controllers
 
         public ActionResult AddRole(string name)
         {
-            _jobRoleRepository.Save(new JobRole{Description = name, DisplayOrder = 0});
+            _jobRoleRepository.Save(new JobRole { Description = name, DisplayOrder = 0 });
             return RedirectToAction("JobRoles");
         }
 
@@ -143,7 +120,7 @@ namespace GiveCampLondon.Website.Controllers
         {
             Content content = null;
 
-            if(!string.IsNullOrEmpty(slug) & !string.IsNullOrEmpty(tag))
+            if (!string.IsNullOrEmpty(slug) & !string.IsNullOrEmpty(tag))
             {
                 content = _contentRepository.Get(slug, tag);
             }
@@ -151,73 +128,73 @@ namespace GiveCampLondon.Website.Controllers
             return Json(content, JsonRequestBehavior.AllowGet);
         }
 
-
-        public ActionResult File(int documentId = 0, string option = null)
+        public ActionResult Techies()
         {
-            var document = _documentRepository.Get(documentId);
-            if (option == "delete" & document != null)
-            {
-                _documentRepository.Delete(document);
-                document = new Document();
-            }
-
-            ViewBag.DocumentList = _documentRepository.GetAll().OrderBy(d => d.Type).OrderBy(d => d.Name);
-            ViewBag.DocumentTypeList = PopulateDocumentTypeDropdown();
-
-            return View(document ?? new Document());
+            IEnumerable<VolunteerSummaryModel> volunteerSummaries = _volunteerRepository.FindAll()
+                .Select(volunteer => new VolunteerSummaryModel
+                {
+                    Id = volunteer.Id,
+                    LastName = volunteer.LastName,
+                    FirstName = volunteer.FirstName,
+                    Email = volunteer.Email,
+                    PhoneNumber = volunteer.PhoneNumber,
+                    TeamName = volunteer.TeamName,
+                    TwitterHandle = volunteer.TwitterHandle
+                });
+            return View(volunteerSummaries);
         }
 
-        [HttpPost]
-        public ActionResult File(Document document)
+        public ActionResult NonTechies()
         {
-            if(document.DocumentId!=0)
-            {
+            IEnumerable<NonTechieVolunteerSummaryModel> nonTechieVolunteers = _nonTechieVolunteerRepository.FindAll()
+                .Select(volunteer => new NonTechieVolunteerSummaryModel
+                {
+                    Id = volunteer.Id,
+                    LastName = volunteer.LastName,
+                    FirstName = volunteer.FirstName,
+                    Email = volunteer.Email,
+                    PhoneNumber = volunteer.PhoneNumber,
+                    TwitterHandle = volunteer.TwitterHandle
+                });
+            return View(nonTechieVolunteers);
+        }
 
-                var dbDocument = _documentRepository.Get(document.DocumentId);
-                document.LocalFilename = dbDocument.LocalFilename;
-                document.MimeType = dbDocument.MimeType;
-                document.UploadDate = dbDocument.UploadDate;
-            }
+        public ActionResult Charities()
+        {
+            IEnumerable<CharitySummaryModel> charitySummeries = GetCharitySummeries();
+            return View(charitySummeries);
+        }
 
-            var httpFile = Request.Files["UploadFile"];
-            if (httpFile != null)
-            {
-                document.MimeType =httpFile.ContentType;
-                document.OriginalFilename = Path.GetFileName(httpFile.FileName);
-                document.UploadDate = DateTime.Now;
+        public ActionResult TechieDetails(int id)
+        {
+            var volunteer = _volunteerRepository.Get(id);
 
-                _documentRepository.Save(document,httpFile.InputStream);
-            }
-            else
-            {
-                _documentRepository.Save(document);
-            }
-
-            ViewBag.DocumentList = _documentRepository.GetAll().OrderBy(d => d.Type).OrderBy(d => d.Name);
-            ViewBag.DocumentTypeList = PopulateDocumentTypeDropdown();
-
-            return View(document);
+            volunteer.JobRoles = _volunteerRepository.FindJobRolesFor(volunteer.Id);
+            volunteer.Technologies = _volunteerRepository.FindTechnologiesFor(volunteer.Id);
+            volunteer.ExperienceLevel = _xpLevelRepository.GetForVolunteerId(volunteer.Id);
+            return View(volunteer);
         }
 
 
-        private List<SelectListItem> PopulateSlugDropdown()
+
+
+
+
+
+        private static List<SelectListItem> PopulateSlugDropdown()
         {
             var selectList = new List<SelectListItem>();
-            _slugs.ForEach(s => selectList.Add(new SelectListItem() { Text = s, Value = s }));
-                                           
+            _slugs.ForEach(s => selectList.Add(new SelectListItem { Text = s, Value = s }));
+
             return selectList;
         }
 
-
-        private List<SelectListItem> PopulateDocumentTypeDropdown()
+        private IEnumerable<CharitySummaryModel> GetCharitySummeries()
         {
-            var selectList = new List<SelectListItem>();
-            selectList.Add(new SelectListItem() {Text="Volunteer", Value="Volunteer"});
-            selectList.Add(new SelectListItem() { Text = "Charity", Value = "Charity" });
-            selectList.Add(new SelectListItem() { Text = "Admin", Value = "Admin" });
-            selectList.Add(new SelectListItem() { Text = "Hold", Value = "Hold" });
-
-            return selectList;
+            return _rolesService.FindUserNamesByRole("Charity")
+                .Select(username => _membershipService.GetUserByName(username))
+                .Select(membership => _charityRepository.Get((Guid)membership.ProviderUserKey))
+                .Select(charity => new CharitySummaryModel { Email = charity.Email, Name = charity.CharityName, Id = charity.Id, Approved = charity.Approved });
         }
     }
 }

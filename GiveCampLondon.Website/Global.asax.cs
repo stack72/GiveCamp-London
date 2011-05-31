@@ -20,6 +20,7 @@ namespace GiveCampLondon.Website
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.([iI][cC][oO]|[gG][iI][fF])(/.*)?" });
 
             routes.MapRoute(
                 null, // Route name
@@ -83,13 +84,14 @@ namespace GiveCampLondon.Website
 
         protected void Application_Error(Object sender, EventArgs e)
         {
+            var error = Server.GetLastError();
             try
             {
                 var wc = new Client()
                                  {
                                      ApiKey = "C98ADB4D-3100-4DA7-9100-4A6693D1D3CB",
                                      ApplicationName = "GiveCamp UK",
-                                     CurrentException = Server.GetLastError()
+                                     CurrentException = error
                                  };
 
                 wc.Submit();

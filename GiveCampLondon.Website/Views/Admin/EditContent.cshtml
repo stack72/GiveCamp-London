@@ -1,4 +1,8 @@
-﻿@model GiveCampLondon.Website.Models.EditContentViewModel
+﻿@{
+    ViewBag.Title = "Control Panel";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model GiveCampLondon.Website.Models.EditContentViewModel
 <script src="@Url.Content("~/Scripts/Views/Admin/tagAjax.js")" type="text/javascript"></script>
 @using (Html.BeginForm())
 {

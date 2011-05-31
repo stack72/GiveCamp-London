@@ -36,34 +36,18 @@
         <div id="main-navigation-wrapper">
             <div id="main-navigation" class="clearfix">
                 <dl>
-                    <dd>
-                        <a href="@Url.Action("Index", "Home")">Home</a></dd>
-                    <dd><a href="@Url.Action("Index", "Volunteer")">Volunteer</a></dd>
-                    <dd><a href="@Url.Action("Index", "Charity")">Charity</a></dd>
-                    <dd><a href="@Url.Action("Index", "Sponsors")">Sponsors</a></dd>
-                    <dd><a href="@Url.Action("About", "Home")">About GiveCamp</a></dd>
-                    <dd><a href="@Url.Action("Faq", "Home")">FAQ</a></dd>
+                    <dd><a href="@Url.Action("index", "home")">Home</a></dd>
+                    <dd><a href="@Url.Action("index", "volunteer")">Volunteer</a></dd>
+                    <dd><a href="@Url.Action("index", "charity")">Charity</a></dd>
+                    <dd><a href="@Url.Action("index", "sponsors")">Sponsors</a></dd>
+                    <dd><a href="/faq">FAQ</a></dd>
+                    <dd><a href="@Url.Action("schedule", "home")">Schedule</a></dd>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
                     {
-                        <dd><a href="@Url.Action("ControlPanel", "Admin")">Admin Control Panel</a></dd>
+                        <dd><a href="@Url.Action("ControlPanel", "admin")">Admin Control Panel</a></dd>
+                        <dd><a href="@Url.Action("LogOff", "account")">Logout</a></dd>
                     }
                 </dl>
-            </div>
-            <div id="sub-wrapper" class="clearfix">
-                <div id="feature-panel" class="clearfix">
-                    <div id="feature-panel-image">
-                        <img src="" alt=""></div>
-                    <div id="feature-panel-content">
-                        <h1>
-                            This is the title for the feature panel on the site.</h1>
-                        <p>
-                            This is the feature articles body copy for the site. This is the feature articles
-                            body copy for the site. This is the feature articles body copy for the site. This
-                            is the feature articles body copy for the site. This is the feature articles body
-                            copy for the site. This is the feature articles body copy for the site.
-                        </p>
-                    </div>
-                </div>
             </div>
         </div>
         <div id="column-full-width">
@@ -75,13 +59,9 @@
             <div id="footer-divider">
                 <span id="copyright">&copy; Copyright Give Camp 2011. All rights reserved.</span>
                 <dl id="footer-navigation">
-                    
-                    <dd>
-                        <a href="/site-map">Site Map</a></dd>
-                    <dd>
-                        <a href="@Url.Action("About", "Home")">About GiveCamp</a></dd>
-                    <dd>
-                        <a href="@Url.Action("Contact-Us", "Home")">Contact Us</a></dd>
+                    <dd><a href="/site-map">Site Map</a></dd>
+                    <dd><a href="@Url.Action("About", "Home")">About GiveCamp</a></dd>
+                    <dd><a href="@Url.Action("Contact-Us", "Home")">Contact Us</a></dd>
                 </dl>
             </div>
         </div>

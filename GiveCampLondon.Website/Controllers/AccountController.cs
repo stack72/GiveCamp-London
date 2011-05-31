@@ -38,7 +38,6 @@ namespace GiveCampLondon.Website.Controllers
 
         public ActionResult LogOn()
         {
-
             return View();
         }
 
@@ -66,7 +65,6 @@ namespace GiveCampLondon.Website.Controllers
 
         public ActionResult LogOff()
         {
-
             FormsAuth.SignOut();
 
             return RedirectToAction("Index", "Home");

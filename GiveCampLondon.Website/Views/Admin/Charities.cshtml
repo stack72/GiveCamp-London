@@ -1,0 +1,38 @@
+﻿@model IEnumerable<GiveCampLondon.Website.Models.Charity.CharitySummaryModel>
+@{
+    ViewBag.Title = "Charities";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h1>Charities</h1>
+<br />
+<br />
+<div style="padding-left: 10px; padding-right: 10px;">
+<p><b>Total Charities Signed Up:</b> @Model.ToList().Count</p>
+<br />
+    <table width="100%" border="1" cellpadding="1" cellspacing="1">
+        <tr>
+            <th class="name" style="font-weight: bold">Name</th>
+            <th class="email" style="font-weight: bold">Email</th>
+            <th class="approved" style="font-weight: bold">Approved</th>
+        </tr>
+        @foreach (var summary in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(summary.Name, "Details", new { id = summary.Id })
+                </td>
+                <td>
+                    <a href="mailto:@summary.Email">@summary.Email</a>
+                </td>
+                <td>
+                    @summary.Approved
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+    <br />
+    @Html.ActionLink("Return To Admin Home", "ControlPanel")
+    <br />
+</div>

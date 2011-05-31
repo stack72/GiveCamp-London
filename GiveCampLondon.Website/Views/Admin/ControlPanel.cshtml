@@ -1,50 +1,27 @@
-﻿@model GiveCampLondon.Website.Models.Admin.SettingModel
-@{
+﻿@{
     ViewBag.Title = "Control Panel";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-<h2>Control Panel</h2>
-
-
-<table width="100%">
-<tr>
-<td>
-<ul>
-
-<li> @Html.ActionLink("Edit Content", "EditContent")</li>
-<li><a href="/teamadministration/home">Team Administration</a></li>
-<li>@Html.ActionLink("Role Administration", "JobRoles")</li>
-<li>@Html.ActionLink("User Administration", "Index", "UserAdministration", new { Area = "UserAdministration" }, new { })</li>
-
-<li>@Html.ActionLink("Charities Administration", "Charities", "Charity")</li>
-<li>@Html.ActionLink("File Managemnt","File")</li>
-
-
-@using (Html.BeginForm()) {
-
-    @Html.EditorForModel()
-
-    <input type="submit" value="Save Settings" />
-}
-</ul>
-</td>
-<td>
-<fieldset style="border:1px solid black">
-<legend><h3>Admin Files</h3></legend>
-<table style="width:350px;">
-@foreach (Document d in ViewBag.AdminFiles)
-{
-<tr><td><ul><li><a href="#" onclick="getFile(@d.DocumentId)">@d.Name</a></li></ul></td></tr>
-<tr><td style="text-indent:20px">@d.Description</td></tr>  
-}
-</table>
-
-</fieldset>
-</td>
-</tr>
-</table>
-
+<br />
+<h1>Control Panel</h1>
+<br />
+<br />
+<div style="padding-left: 10px; padding-right: 10px;">
+    <table width="100%">
+        <tr>
+            <td>
+                <ul>
+                    @*<li>@Html.ActionLink("Edit Content", "EditContent")</li>
+                    <li>@Html.ActionLink("Role Administration", "JobRoles")</li>*@
+                    <li>@Html.ActionLink("Charities Administration", "Charities", "admin")</li>
+                    <li>@Html.ActionLink("Techie Volunteers", "Techies", "admin")</li>
+                    <li>@Html.ActionLink("NonTechie Volunteers", "NonTechies", "admin")</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <br />
+</div>
 <script type="text/javascript">
 
     function getFile(id) {

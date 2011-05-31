@@ -10,52 +10,35 @@ using MvcMembership;
 
 namespace GiveCampLondon.Website.Controllers
 {
-    public class CharityController: BaseController
+    public class CharityController : BaseController
     {
-		public CharityController(IContentRepository contentRepository, ICharityRepository charityRepository, IMembershipService membershipService, IRolesService rolesService, IFormsAuthentication formsAuth, ISettingRepository settingRepository, INotificationService notificationService)
+        public CharityController(IContentRepository contentRepository, ICharityRepository charityRepository, IMembershipService membershipService, IRolesService rolesService, IFormsAuthentication formsAuth, ISettingRepository settingRepository, INotificationService notificationService)
             : base(settingRepository)
         {
             _settingRepository = settingRepository;
-		    _rolesService = rolesService;
+            _rolesService = rolesService;
             _membershipService = membershipService;
-		    _charityRepository = charityRepository;
-        	_notificationService = notificationService;
+            _charityRepository = charityRepository;
+            _notificationService = notificationService;
         }
 
         private readonly ICharityRepository _charityRepository;
         private readonly IMembershipService _membershipService;
         private readonly IRolesService _rolesService;
         private readonly ISettingRepository _settingRepository;
-		private readonly INotificationService _notificationService;
+        private readonly INotificationService _notificationService;
 
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated && User.IsInRole("Charity"))
-            {
-                return RedirectToAction("Signup");
-            }
-
-            if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
-            {
-                return RedirectToAction("Charities");
-            }
-
-        	var settings = _settingRepository.GetSetting(); 
-
-            if(settings != null && settings.PublishCharities)
-            {
-                return RedirectToAction("ApprovedCharities");
-            }
-            
             return View();
         }
 
         public ActionResult SignUp()
         {
-            if(User.Identity.IsAuthenticated && User.IsInRole("Charity"))
+            if (User.Identity.IsAuthenticated && User.IsInRole("Charity"))
             {
                 var user = _membershipService.GetUserByName(User.Identity.Name);
-                var charity =  _charityRepository.Get((Guid) user.ProviderUserKey);
+                var charity = _charityRepository.Get((Guid)user.ProviderUserKey);
                 var model = new SignUpViewModel
                                             {
                                                 BackgroundInformation = charity.BackgroundInformation,
@@ -77,7 +60,7 @@ namespace GiveCampLondon.Website.Controllers
             if (!ModelState.IsValid)
                 return View();
             bool success = SaveCharity(vm);
-            
+
             return RedirectToAction(success ? "thankyou" : "SignUp");
         }
 
@@ -102,7 +85,7 @@ namespace GiveCampLondon.Website.Controllers
                 _charityRepository.Save(charity);
                 _notificationService.SendNotification(vm.Email, VolunteerNotificationTemplate.WelcomeVolunteer);
 
-                return true; 
+                return true;
             }
             return false;
         }
@@ -110,29 +93,6 @@ namespace GiveCampLondon.Website.Controllers
         public ActionResult ThankYou()
         {
             return View();
-        }
-
-        [Authorize(Roles = "Administrator")]
-        public ActionResult Charities()
-        {
-            IEnumerable<CharitySummaryModel> charitySummeries = GetCharitySummeries();
-            return View(charitySummeries);
-        }
-
-
-        public ActionResult ApprovedCharities()
-        {
-            IEnumerable<CharitySummaryModel> charitySummeries = GetCharitySummeries().Where(c => c.Approved);
-            return View(charitySummeries);
-        }
-
-
-        private IEnumerable<CharitySummaryModel> GetCharitySummeries()
-        {
-            return _rolesService.FindUserNamesByRole("Charity")
-                .Select(username => _membershipService.GetUserByName(username))
-                .Select(membership => _charityRepository.Get((Guid)membership.ProviderUserKey))
-                .Select(charity => new CharitySummaryModel{ Email = charity.Email, Name = charity.CharityName, Id = charity.Id, Approved = charity.Approved });
         }
 
         public ActionResult Details(int id)
@@ -150,7 +110,6 @@ namespace GiveCampLondon.Website.Controllers
             return View("Details", charity);
         }
 
-
         [Authorize(Roles = "Administrator")]
         public ActionResult Disapprove(int id)
         {
@@ -159,7 +118,6 @@ namespace GiveCampLondon.Website.Controllers
             return View("Details", charity);
         }
 
-        
         private Charity ApproveCharity(int id, bool approve)
         {
             Charity charity = _charityRepository.Get(id);
