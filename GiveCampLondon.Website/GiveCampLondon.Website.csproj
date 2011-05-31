@@ -281,9 +281,6 @@
     <Content Include="Views\Admin\File.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Volunteer\Details.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Admin\JobRoles.cshtml" />
   </ItemGroup>
   <ItemGroup>

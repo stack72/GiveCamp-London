@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.Security;
 using GiveCampLondon.Repositories;
 using GiveCampLondon.Services;
 using GiveCampLondon.Website.Helpers;
@@ -15,11 +14,9 @@ namespace GiveCampLondon.Website.Controllers
         public VolunteerController(IContentRepository contentRepository, 
             IVolunteerRepository volunteerRepository,
 			IJobRoleRepository jobRoleRepository, 
-			IMembershipService membershipService,
 			INotificationService notificationService, ITechnologyRepository technologyRepository, IExperienceLevelRepository xpLevelRepository, ISettingRepository settingRepository)
         :base(settingRepository)
         {
-            _membershipService = membershipService;
             _xpLevelRepository = xpLevelRepository;
             _technologyRepository = technologyRepository;
             _jobRoleRepository = jobRoleRepository;
@@ -30,18 +27,11 @@ namespace GiveCampLondon.Website.Controllers
         private readonly IVolunteerRepository _volunteerRepository;
         private readonly IJobRoleRepository _jobRoleRepository;
         private readonly ITechnologyRepository _technologyRepository;
-        private readonly IMembershipService _membershipService;
     	private readonly INotificationService _notificationService;
         private readonly IExperienceLevelRepository _xpLevelRepository;
 
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                if (!User.IsInRole("Charity"))
-                    return RedirectToAction("SignUp");
-            }
-
             return View();
         }
 
@@ -62,14 +52,6 @@ namespace GiveCampLondon.Website.Controllers
                 InitializeViewBag(model);
                 return View();
             }
-            if (User.Identity.IsAuthenticated)
-            {
-                bool success = UpdateVolunteer(model, selectedJobRoleIds, selectedTechnologyIds);
-                if (success) 
-                    return RedirectToAction("ThankYou");
-                InitializeViewBag(model);
-                return View();
-            }
             
             if (SaveVolunteer(model, selectedJobRoleIds, selectedTechnologyIds))
             {
@@ -84,17 +66,6 @@ namespace GiveCampLondon.Website.Controllers
         public ActionResult ThankYou()
         {
             return View();
-        }
-
-        [Authorize(Roles = "Administrator")]
-        public ActionResult Details(int id)
-        {
-            var volunteer = _volunteerRepository.Get(id);
-
-            volunteer.JobRoles = _volunteerRepository.FindJobRolesFor(volunteer.Id);
-            volunteer.Technologies = _volunteerRepository.FindTechnologiesFor(volunteer.Id);
-            volunteer.ExperienceLevel = _xpLevelRepository.GetForVolunteerId(volunteer.Id);
-            return View(volunteer);
         }
 
         private bool SaveVolunteer(SignUpViewModel model, IEnumerable<int> selectedJobRoleIds, IEnumerable<int> selectedTechnologyIds)
@@ -143,49 +114,6 @@ namespace GiveCampLondon.Website.Controllers
                 volunteer.Technologies.Add(_technologyRepository.Get(selectedTechnologyId));
             }
             return volunteer;
-        }
-
-        private bool UpdateVolunteer(SignUpViewModel model, IEnumerable<int> selectedJobRoleIds, IEnumerable<int> selectedTechnologyIds)
-        {
-            MembershipUser user = _membershipService.GetUserByName(User.Identity.Name);
-            var volunteer = _volunteerRepository.Get((Guid)user.ProviderUserKey);
-            volunteer.FirstName = model.FirstName;
-            volunteer.LastName = model.LastName;
-            volunteer.Bio = model.Bio;
-            volunteer.Comments = model.Comments;
-            volunteer.DietaryNeeds = model.DietaryNeeds;
-            volunteer.Email = model.Email;
-            volunteer.ExperienceLevel = _xpLevelRepository.Get(model.ExperienceLevel);
-            volunteer.HasExtraLaptop = model.HasExtraLaptop;
-            volunteer.HasLaptop = model.HasLaptop;
-            volunteer.IsGoodGuiDesigner = model.IsGoodGuiDesigner;
-            volunteer.IsStudent = model.IsStudent;
-            volunteer.JobDescription = model.JobDescription;
-            volunteer.PhoneNumber = model.PhoneNumber;
-            volunteer.ShirtSize = model.ShirtSize;
-            volunteer.ShirtStyle = model.ShirtStyle;
-            volunteer.TeamName = model.TeamName;
-            volunteer.TwitterHandle = model.TwitterHandle;
-            volunteer.YearsOfExperience = model.YearsOfExperience;
-
-            foreach (var jobRoleId in selectedJobRoleIds)
-            {
-                volunteer.JobRoles.Add(_jobRoleRepository.Get(jobRoleId));
-            }
-
-            foreach (var selectedTechnologyId in selectedTechnologyIds)
-            {
-                volunteer.Technologies.Add(_technologyRepository.Get(selectedTechnologyId));
-            }
-
-            if (user.Email != model.Email)
-            {
-                user.Email = model.Email;
-                _membershipService.UpdateUser(user);
-            }
-
-            _volunteerRepository.Save(volunteer);
-            return true;
         }
 
         private IEnumerable<int> GetSelectedValues(FormCollection collection, string formObjectName, bool isRequired, string isRequiredErrorMessage)
