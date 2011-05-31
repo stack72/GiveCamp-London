@@ -1,0 +1,11 @@
+﻿@model GiveCampLondon.Charity
+@{
+    ViewBag.Title = "Details";
+}
+<h1>Charity Details</h1>
+@Html.DisplayForModel()
+if (Model.Approved) {
+@Html.ActionLink("Disapprove", "Disapprove", new { id = Model.Id })
+} else {
+@Html.ActionLink("Approve", "Approve", new { id = Model.Id })
+} 

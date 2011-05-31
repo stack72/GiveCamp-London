@@ -159,12 +159,6 @@ namespace GiveCampLondon.Website.Controllers
             return View(nonTechieVolunteers);
         }
 
-        public ActionResult Charities()
-        {
-            IEnumerable<CharitySummaryModel> charitySummeries = GetCharitySummeries();
-            return View(charitySummeries);
-        }
-
         public ActionResult TechieDetails(int id)
         {
             var volunteer = _volunteerRepository.Get(id);
@@ -175,11 +169,38 @@ namespace GiveCampLondon.Website.Controllers
             return View(volunteer);
         }
 
+        public ActionResult Charities()
+        {
+            IEnumerable<CharitySummaryModel> charitySummeries = GetCharitySummeries();
+            return View(charitySummeries);
+        }
+
+        public ActionResult Approve(int id)
+        {
+            Charity charity = ApproveCharity(id, true);
+            return View("CharityDetails", charity);
+        }
+
+        public ActionResult Disapprove(int id)
+        {
+            Charity charity = ApproveCharity(id, false);
+            return View("CharityDetails", charity);
+        }
+
+        public ActionResult CharityDetails(int id)
+        {
+            Charity charity = _charityRepository.Get(id);
+            return View(charity);
+        }
 
 
-
-
-
+        private Charity ApproveCharity(int id, bool approve)
+        {
+            Charity charity = _charityRepository.Get(id);
+            charity.Approved = approve;
+            _charityRepository.Save(charity);
+            return charity;
+        }
 
         private static List<SelectListItem> PopulateSlugDropdown()
         {

@@ -10,13 +10,12 @@ using MvcMembership;
 
 namespace GiveCampLondon.Website.Controllers
 {
-    public class CharityController : BaseController
+    public class CharityController : Controller
     {
-        public CharityController(IContentRepository contentRepository, ICharityRepository charityRepository, IMembershipService membershipService, IRolesService rolesService, IFormsAuthentication formsAuth, ISettingRepository settingRepository, INotificationService notificationService)
-            : base(settingRepository)
+        public CharityController(IContentRepository contentRepository, ICharityRepository charityRepository, 
+            IMembershipService membershipService, IFormsAuthentication formsAuth,
+            INotificationService notificationService)
         {
-            _settingRepository = settingRepository;
-            _rolesService = rolesService;
             _membershipService = membershipService;
             _charityRepository = charityRepository;
             _notificationService = notificationService;
@@ -24,8 +23,6 @@ namespace GiveCampLondon.Website.Controllers
 
         private readonly ICharityRepository _charityRepository;
         private readonly IMembershipService _membershipService;
-        private readonly IRolesService _rolesService;
-        private readonly ISettingRepository _settingRepository;
         private readonly INotificationService _notificationService;
 
         public ActionResult Index()
@@ -93,37 +90,6 @@ namespace GiveCampLondon.Website.Controllers
         public ActionResult ThankYou()
         {
             return View();
-        }
-
-        public ActionResult Details(int id)
-        {
-            Charity charity = _charityRepository.Get(id);
-
-            return View(charity);
-        }
-
-        [Authorize(Roles = "Administrator")]
-        public ActionResult Approve(int id)
-        {
-            Charity charity = ApproveCharity(id, true);
-
-            return View("Details", charity);
-        }
-
-        [Authorize(Roles = "Administrator")]
-        public ActionResult Disapprove(int id)
-        {
-            Charity charity = ApproveCharity(id, false);
-
-            return View("Details", charity);
-        }
-
-        private Charity ApproveCharity(int id, bool approve)
-        {
-            Charity charity = _charityRepository.Get(id);
-            charity.Approved = approve;
-            _charityRepository.Save(charity);
-            return charity;
         }
     }
 }

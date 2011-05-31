@@ -275,13 +275,10 @@
     <Content Include="Views\Admin\Charities.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Charity\Details.cshtml" />
+    <Content Include="Views\Admin\CharityDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\File.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Charity\ApprovedCharities.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Volunteer\Details.cshtml" />
