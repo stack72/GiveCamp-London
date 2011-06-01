@@ -108,7 +108,6 @@
     <Compile Include="Models\ContentModels.cs" />
     <Compile Include="Models\Charity\SignUpViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
-    <Compile Include="Models\ServiceFacade\ConfigurationManager.cs" />
     <Compile Include="Models\Volunteer\NonTechieVolunteerSummaryModel.cs" />
     <Compile Include="Models\Volunteer\NonTechVolunteerViewModel.cs" />
     <Compile Include="Models\Volunteer\SignUpViewModel.cs" />

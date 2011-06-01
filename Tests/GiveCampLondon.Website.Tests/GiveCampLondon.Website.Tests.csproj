@@ -72,7 +72,6 @@
     <Compile Include="Controllers\HomeController.Tests.cs" />
     <Compile Include="Controllers\SiteMapController.Tests.cs" />
     <Compile Include="Controllers\SponsorsController.Tests.cs" />
-    <Compile Include="Models\ServiceFacade\ConfigurationManager.Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
