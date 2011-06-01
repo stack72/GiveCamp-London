@@ -70,6 +70,9 @@
     <Compile Include="Controllers\ErrorController.Tests.cs" />
     <Compile Include="Controllers\FaqController.Tests.cs" />
     <Compile Include="Controllers\HomeController.Tests.cs" />
+    <Compile Include="Controllers\SiteMapController.Tests.cs" />
+    <Compile Include="Controllers\SponsorsController.Tests.cs" />
+    <Compile Include="Models\ServiceFacade\ConfigurationManager.Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +88,7 @@
       <Name>GiveCampLondon</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
