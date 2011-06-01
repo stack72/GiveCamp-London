@@ -38,6 +38,12 @@
       <HintPath>..\lib\Exceptioneer.WebClient.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Mvc">
+      <HintPath>..\packages\Mvc3Futures.3.0.20105.0\lib\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcContrib">
+      <HintPath>..\packages\MvcContrib.Mvc3-ci.3.0.68.0\lib\MvcContrib.dll</HintPath>
+    </Reference>
     <Reference Include="MvcMembership, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvcMembership\MvcMembership.dll</HintPath>
@@ -219,6 +225,7 @@
     <Content Include="Views\Admin\Techies.cshtml" />
     <Content Include="Views\Admin\TechieDetails.cshtml" />
     <Content Include="Views\Admin\NonTechies.cshtml" />
+    <Content Include="packages.config" />
     <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.xml" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.xml" />

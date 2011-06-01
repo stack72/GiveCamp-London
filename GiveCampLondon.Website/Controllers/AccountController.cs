@@ -3,7 +3,6 @@ using System.Globalization;
 using System.Security.Principal;
 using System.Web.Mvc;
 using System.Web.Security;
-using GiveCampLondon.Repositories;
 using GiveCampLondon.Services;
 using GiveCampLondon.Website.Models;
 
@@ -11,14 +10,9 @@ namespace GiveCampLondon.Website.Controllers
 {
 
     [HandleError]
-    public class AccountController : BaseController
+    public class AccountController : Controller
     {
-
-        // This constructor is not used by the MVC framework but is instead provided for ease
-        // of unit testing this type. See the comments at the end of this file for more
-        // information.
-        public AccountController(IFormsAuthentication formsAuth, IMembershipService service, ISettingRepository settingRepository)
-            : base(settingRepository)
+        public AccountController(IFormsAuthentication formsAuth, IMembershipService service)
         {
             FormsAuth = formsAuth ?? new FormsAuthenticationService();
             MembershipService = service ?? new AccountMembershipService();
@@ -41,9 +35,7 @@ namespace GiveCampLondon.Website.Controllers
             return View();
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
-            Justification = "Needs to take same parameter type as Controller.Redirect()")]
+        [HttpPost]
         public ActionResult LogOn(string userName, string password, bool rememberMe, string returnUrl)
         {
 
@@ -78,7 +70,7 @@ namespace GiveCampLondon.Website.Controllers
             return View();
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
+        [HttpPost]
         public ActionResult Register(string userName, string email, string password, string confirmPassword)
         {
 
@@ -115,8 +107,6 @@ namespace GiveCampLondon.Website.Controllers
 
         [Authorize]
         [AcceptVerbs(HttpVerbs.Post)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
-            Justification = "Exceptions result in password not being changed.")]
         public ActionResult ChangePassword(string currentPassword, string newPassword, string confirmPassword)
         {
 
