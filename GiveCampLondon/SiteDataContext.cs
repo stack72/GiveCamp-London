@@ -28,6 +28,7 @@ namespace GiveCampLondon
         public DbSet<Expertise> Expertise { get; set; }
         public DbSet<NonTechVolunteer> NonTechVolunteers { get; set; }
         public DbSet<NonTechVolunteerExpertise> NonTechVolunteerExpertise { get; set; }
+        public DbSet<Sponsor> Sponsors { get; set; }
         
         protected override void OnModelCreating(System.Data.Entity.ModelConfiguration.ModelBuilder modelBuilder)
         {
@@ -95,7 +96,10 @@ namespace GiveCampLondon
             modelBuilder.Entity<Expertise>().HasKey(v => v.Id);
             modelBuilder.Entity<Expertise>().Property(e => e.Id).HasColumnName("ExpertiseId");
             modelBuilder.Entity<Expertise>().ToTable("dbo.Expertise");
-            
+
+            modelBuilder.Entity<Sponsor>().HasKey(v => v.Id);
+            modelBuilder.Entity<Sponsor>().Property(e => e.Id).HasColumnName("SponsorId");
+            modelBuilder.Entity<Sponsor>().ToTable("dbo.Sponsor");
 
             base.OnModelCreating(modelBuilder);
         }

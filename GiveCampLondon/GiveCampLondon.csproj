@@ -102,6 +102,10 @@
       <DependentUpon>IContentRepository.cs</DependentUpon>
     </Compile>
     <Compile Include="ExperienceLevel.cs" />
+    <Compile Include="Repositories\ISponsorRepository.cs" />
+    <Compile Include="Repositories\SponsorRepository.cs">
+      <DependentUpon>ISponsorRepository.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\IExpertiseRepository.cs" />
     <Compile Include="Repositories\ExpertiseRepository.cs">
       <DependentUpon>IExpertiseRepository.cs</DependentUpon>
@@ -120,6 +124,7 @@
     <Compile Include="Repositories\IExperienceLevelRepository.cs" />
     <Compile Include="Repositories\SettingRepository.cs" />
     <Compile Include="Repositories\ITechnologyRepository.cs" />
+    <Compile Include="Sponsor.cs" />
     <Compile Include="Repositories\TechnologyRepository.cs">
       <DependentUpon>ITechnologyRepository.cs</DependentUpon>
     </Compile>

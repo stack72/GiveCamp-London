@@ -1,8 +1,13 @@
-﻿@{
+﻿@model IList<Sponsor>
+@{
     ViewBag.Title = "Thanks to our sponsors - GiveCamp UK";
 }
 
 <h1>Our Wonderful Sponsors</h1>
 <p>Without the support of generous sponsors, GiveCamp UK would be entirely impossible.</p> 
 <p>If you are interested in being a GiveCamp UK supporter, please visit the <a href="faq/sponsors">FAQs for Sponsor Organisations</a> to find out how you could help make this event possible.</p>
-
+<br />
+@foreach (var sponsor in Model)
+{
+    @Html.Partial("_sponsorPanel", sponsor)
+}
