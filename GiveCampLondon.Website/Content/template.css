@@ -144,6 +144,23 @@ del {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+  margin-bottom:10px;
+  margin-left:10px;
+  margin-right:10px;
+  margin-top:10px;
+}
+tr {
+  height:30px;
+}
+td {
+  border-bottom-color:#DFDFDF;
+  border-bottom-style:solid;
+  border-bottom-width:1px;
+  border-left-color:#E8E8E8;
+  border-left-style:solid;
+  border-left-width:1px;
+  padding-left:11px;
+  padding-right:11px;
 }
 /* END OF RESETS ------------------------------------------ */
 /* BASIC CLEAR

@@ -7,6 +7,7 @@
 <h1>Add New Sponsor</h1>
 <br />
 <br />
+<div style="padding-left: 10px; padding-right: 10px;">
 @using (Html.BeginForm())
 {
     <div class="editor-label">
@@ -50,8 +51,13 @@
         <span>* Required</span>
     </div>	
     <div class="editor-field">
-        http://@Html.TextAreaFor(m => m.Link, new { required = "required" })
+        http://@Html.TextBoxFor(m => m.Link, new { required = "required" })
     </div>
     
     <input type="submit" value="Save Sponsor" />
 }
+    <br />
+    <br />
+    @Html.ActionLink("Return To Admin Home", "ControlPanel")
+    <br />
+</div>
