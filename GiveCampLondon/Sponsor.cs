@@ -1,7 +1,10 @@
-﻿namespace GiveCampLondon
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace GiveCampLondon
 {
     public class Sponsor
     {
+        [ScaffoldColumn(false)]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Blurb { get; set; }

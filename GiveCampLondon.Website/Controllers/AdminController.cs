@@ -17,7 +17,8 @@ namespace GiveCampLondon.Website.Controllers
     {
         public AdminController(IContentRepository contentRepository, IJobRoleRepository jobRoleRepository,
             IVolunteerRepository volunteerRepository, INonTechVolunteerRepository nonTechieVolunteerRepository,
-            IExperienceLevelRepository xpLevelRepository, IRolesService rolesService, IMembershipService membershipService, ICharityRepository charityRepository)
+            IExperienceLevelRepository xpLevelRepository, IRolesService rolesService, IMembershipService membershipService, 
+            ICharityRepository charityRepository, ISponsorRepository sponsorRepository)
         {
             _jobRoleRepository = jobRoleRepository;
             _volunteerRepository = volunteerRepository;
@@ -27,6 +28,7 @@ namespace GiveCampLondon.Website.Controllers
             _rolesService = rolesService;
             _membershipService = membershipService;
             _charityRepository = charityRepository;
+            _sponsorRepository = sponsorRepository;
             _slugs = _contentRepository.GetSlugs();
             _slugSelectList = PopulateSlugDropdown();
         }
@@ -41,6 +43,7 @@ namespace GiveCampLondon.Website.Controllers
         private readonly IRolesService _rolesService;
         private readonly IMembershipService _membershipService;
         private readonly ICharityRepository _charityRepository;
+        private readonly ISponsorRepository _sponsorRepository;
 
         public ActionResult ControlPanel()
         {
@@ -193,6 +196,22 @@ namespace GiveCampLondon.Website.Controllers
             return View(charity);
         }
 
+        public ActionResult AddSponsor()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddSponsor(Sponsor sponsor)
+        {
+            if (ModelState.IsValid)
+            {
+                _sponsorRepository.Save(sponsor);
+                RedirectToAction("ControlPanel");
+            }
+
+            return View(sponsor);
+        }
 
         private Charity ApproveCharity(int id, bool approve)
         {
