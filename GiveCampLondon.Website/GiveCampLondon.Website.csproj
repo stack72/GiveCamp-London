@@ -260,9 +260,7 @@
     <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.xml" />
     <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\GiveCampLondon\GiveCampLondon.csproj">
       <Project>{180B44E6-24C5-4B8A-B5C2-C1B781E2C107}</Project>
