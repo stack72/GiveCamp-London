@@ -580,6 +580,14 @@ form#charity-signup {
   padding: 0 0 3px 0;
   font-weight: bold;
   font-size: 110%;
+  width: 310px;
+}
+.editor-label span {
+  padding: 0 0 3px 0;
+  font-weight: bold;
+  font-size: 60%;
+  color: Red;
+  float: right;
 }
 .editor-field {
   padding: 0 0 10px 0;
