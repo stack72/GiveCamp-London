@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Web;
 using System.Web.Mvc;
 using GiveCampLondon.Repositories;
 using GiveCampLondon.Services;
@@ -196,21 +198,47 @@ namespace GiveCampLondon.Website.Controllers
             return View(charity);
         }
 
+        public ActionResult Sponsors()
+        {
+            IEnumerable<Sponsor> sponsors = _sponsorRepository.FindAll();
+            return View(sponsors);
+        }
+
         public ActionResult AddSponsor()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult AddSponsor(Sponsor sponsor)
+        public ActionResult AddSponsor(Sponsor sponsor, HttpPostedFileBase mainLogo, HttpPostedFileBase smallLogo)
         {
             if (ModelState.IsValid)
             {
+                TrySaveImages(mainLogo, smallLogo, sponsor.Id);
                 _sponsorRepository.Save(sponsor);
+
                 RedirectToAction("ControlPanel");
             }
 
             return View(sponsor);
+        }
+
+        private void TrySaveImages(HttpPostedFileBase mainLogo, HttpPostedFileBase smallLogo, int sponsorId)
+        {
+            SaveLogo(mainLogo, "mainlogo", sponsorId);
+            SaveLogo(smallLogo, "smalllogo", sponsorId);
+        }
+
+        private void SaveLogo(HttpPostedFileBase logo, string logoType, int sponsorId)
+        {
+            if (logo != null && logo.ContentLength > 0)
+            {
+                var logoRepoPath = string.Format("~/Content/images/sponsors/{0}", logoType);
+                var fileName = string.Format("mainlogo_{0}.{1}", sponsorId, logo.ContentType);
+                
+                var path = Path.Combine(Server.MapPath(logoRepoPath), fileName);
+                logo.SaveAs(path);
+            }
         }
 
         private Charity ApproveCharity(int id, bool approve)

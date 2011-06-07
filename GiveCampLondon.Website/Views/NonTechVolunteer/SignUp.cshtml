@@ -12,7 +12,8 @@
 	</div>	
 	<div class="editor-field">
         @Html.TextBoxFor(m => m.FirstName, new { required = "required" })
-        @Html.ValidationMessageFor(m => m.FirstName)
+        <br />
+        <span>@Html.ValidationMessageFor(m => m.FirstName)</span>
 	</div>
     
     <div class="editor-label">
@@ -20,7 +21,8 @@
 	</div>	
 	<div class="editor-field">
         @Html.TextBoxFor(m => m.LastName, new { required = "required" })
-        @Html.ValidationMessageFor(m => m.LastName)
+        <br />
+        <span>@Html.ValidationMessageFor(m => m.LastName)</span>
 	</div>
     
     <div class="editor-label">
@@ -28,7 +30,8 @@
 	</div>	
 	<div class="editor-field">
         @Html.TextBoxFor(m => m.Email, new { required = "required" })
-        @Html.ValidationMessageFor(m => m.Email)
+        <br />
+        <span>@Html.ValidationMessageFor(m => m.Email)</span>
 	</div>
     
     <div class="editor-label">
@@ -36,7 +39,8 @@
 	</div>	
 	<div class="editor-field">
         @Html.TextBoxFor(m => m.PhoneNumber)
-        @Html.ValidationMessageFor(m => m.PhoneNumber)
+        <br />
+        <span>@Html.ValidationMessageFor(m => m.PhoneNumber)</span>
 	</div>
     
     <div class="editor-label">
@@ -44,7 +48,6 @@
 	</div>	
 	<div class="editor-field">
         @Html.Raw(Html.CheckBoxList("areaseOfExpertise", ViewBag.Expertise as List<SelectListItem>))
-        @Html.ValidationMessageFor(m => m.NonTechJobRoleIds)
 	</div>
     
     <div class="editor-label">

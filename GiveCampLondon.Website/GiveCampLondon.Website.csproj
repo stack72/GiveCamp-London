@@ -144,6 +144,8 @@
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\givecamp.jpg" />
     <Content Include="Content\images\GiveCamp_FINAL_small.png" />
+    <Content Include="Content\images\givecamp_mpu.gif" />
+    <Content Include="Content\images\give_camp_logo.gif" />
     <Content Include="Content\images\give_camp_logo.png" />
     <Content Include="Content\images\icn_32x32_facebook.png" />
     <Content Include="Content\images\icn_32x32_flickr.png" />
@@ -244,6 +246,7 @@
     </Content>
     <Content Include="Views\Sponsors\_sponsorPanel.cshtml" />
     <Content Include="Views\Admin\AddSponsor.cshtml" />
+    <Content Include="Views\Admin\Sponsors.cshtml" />
     <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.xml" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.xml" />
@@ -260,7 +263,10 @@
     <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.xml" />
     <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\images\sponsors\mainlogo\" />
+    <Folder Include="Content\images\sponsors\smalllogo\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GiveCampLondon\GiveCampLondon.csproj">
       <Project>{180B44E6-24C5-4B8A-B5C2-C1B781E2C107}</Project>

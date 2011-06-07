@@ -8,7 +8,7 @@
 <br />
 <br />
 <div style="padding-left: 10px; padding-right: 10px;">
-@using (Html.BeginForm())
+@using (Html.BeginForm("AddSponsor", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="editor-label">
         <label for="SponsorName">
@@ -35,7 +35,9 @@
         <span>* Required</span>
     </div>	
     <div class="editor-field">
-        @Html.TextAreaFor(m => m.MainLogo, new { required = "required" })
+        <input type="file" name="mainLogo" />
+
+        @*@Html.TextAreaFor(m => m.MainLogo, new { required = "required" })*@
     </div>
     
     <div class="editor-label">
@@ -43,7 +45,8 @@
         <span>* Required</span>
     </div>	
     <div class="editor-field">
-        @Html.TextAreaFor(m => m.SmallLogo, new { required = "required" })
+    <input type="file" name="smallLogo" />
+        @*@Html.TextAreaFor(m => m.SmallLogo, new { required = "required" })*@
     </div>
     
     <div class="editor-label">

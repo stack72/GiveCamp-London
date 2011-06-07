@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Sponsor>
+@{
+    ViewBag.Title = "Sponsors";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>Sponsors</h2>
+<br />
+<br />
+<div style="padding-left: 10px; padding-right: 10px;">
+    @Html.ActionLink("Add Sponsor", "AddSponsor", "admin")
+    <br />
+    <p><b>Total Sponsors Signed Up:</b> @Model.ToList().Count</p>
+    <br />
+    <table width="100%" border="1" cellpadding="1" cellspacing="1">
+    </table>
+</div>
