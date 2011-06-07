@@ -3,7 +3,8 @@
     ViewBag.Title = "Sponsors";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<h2>Sponsors</h2>
+<br />
+<h1>Sponsors</h1>
 <br />
 <br />
 <div style="padding-left: 10px; padding-right: 10px;">
@@ -12,5 +13,19 @@
     <p><b>Total Sponsors Signed Up:</b> @Model.ToList().Count</p>
     <br />
     <table width="100%" border="1" cellpadding="1" cellspacing="1">
+        <tr>
+            <th class="name" style="font-weight: bold">Sponsor Name</th>
+            <th class="name" style="font-weight: bold">Sponsor Blurb</th>
+        </tr>
+        @foreach (var sponsor in Model)
+        {<tr>
+            <td>@sponsor.Name</td>
+            <td>@sponsor.Blurb</td>
+        </tr>
+        }
     </table>
+    <br />
+    <br />
+    @Html.ActionLink("Return To Control Panel", "ControlPanel")
+    <br />
 </div>

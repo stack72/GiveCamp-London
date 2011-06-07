@@ -214,8 +214,16 @@ namespace GiveCampLondon.Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                TrySaveImages(mainLogo, smallLogo, sponsor.Id);
-                _sponsorRepository.Save(sponsor);
+                TrySaveImages(mainLogo, smallLogo, sponsor.Name);
+                var sponsorToSave = new Sponsor
+                                        {
+                                            Blurb = sponsor.Blurb,
+                                            Link = "http://" + sponsor.Link,
+                                            Name = sponsor.Name,
+                                            MainLogo = FormatLogoName(mainLogo, sponsor.Name, "mainlogo"),
+                                            SmallLogo = FormatLogoName(smallLogo, sponsor.Name, "smalllogo")
+                                        };
+                _sponsorRepository.Save(sponsorToSave);
 
                 RedirectToAction("ControlPanel");
             }
@@ -223,19 +231,25 @@ namespace GiveCampLondon.Website.Controllers
             return View(sponsor);
         }
 
-        private void TrySaveImages(HttpPostedFileBase mainLogo, HttpPostedFileBase smallLogo, int sponsorId)
+        private string FormatLogoName(HttpPostedFileBase logo, string sponsorName, string logoType)
         {
-            SaveLogo(mainLogo, "mainlogo", sponsorId);
-            SaveLogo(smallLogo, "smalllogo", sponsorId);
+            var name = sponsorName.Replace(" ", "_");
+            return string.Format("{0}_{1}{2}", logoType, sponsorName, Path.GetExtension(logo.FileName));
         }
 
-        private void SaveLogo(HttpPostedFileBase logo, string logoType, int sponsorId)
+        private void TrySaveImages(HttpPostedFileBase mainLogo, HttpPostedFileBase smallLogo, string sponsorName)
+        {
+            SaveLogo(mainLogo, "mainlogo", sponsorName);
+            SaveLogo(smallLogo, "smalllogo", sponsorName);
+        }
+
+        private void SaveLogo(HttpPostedFileBase logo, string logoType, string sponsorName)
         {
             if (logo != null && logo.ContentLength > 0)
             {
                 var logoRepoPath = string.Format("~/Content/images/sponsors/{0}", logoType);
-                var fileName = string.Format("mainlogo_{0}.{1}", sponsorId, logo.ContentType);
-                
+
+                var fileName = FormatLogoName(logo, sponsorName, logoType);
                 var path = Path.Combine(Server.MapPath(logoRepoPath), fileName);
                 logo.SaveAs(path);
             }

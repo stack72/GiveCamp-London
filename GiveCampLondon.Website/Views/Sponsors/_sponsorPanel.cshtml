@@ -1,7 +1,8 @@
 ﻿@model Sponsor
 <div class="sponsor clearfix">
 	<div class="sponsor-logo">
-	<img width="160" height="100" src="content/images/@Model.SmallLogo" alt="@Model.Name" />
+    @{var smallLogo = @Url.Content("~/content/images/sponsors/smalllogo/" + @Model.SmallLogo);}
+	<img width="160" height="100" src="@smallLogo" alt="@Model.Name" />
 	</div>  
 	<div class="sponsor-text">
 	    @Html.Raw(Model.Blurb)
