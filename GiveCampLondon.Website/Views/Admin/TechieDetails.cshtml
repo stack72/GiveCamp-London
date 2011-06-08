@@ -3,120 +3,109 @@
     ViewBag.Title = "TechieDetails";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<h2>
-    TechieDetails</h2>
-<h2>
-    Details</h2>
-<fieldset>
-    <div class="display-label">
-        @Html.LabelFor(model => model.FirstName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FirstName)
-    </div>
-    <div class="display-label">
-        @Html.LabelFor(model => model.LastName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.LastName)
-    </div>
-    <div class="display-label">
-        @Html.LabelFor(model => model.Email)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Email)
-    </div>
-    <div class="display-label">
-        @Html.LabelFor(model => model.PhoneNumber)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PhoneNumber)
-    </div>
-    <div class="display-label">
-        @Html.LabelFor(model => model.ShirtSize)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ShirtSize)
-    </div>
-    <div class="display-label">
-        @Html.LabelFor(model => model.ShirtStyle)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ShirtStyle)
-    </div>
-    <div class="display-label">
-        @Html.LabelFor(model => model.JobRoles)
-    </div>
-    <div class="display-field">
-        @foreach (var role in Model.JobRoles)
-        {
-            @:@role.Description,
-                    }
-    </div>
-    <div class="display-label">
-        @Html.LabelFor(model => model.IsGoodGuiDesigner)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.IsGoodGuiDesigner)
-    </div>
-    <div class="display-label">
-        @Html.LabelFor(model => model.IsStudent)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.IsStudent)
-    </div>
-    <div class="display-label">
-        @Html.LabelFor(model => model.JobDescription)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.JobDescription)
-    </div>
-    <div class="display-label">
-        @Html.LabelFor(model => model.Technologies)
-    </div>
-    <div class="display-field">
-        @foreach (var tech in Model.Technologies)
-        {
-            @:@tech.Description,
-                    }
-    </div>
-    <div class="display-label">
-        @Html.LabelFor(model => model.ExperienceLevel)
-    </div>
-    <div class="display-field">
-        @if (Model.ExperienceLevel != null)
-        {
-            @:@Model.ExperienceLevel.Description
-                    }
-    </div>
-    <div class="display-label">
-        @Html.LabelFor(model => model.YearsOfExperience)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.YearsOfExperience)
-    </div>
-    <div class="display-label">
-        @Html.LabelFor(model => model.DietaryNeeds)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.DietaryNeeds)
-    </div>
-    <div class="display-label">
-        @Html.LabelFor(model => model.TwitterHandle)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.TwitterHandle)
-    </div>
-    <div class="display-label">
-        Has Laptop?
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.HasExtraLaptop)
-    </div>
-    <div class="display-label">
-        @Html.LabelFor(model => model.Bio)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Bio)
-    </div>
-</fieldset>
+<br />
+<h1>Technical Volunteer Details</h1>
+<br />
+<div style="padding-left: 10px; padding-right: 10px;">
+    <br />
+    <fieldset>
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.FirstName)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.LastName)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Email)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.PhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.ShirtSize)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.ShirtSize)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.ShirtStyle)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.ShirtStyle)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.IsStudent)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.IsStudent)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.JobDescription)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.JobDescription)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.ExperienceLevel)
+        </div>
+        <div class="editor-field">
+            @if (Model.ExperienceLevel != null)
+            {
+                @:@Model.ExperienceLevel.Description
+                                }
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.YearsOfExperience)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.YearsOfExperience)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.DietaryNeeds)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.DietaryNeeds)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.TwitterHandle)
+        </div>
+        <div class="editor-field">
+            @{var twitterHandle = Model.TwitterHandle;}
+          <a href="http://twitter.com/@twitterHandle">@twitterHandle</a>
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.Bio)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Bio)
+        </div>
+    </fieldset>
+    <br />
+    <br />
+    @Html.ActionLink("Return To Techie Listings", "Techies")
+    <br />
+</div>
