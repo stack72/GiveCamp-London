@@ -8,19 +8,20 @@
 <br />
 <br />
 <div style="padding-left: 10px; padding-right: 10px;">
-<p><b>Total Non-Techies Signed Up:</b> @Model.ToList().Count</p>
+    <p><b>Total Non-Techies Signed Up:</b> @Model.ToList().Count</p>
     <table width="100%" border="1" cellpadding="1" cellspacing="1">
         <tr>
-            <th class="firstname" style="width: 20%; font-weight: bold">First Name</th>
-            <th class="lastname" style="width: 20%; font-weight: bold">Last Name</th>
-            <th class="email" style="width: 35%; font-weight: bold">Email</th>
+            <th style="width: 15%">&nbsp;</th>
+            <th class="firstname" style="width: 15%; font-weight: bold">First Name</th>
+            <th class="lastname" style="width: 15%; font-weight: bold">Last Name</th>
+            <th class="email" style="width: 30%; font-weight: bold">Email</th>
             <th class="twitter" style="width: 25%; font-weight: bold">Twitter Handle</th>
         </tr>
-        @*<td>@Html.ActionLink(summary.LastName, "TechieDetails", new { id = summary.Id })
-                </td>*@
         @foreach (var summary in Model)
         {
             <tr>
+                <td>@Html.ActionLink("Details", "NonTechieDetails", new { id = summary.Id })
+                </td>
                 <td>@summary.FirstName
                 </td>
                 <td>@summary.LastName

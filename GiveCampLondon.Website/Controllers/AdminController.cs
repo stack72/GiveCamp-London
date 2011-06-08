@@ -174,6 +174,14 @@ namespace GiveCampLondon.Website.Controllers
             return View(volunteer);
         }
 
+        public ActionResult NonTechieDetails(int id)
+        {
+            var nonTechie = _nonTechieVolunteerRepository.Get(id);
+            nonTechie.AreasOfExpertise = _nonTechieVolunteerRepository.FindExpertiseFor(nonTechie.Id);
+
+            return View(nonTechie);
+        }
+
         public ActionResult Charities()
         {
             IEnumerable<CharitySummaryModel> charitySummeries = GetCharitySummeries();

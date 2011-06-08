@@ -1,0 +1,101 @@
+﻿@model GiveCampLondon.NonTechVolunteer
+@{
+    ViewBag.Title = "NonTechieDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h1>Non-Technical Volunteer Details</h1>
+<br />
+<div style="padding-left: 10px; padding-right: 10px;">
+    <br />
+    <fieldset>
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.FirstName)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.LastName)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Email)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.PhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.ShirtSize)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.ShirtSize)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.ShirtStyle)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.ShirtStyle)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.JobDescription)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.JobDescription)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.DietaryNeeds)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.DietaryNeeds)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.TwitterHandle)
+        </div>
+        <div class="editor-field">
+            @{var twitterHandle = Model.TwitterHandle;}
+          <a href="http://twitter.com/@twitterHandle">@twitterHandle</a>
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.SkillSet)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.SkillSet)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.SessionDetails)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.SessionDetails)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.Bio)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Bio)
+        </div>
+    </fieldset>
+    <br />
+    <br />
+    @Html.ActionLink("Return To Non-Techie Listings", "NonTechies")
+    <br />
+</div>

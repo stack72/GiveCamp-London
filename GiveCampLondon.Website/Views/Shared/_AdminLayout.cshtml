@@ -14,22 +14,16 @@
         <div id="header" class="clearfix">
             <div id="logo">
                 <a href="/">Give Camp UK</a></div>
-            @*<div id="logindisplay">
-                @Html.Partial("_LogOnPartial")
-            </div>*@
             <div id="header-items" class="clearfix">
                 <div id="social-channels" class="clearfix">
                     <ul>
-                        <li class="facebook"><a href="http://www.facebook.com" target="_blank">Find Give Camp
-                            on Facebook - facebook.com/givecamp</a></li>
-                        <li class="twitter"><a href="">Follow us on Twitter - http://www.twitter.com/givecampuk</a></li>
+                        <li class="facebook"><a href="http://www.facebook.com/givecampuk" target="_blank">Find
+                            Give Camp on Facebook - facebook.com/givecamp</a></li>
+                        <li class="twitter"><a href="http://twitter.com/givecampuk" target="_blank">Follow us
+                            on Twitter - http://www.twitter.com/givecampuk</a></li>
                     </ul>
                 </div>
                 <div id="breadcrumbs" class="clear clearfix">
-                    <ul>
-                        <li><a href="/">Agenda</a></li>
-                        <li><a href="/">Location</a></li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -59,9 +53,7 @@
             <div id="footer-divider">
                 <span id="copyright">&copy; Copyright Give Camp 2011. All rights reserved.</span>
                 <dl id="footer-navigation">
-                    <dd><a href="/site-map">Site Map</a></dd>
-                    <dd><a href="@Url.Action("About", "Home")">About GiveCamp</a></dd>
-                    <dd><a href="@Url.Action("Contact-Us", "Home")">Contact Us</a></dd>
+                    <dd><a href="@Url.Action("contact-us", "home")">Contact Us</a></dd>
                 </dl>
             </div>
         </div>
