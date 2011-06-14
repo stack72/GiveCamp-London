@@ -561,6 +561,32 @@ ul#content-list span {
   padding: 8px;
   display: block;
 }
+.sponsor {
+  padding: 20px 0 0 0;
+  margin: 20px 0 0 0;
+  border-top: 1px solid #B2D7EB;
+}
+.sponsor:first-child {
+  padding: 0px 0 0 0;
+  margin: 0px 0 0 0;
+  border-top: none;
+}
+.sponsor-logo {
+  float: left;
+  width: 160px;
+}
+.sponsor-text {
+  float: left;
+  width: 280px;
+  padding-left: 20px;
+}
+.sponsor-text p {
+  padding-bottom: 10px;
+}
+.sponsor-link {
+  display: block;
+  line-height: 100%;
+}
 /* FORMS
 ------------------------------------------ */.article form #submit {
   background: url("../content/images/btn_submit.jpg") no-repeat;

@@ -233,10 +233,10 @@ namespace GiveCampLondon.Website.Controllers
                                         };
                 _sponsorRepository.Save(sponsorToSave);
 
-                RedirectToAction("ControlPanel");
+                return RedirectToAction("Sponsors", "admin");
             }
-
-            return View(sponsor);
+            else
+                return View(sponsor);
         }
 
         private string FormatLogoName(HttpPostedFileBase logo, string sponsorName, string logoType)
