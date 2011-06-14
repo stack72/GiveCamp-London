@@ -1,11 +1,10 @@
 ﻿@model Sponsor
 <div class="sponsor clearfix">
-	<div class="sponsor-logo">
-    @{var smallLogo = @Url.Content("~/content/images/sponsors/smalllogo/" + @Model.SmallLogo);}
-	<img width="160" height="100" src="@smallLogo" alt="@Model.Name" />
-	</div>  
-	<div class="sponsor-text">
-	    @Html.Raw(Model.Blurb)
-	    <span class="sponsor-link"><a href="@Model.Link" target="_blank">@Model.Link</a></span>
-	</div>
+    <div class="sponsor-logo">
+        @{var smallLogo = @Url.Content("~/content/images/sponsors/smalllogo/" + @Model.SmallLogo);}
+        <img width="160" height="100" src="@smallLogo" alt="@Model.Name" />
+    </div>
+    <div class="sponsor-text">
+        @Html.Raw(Model.Blurb) <span class="sponsor-link"><a href="@Model.Link" target="_blank">@Model.Link</a></span>
+    </div>
 </div>
