@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using GiveCampLondon.Repositories;
+using GiveCampLondon.Website.Helpers;
 
 namespace GiveCampLondon.Website.Controllers
 {
@@ -18,9 +19,12 @@ namespace GiveCampLondon.Website.Controllers
         public ActionResult Index()
         {
             var sponsors = _sponsorRepository.FindAll();
+            sponsors.Shuffle();
 
             return View(sponsors);
         }
+
+        
 
     }
 }

@@ -108,6 +108,7 @@
     <Compile Include="Controllers\NonTechVolunteerController.cs" />
     <Compile Include="Controllers\SiteMapController.cs" />
     <Compile Include="Controllers\SponsorsController.cs" />
+    <Compile Include="Helpers\ShuffleList.cs" />
     <Compile Include="Models\ContactUsViewModel.cs" />
     <Compile Include="Models\LogOnViewModel.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
