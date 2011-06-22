@@ -57,5 +57,6 @@ namespace GiveCampLondon.Website.Models.Volunteer
         [DataType(DataType.MultilineText)]
         public string ExpertiseTopic { get; set; }
         public IList<int> Availability { get; set; }
+        public bool IsOnWaitList { get; set; }
     }
 }

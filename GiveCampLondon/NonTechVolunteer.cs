@@ -55,5 +55,7 @@ namespace GiveCampLondon
 
         [DisplayName("Session Details:")]
         public string SessionDetails { get; set; }
+
+        public bool IsOnWaitList{ get; set; }
     }
 }

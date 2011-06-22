@@ -39,6 +39,7 @@ namespace GiveCampLondon.Services
 
 	public enum VolunteerNotificationTemplate
 	{
-		WelcomeVolunteer
+		WelcomeVolunteer,
+	    WelcomeWaitingVolunteer
 	}
 }

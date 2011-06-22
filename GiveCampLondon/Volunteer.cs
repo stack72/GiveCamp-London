@@ -80,6 +80,8 @@ namespace GiveCampLondon
 
         [DisplayName("Assigned Team:")]
         public int? TeamId { get; set; }
+
+        public bool IsOnWaitList { get; set; }
     }
 
     public class ShirtSizeValues

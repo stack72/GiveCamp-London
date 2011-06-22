@@ -10,22 +10,22 @@ using GiveCampLondon.Website.Models.Volunteer;
 
 namespace GiveCampLondon.Website.Controllers
 {
-    public class NonTechVolunteerController : BaseController
+    public class NonTechVolunteerController : Controller
     {
-        public NonTechVolunteerController(IContentRepository contentRepository,
+        public NonTechVolunteerController(IConfigManager configManager,
             INonTechVolunteerRepository volunteerRepository,
             IExpertiseRepository expertiseRepository,
             IMembershipService membershipService,
-            ISettingRepository settingRepository,
             INotificationService notificationService)
-            : base(settingRepository)
         {
+            _configManager = configManager;
             _membershipService = membershipService;
             _expertiseRepository = expertiseRepository;
             _volunteerRepository = volunteerRepository;
             _notificationService = notificationService;
         }
 
+        private readonly IConfigManager _configManager;
         private readonly INonTechVolunteerRepository _volunteerRepository;
         private readonly IExpertiseRepository _expertiseRepository;
         private readonly IMembershipService _membershipService;
@@ -44,14 +44,6 @@ namespace GiveCampLondon.Website.Controllers
 
             if (!ModelState.IsValid)
             {
-                InitializeViewBag(model);
-                return View();
-            }
-            if (User.Identity.IsAuthenticated)
-            {
-                bool success = UpdateVolunteer(model, selectedExpertiseIds);
-                if (success)
-                    return RedirectToAction("ThankYou");
                 InitializeViewBag(model);
                 return View();
             }
@@ -76,9 +68,12 @@ namespace GiveCampLondon.Website.Controllers
             if (ModelState.IsValid)
             {
                 var volunteer = CreateVolunteer(model, selectedExpertiseLevels);
+                SetWaitListStatus(volunteer);
                 _volunteerRepository.Save(volunteer);
-                _notificationService.SendNotification(model.Email, VolunteerNotificationTemplate.WelcomeVolunteer);
-
+                _notificationService.SendNotification(model.Email,
+                                                      volunteer.IsOnWaitList
+                                                          ? VolunteerNotificationTemplate.WelcomeWaitingVolunteer
+                                                          : VolunteerNotificationTemplate.WelcomeVolunteer);
                 return true;
             }
             return false;
@@ -162,5 +157,12 @@ namespace GiveCampLondon.Website.Controllers
             return true;
         }
 
+        private void SetWaitListStatus(NonTechVolunteer volunteer)
+        {
+            if (Convert.ToBoolean(_configManager.GetAppSettingsValue("WaitlistEnabled")))
+            {
+                volunteer.IsOnWaitList = true;
+            }
+        }
     }
 }

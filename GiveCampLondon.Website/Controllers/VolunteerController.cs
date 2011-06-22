@@ -9,14 +9,16 @@ using GiveCampLondon.Website.Models.Volunteer;
 
 namespace GiveCampLondon.Website.Controllers
 {
-    public class VolunteerController: BaseController
+    public class VolunteerController: Controller
     {
-        public VolunteerController(IContentRepository contentRepository, 
+        public VolunteerController(IConfigManager configManager, 
             IVolunteerRepository volunteerRepository,
 			IJobRoleRepository jobRoleRepository, 
-			INotificationService notificationService, ITechnologyRepository technologyRepository, IExperienceLevelRepository xpLevelRepository, ISettingRepository settingRepository)
-        :base(settingRepository)
+			INotificationService notificationService, 
+            ITechnologyRepository technologyRepository, 
+            IExperienceLevelRepository xpLevelRepository)
         {
+            _configManager = configManager;
             _xpLevelRepository = xpLevelRepository;
             _technologyRepository = technologyRepository;
             _jobRoleRepository = jobRoleRepository;
@@ -24,6 +26,7 @@ namespace GiveCampLondon.Website.Controllers
         	_notificationService = notificationService;
         }
 
+        private readonly IConfigManager _configManager;
         private readonly IVolunteerRepository _volunteerRepository;
         private readonly IJobRoleRepository _jobRoleRepository;
         private readonly ITechnologyRepository _technologyRepository;
@@ -73,12 +76,25 @@ namespace GiveCampLondon.Website.Controllers
             if (ModelState.IsValid)
             {
                 var volunteer = CreateVolunteer(model, selectedJobRoleIds, selectedTechnologyIds);
+                SetWaitListStatus(volunteer);
                 _volunteerRepository.Save(volunteer);
-                _notificationService.SendNotification(model.Email, VolunteerNotificationTemplate.WelcomeVolunteer);
-                
+                _notificationService.SendNotification(model.Email,
+                                                      volunteer.IsOnWaitList
+                                                          ? VolunteerNotificationTemplate.WelcomeWaitingVolunteer
+                                                          : VolunteerNotificationTemplate.WelcomeVolunteer);
+
+
                 return true;
             }
             return false;
+        }
+
+        private void SetWaitListStatus(Volunteer volunteer)
+        {
+            if (Convert.ToBoolean(_configManager.GetAppSettingsValue("WaitlistEnabled")))
+            {
+                volunteer.IsOnWaitList = true;
+            }
         }
 
         private Volunteer CreateVolunteer(SignUpViewModel model, IEnumerable<int> selectedJobRoleIds, IEnumerable<int> selectedTechnologyIds)
