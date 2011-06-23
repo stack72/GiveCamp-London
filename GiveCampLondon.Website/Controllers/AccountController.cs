@@ -12,22 +12,13 @@ namespace GiveCampLondon.Website.Controllers
     [HandleError]
     public class AccountController : Controller
     {
-        public AccountController(IFormsAuthentication formsAuth, IMembershipService service)
-        {
-            FormsAuth = formsAuth ?? new FormsAuthenticationService();
-            MembershipService = service ?? new AccountMembershipService();
-        }
+        private readonly IFormsAuthentication _formsAuthentication;
+        private readonly IMembershipService _membershipService;
 
-        public IFormsAuthentication FormsAuth
+        public AccountController(IFormsAuthentication formsAuth, IMembershipService membershipService)
         {
-            get;
-            private set;
-        }
-
-        public IMembershipService MembershipService
-        {
-            get;
-            private set;
+            _formsAuthentication = formsAuth;
+            _membershipService = membershipService;
         }
 
         public ActionResult LogOn()
@@ -44,7 +35,7 @@ namespace GiveCampLondon.Website.Controllers
                 return View();
             }
 
-            FormsAuth.SignIn(userName, rememberMe);
+            _formsAuthentication.SignIn(userName, rememberMe);
             if (!String.IsNullOrEmpty(returnUrl))
             {
                 return Redirect(returnUrl);
@@ -57,15 +48,14 @@ namespace GiveCampLondon.Website.Controllers
 
         public ActionResult LogOff()
         {
-            FormsAuth.SignOut();
+            _formsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Register()
         {
-
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            ViewData["PasswordLength"] = _membershipService.MinPasswordLength;
 
             return View();
         }
@@ -74,16 +64,16 @@ namespace GiveCampLondon.Website.Controllers
         public ActionResult Register(string userName, string email, string password, string confirmPassword)
         {
 
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            ViewData["PasswordLength"] = _membershipService.MinPasswordLength;
 
             if (ValidateRegistration(userName, email, password, confirmPassword))
             {
                 // Attempt to register the user
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(userName, password, email);
+                MembershipCreateStatus createStatus = _membershipService.CreateUser(userName, password, email);
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-                    FormsAuth.SignIn(userName, false /* createPersistentCookie */);
+                    _formsAuthentication.SignIn(userName, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -100,7 +90,7 @@ namespace GiveCampLondon.Website.Controllers
         public ActionResult ChangePassword()
         {
 
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            ViewData["PasswordLength"] = _membershipService.MinPasswordLength;
 
             return View();
         }
@@ -110,7 +100,7 @@ namespace GiveCampLondon.Website.Controllers
         public ActionResult ChangePassword(string currentPassword, string newPassword, string confirmPassword)
         {
 
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            ViewData["PasswordLength"] = _membershipService.MinPasswordLength;
 
             if (!ValidateChangePassword(currentPassword, newPassword, confirmPassword))
             {
@@ -119,7 +109,7 @@ namespace GiveCampLondon.Website.Controllers
 
             try
             {
-                if (MembershipService.ChangePassword(User.Identity.Name, currentPassword, newPassword))
+                if (_membershipService.ChangePassword(User.Identity.Name, currentPassword, newPassword))
                 {
                     return RedirectToAction("ChangePasswordSuccess");
                 }
@@ -158,12 +148,12 @@ namespace GiveCampLondon.Website.Controllers
             {
                 ModelState.AddModelError("currentPassword", "You must specify a current password.");
             }
-            if (newPassword == null || newPassword.Length < MembershipService.MinPasswordLength)
+            if (newPassword == null || newPassword.Length < _membershipService.MinPasswordLength)
             {
                 ModelState.AddModelError("newPassword",
                     String.Format(CultureInfo.CurrentCulture,
                          "You must specify a new password of {0} or more characters.",
-                         MembershipService.MinPasswordLength));
+                         _membershipService.MinPasswordLength));
             }
 
             if (!String.Equals(newPassword, confirmPassword, StringComparison.Ordinal))
@@ -184,7 +174,7 @@ namespace GiveCampLondon.Website.Controllers
             {
                 ModelState.AddModelError("password", "You must specify a password.");
             }
-            if (!MembershipService.ValidateUser(userName, password))
+            if (!_membershipService.ValidateUser(userName, password))
             {
                 ModelState.AddModelError("_FORM", "The username or password provided is incorrect.");
             }
@@ -202,12 +192,12 @@ namespace GiveCampLondon.Website.Controllers
             {
                 ModelState.AddModelError("email", "You must specify an email address.");
             }
-            if (password == null || password.Length < MembershipService.MinPasswordLength)
+            if (password == null || password.Length < _membershipService.MinPasswordLength)
             {
                 ModelState.AddModelError("password",
                     String.Format(CultureInfo.CurrentCulture,
                          "You must specify a password of {0} or more characters.",
-                         MembershipService.MinPasswordLength));
+                         _membershipService.MinPasswordLength));
             }
             if (!String.Equals(password, confirmPassword, StringComparison.Ordinal))
             {
@@ -255,9 +245,4 @@ namespace GiveCampLondon.Website.Controllers
         }
         #endregion
     }
-
-
-
-
-
 }

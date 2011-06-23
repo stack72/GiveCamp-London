@@ -109,7 +109,10 @@
     <Compile Include="Controllers\SiteMapController.cs" />
     <Compile Include="Controllers\SponsorsController.cs" />
     <Compile Include="Helpers\ConfigManager.cs" />
+    <Compile Include="Helpers\IConfigManager.cs" />
+    <Compile Include="Helpers\IWaitListHelper.cs" />
     <Compile Include="Helpers\ShuffleList.cs" />
+    <Compile Include="Helpers\WaitListHelper.cs" />
     <Compile Include="Models\ContactUsViewModel.cs" />
     <Compile Include="Models\LogOnViewModel.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
@@ -126,6 +129,7 @@
     <Compile Include="Models\ContentModels.cs" />
     <Compile Include="Models\Charity\SignUpViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\ViewModelConverters.cs" />
     <Compile Include="Models\Volunteer\NonTechieVolunteerSummaryModel.cs" />
     <Compile Include="Models\Volunteer\NonTechVolunteerViewModel.cs" />
     <Compile Include="Models\Volunteer\SignUpViewModel.cs" />

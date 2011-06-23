@@ -47,5 +47,7 @@ namespace GiveCampLondon.Website.Models.Charity
         [StringLength(1000)]
         [DisplayName("Contact Phone")]
         public string ContactPhone { get; set; }
+
+        
     }
 }

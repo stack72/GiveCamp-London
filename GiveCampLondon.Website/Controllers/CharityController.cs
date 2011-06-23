@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using GiveCampLondon.Repositories;
 using GiveCampLondon.Services;
+using GiveCampLondon.Website.Models;
 using GiveCampLondon.Website.Models.Charity;
 
 namespace GiveCampLondon.Website.Controllers
@@ -40,20 +41,7 @@ namespace GiveCampLondon.Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                var charity = new Charity
-                        {
-                            CharityName = vm.Name,
-                            BackgroundInformation = vm.BackgroundInformation,
-                            OtherInfrastructure = vm.OtherInfrastructure,
-                            OtherSupportSkills = vm.OtherSupportSkills,
-                            WorkRequested = vm.WorkRequested,
-                            Email = vm.Email,
-                            Website = vm.Website,
-                            ContactName = vm.ContactName,
-                            ContactPhone = vm.ContactPhone,
-                            Approved = false
-                        };
-
+                var charity = vm.MapToCharityModel();
                 _charityRepository.Save(charity);
                 _notificationService.SendNotification(vm.Email, VolunteerNotificationTemplate.WelcomeVolunteer);
 

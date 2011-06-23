@@ -2,6 +2,7 @@
 using System.Net.Mail;
 using System.Web.Security;
 using GiveCampLondon.Services;
+using GiveCampLondon.Website.Helpers;
 using GiveCampLondon.Website.Models;
 using MvcMembership;
 using MvcMembership.Settings;
@@ -26,6 +27,7 @@ namespace GiveCampLondon.Website.Configuration
             For<IPasswordService>().Use<AspNetMembershipProviderWrapper>();
             For<IRolesService>().Use<AspNetRoleProviderWrapper>();
             For<RoleProvider>().Use(Roles.Provider);
+            For<IWaitListHelper>().Use<WaitListHelper>();
             For<ISmtpClient>().Use(() => new SmtpClientProxy(new SmtpClient()));
         	For<MailConfiguration>().Use(() => new MailConfiguration
         	                                   	{

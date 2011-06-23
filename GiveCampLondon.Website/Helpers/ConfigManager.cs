@@ -9,9 +9,4 @@ namespace GiveCampLondon.Website.Helpers
             return ConfigurationManager.AppSettings[key];
         }
     }
-
-    public interface IConfigManager
-    {
-        string GetAppSettingsValue(string key);
-    }
 }

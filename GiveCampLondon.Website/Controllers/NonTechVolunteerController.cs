@@ -6,29 +6,27 @@ using System.Web.Security;
 using GiveCampLondon.Repositories;
 using GiveCampLondon.Services;
 using GiveCampLondon.Website.Helpers;
+using GiveCampLondon.Website.Models;
 using GiveCampLondon.Website.Models.Volunteer;
 
 namespace GiveCampLondon.Website.Controllers
 {
     public class NonTechVolunteerController : Controller
     {
-        public NonTechVolunteerController(IConfigManager configManager,
+        public NonTechVolunteerController(IWaitListHelper waitListHelper,
             INonTechVolunteerRepository volunteerRepository,
             IExpertiseRepository expertiseRepository,
-            IMembershipService membershipService,
             INotificationService notificationService)
         {
-            _configManager = configManager;
-            _membershipService = membershipService;
+            _waitListHelper = waitListHelper;
             _expertiseRepository = expertiseRepository;
             _volunteerRepository = volunteerRepository;
             _notificationService = notificationService;
         }
 
-        private readonly IConfigManager _configManager;
+        private readonly IWaitListHelper _waitListHelper;
         private readonly INonTechVolunteerRepository _volunteerRepository;
         private readonly IExpertiseRepository _expertiseRepository;
-        private readonly IMembershipService _membershipService;
         private readonly INotificationService _notificationService;
 
         public ActionResult SignUp()
@@ -68,7 +66,6 @@ namespace GiveCampLondon.Website.Controllers
             if (ModelState.IsValid)
             {
                 var volunteer = CreateVolunteer(model, selectedExpertiseLevels);
-                SetWaitListStatus(volunteer);
                 _volunteerRepository.Save(volunteer);
                 _notificationService.SendNotification(model.Email,
                                                       volunteer.IsOnWaitList
@@ -81,22 +78,8 @@ namespace GiveCampLondon.Website.Controllers
 
         private NonTechVolunteer CreateVolunteer(NonTechVolunteerViewModel model, IEnumerable<int> selectedExpertiseLevels)
         {
-            var volunteer = new NonTechVolunteer
-            {
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                PhoneNumber = model.PhoneNumber,
-                Email = model.Email,
-                JobDescription = model.JobDescription,
-                DietaryNeeds = model.DietaryNeeds,
-                TwitterHandle = model.TwitterHandle,
-                Bio = model.Bio,
-                ShirtSize = model.ShirtSize,
-                ShirtStyle = model.ShirtStyle,
-                SkillSet = model.SkillsOutline,
-                SessionDetails = model.ExpertiseTopic
-
-            };
+            var volunteer = model.MapToNonTechVolunteerModel();
+            volunteer.IsOnWaitList = _waitListHelper.SetWaitListStatus();
             foreach (var expertiseId in selectedExpertiseLevels)
             {
                 volunteer.AreasOfExpertise.Add(_expertiseRepository.Get(expertiseId));
@@ -123,46 +106,6 @@ namespace GiveCampLondon.Website.Controllers
         private void InitializeViewBag(NonTechVolunteerViewModel model)
         {
             ViewBag.Expertise = _expertiseRepository.FindAll().ToSelectList(j => j.Description, j => j.Id.ToString(), j => model != null && model.NonTechJobRoleIds != null && model.NonTechJobRoleIds.Contains(j.Id));
-        }
-
-        private bool UpdateVolunteer(NonTechVolunteerViewModel model, IEnumerable<int> selectedExpertiseIds)
-        {
-            MembershipUser user = _membershipService.GetUserByName(User.Identity.Name);
-            var volunteer = _volunteerRepository.Get((Guid)user.ProviderUserKey);
-            volunteer.FirstName = model.FirstName;
-            volunteer.LastName = model.LastName;
-            volunteer.Bio = model.Bio;
-            volunteer.DietaryNeeds = model.DietaryNeeds;
-            volunteer.Email = model.Email;
-            volunteer.JobDescription = model.JobDescription;
-            volunteer.PhoneNumber = model.PhoneNumber;
-            volunteer.ShirtSize = model.ShirtSize;
-            volunteer.ShirtStyle = model.ShirtStyle;
-            volunteer.TwitterHandle = model.TwitterHandle;
-            volunteer.SkillSet = model.SkillsOutline;
-            volunteer.SessionDetails = model.ExpertiseTopic;
-
-            foreach (var expertiseId in selectedExpertiseIds)
-            {
-                volunteer.AreasOfExpertise.Add(_expertiseRepository.Get(expertiseId));
-            }
-
-            if (user.Email != model.Email)
-            {
-                user.Email = model.Email;
-                _membershipService.UpdateUser(user);
-            }
-
-            _volunteerRepository.Save(volunteer);
-            return true;
-        }
-
-        private void SetWaitListStatus(NonTechVolunteer volunteer)
-        {
-            if (Convert.ToBoolean(_configManager.GetAppSettingsValue("WaitlistEnabled")))
-            {
-                volunteer.IsOnWaitList = true;
-            }
         }
     }
 }

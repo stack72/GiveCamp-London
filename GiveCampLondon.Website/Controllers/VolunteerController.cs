@@ -5,20 +5,21 @@ using System.Web.Mvc;
 using GiveCampLondon.Repositories;
 using GiveCampLondon.Services;
 using GiveCampLondon.Website.Helpers;
+using GiveCampLondon.Website.Models;
 using GiveCampLondon.Website.Models.Volunteer;
 
 namespace GiveCampLondon.Website.Controllers
 {
     public class VolunteerController: Controller
     {
-        public VolunteerController(IConfigManager configManager, 
+        public VolunteerController(IWaitListHelper waitListHelper, 
             IVolunteerRepository volunteerRepository,
 			IJobRoleRepository jobRoleRepository, 
 			INotificationService notificationService, 
             ITechnologyRepository technologyRepository, 
             IExperienceLevelRepository xpLevelRepository)
         {
-            _configManager = configManager;
+            _waitListHelper = waitListHelper;
             _xpLevelRepository = xpLevelRepository;
             _technologyRepository = technologyRepository;
             _jobRoleRepository = jobRoleRepository;
@@ -26,7 +27,7 @@ namespace GiveCampLondon.Website.Controllers
         	_notificationService = notificationService;
         }
 
-        private readonly IConfigManager _configManager;
+        private readonly IWaitListHelper _waitListHelper;
         private readonly IVolunteerRepository _volunteerRepository;
         private readonly IJobRoleRepository _jobRoleRepository;
         private readonly ITechnologyRepository _technologyRepository;
@@ -35,7 +36,7 @@ namespace GiveCampLondon.Website.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.WaitListEnabled = SetWaitListStatus();
+            ViewBag.WaitListEnabled = _waitListHelper.SetWaitListStatus();
             return View();
         }
 
@@ -77,7 +78,7 @@ namespace GiveCampLondon.Website.Controllers
             if (ModelState.IsValid)
             {
                 var volunteer = CreateVolunteer(model, selectedJobRoleIds, selectedTechnologyIds);
-                volunteer.IsOnWaitList = SetWaitListStatus();
+                
                 _volunteerRepository.Save(volunteer);
                 _notificationService.SendNotification(model.Email,
                                                       volunteer.IsOnWaitList
@@ -90,39 +91,11 @@ namespace GiveCampLondon.Website.Controllers
             return false;
         }
 
-        private bool SetWaitListStatus()
-        {
-            if (Convert.ToBoolean(_configManager.GetAppSettingsValue("WaitlistEnabled")))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
         private Volunteer CreateVolunteer(SignUpViewModel model, IEnumerable<int> selectedJobRoleIds, IEnumerable<int> selectedTechnologyIds)
         {
-            var volunteer = new Volunteer
-                                {
-                                    FirstName = model.FirstName,
-                                    LastName = model.LastName,
-                                    Bio = model.Bio,
-                                    Comments = model.Comments,
-                                    DietaryNeeds = model.DietaryNeeds,
-                                    Email = model.Email,
-                                    ExperienceLevel = _xpLevelRepository.Get(model.ExperienceLevel),
-                                    HasExtraLaptop = model.HasExtraLaptop,
-                                    HasLaptop = model.HasLaptop,
-                                    IsGoodGuiDesigner = model.IsGoodGuiDesigner,
-                                    IsStudent = model.IsStudent,
-                                    JobDescription = model.JobDescription,
-                                    PhoneNumber = model.PhoneNumber,
-                                    ShirtSize = model.ShirtSize,
-                                    ShirtStyle = model.ShirtStyle,
-                                    TeamName = model.TeamName,
-                                    TwitterHandle = model.TwitterHandle,
-                                    YearsOfExperience = model.YearsOfExperience
-                                };
+            var volunteer = model.MapToVolunteerModel();
+            volunteer.ExperienceLevel = _xpLevelRepository.Get(model.ExperienceLevel);
+            volunteer.IsOnWaitList = _waitListHelper.SetWaitListStatus();        
             foreach (var jobRoleId in selectedJobRoleIds)
             {
                 volunteer.JobRoles.Add(_jobRoleRepository.Get(jobRoleId));
