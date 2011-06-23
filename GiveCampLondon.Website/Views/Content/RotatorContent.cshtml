@@ -1,0 +1,35 @@
+﻿@model List<Sponsor>
+<div class="ad-mpu" id="rotator">
+    <a href="@Url.Action("index", "sponsors")">
+        <img src="@Url.Content("~/content/images/sponsors/mainlogo/givecamp_mpu.gif")" width="300" height="250" alt="Your Name Would go Here" /></a>
+    @foreach (var sponsor in Model)
+    {
+            var sponsorName = sponsor.Name;
+            var sponsorLink = sponsor.Link;
+            var sponsorLogo = @Url.Content("~/content/images/sponsors/mainlogo/" + sponsor.MainLogo);
+            <a href="@sponsorLink" target="_blank">
+                <img src="@sponsorLogo" width="300" height="250" alt="@sponsorName" /></a>
+    }
+    @*<a href="http://www.jetbrains.com/" target="_blank">
+                        <img src="@Url.Content("~/content/images/sponsors/mainlogo/logo_jetbrains.gif")" width="300" height="250" alt="Jetbrains" /></a>
+					<a href="http://www.justgiving.com/" target="_blank">
+                        <img src="@Url.Content("~/content/images/sponsors/mainlogo/givecamp_JG.gif")" width="300" height="250" alt="Just Giving" /></a>
+					<a href="http://www.telerik.com/" target="_blank">
+                        <img src="@Url.Content("~/content/images/sponsors/mainlogo/logo_telerik.gif")" width="300" height="250" alt="Telerik" /></a>
+					<a href="http://www.geminiplatform.com/" target="_blank">
+                        <img src="@Url.Content("~/content/images/sponsors/mainlogo/gemini-perfect-300x250.png")" width="300" height="250" alt="Gemini Platform" /></a>
+					
+					<a href="http://www.devexpress.com/go/60FC_GiveCampUK2011.aspx" target="_blank">
+                        <img src="@Url.Content("~/content/images/sponsors/mainlogo/logo_devexpress.gif")" width="300" height="250" alt="DevExpress" /></a>*@
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#rotator').jshowoff({
+            links: false,
+            controls: false,
+            effect: 'none',
+            cssClass: 'basicFeatures',
+            hoverPause: false
+        });
+    });
+</script>
