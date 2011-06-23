@@ -34,7 +34,6 @@ namespace GiveCampLondon.Website.Controllers
             ContactUsViewModel model;
             try
             {
-                //do something here to mail the details
                 ViewBag.RequestSent = true;
                 model = new ContactUsViewModel();
             }
