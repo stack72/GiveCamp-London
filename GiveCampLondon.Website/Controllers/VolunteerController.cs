@@ -35,6 +35,7 @@ namespace GiveCampLondon.Website.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.WaitListEnabled = SetWaitListStatus();
             return View();
         }
 
@@ -76,7 +77,7 @@ namespace GiveCampLondon.Website.Controllers
             if (ModelState.IsValid)
             {
                 var volunteer = CreateVolunteer(model, selectedJobRoleIds, selectedTechnologyIds);
-                SetWaitListStatus(volunteer);
+                volunteer.IsOnWaitList = SetWaitListStatus();
                 _volunteerRepository.Save(volunteer);
                 _notificationService.SendNotification(model.Email,
                                                       volunteer.IsOnWaitList
@@ -89,12 +90,14 @@ namespace GiveCampLondon.Website.Controllers
             return false;
         }
 
-        private void SetWaitListStatus(Volunteer volunteer)
+        private bool SetWaitListStatus()
         {
             if (Convert.ToBoolean(_configManager.GetAppSettingsValue("WaitlistEnabled")))
             {
-                volunteer.IsOnWaitList = true;
+                return true;
             }
+
+            return false;
         }
 
         private Volunteer CreateVolunteer(SignUpViewModel model, IEnumerable<int> selectedJobRoleIds, IEnumerable<int> selectedTechnologyIds)
