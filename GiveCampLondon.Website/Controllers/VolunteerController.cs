@@ -36,7 +36,6 @@ namespace GiveCampLondon.Website.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.WaitListEnabled = _waitListHelper.SetWaitListStatus();
             return View();
         }
 

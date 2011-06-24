@@ -11,9 +11,11 @@ namespace GiveCampLondon.Website.Controllers
     public class ContentController : Controller
     {
         private readonly ISponsorRepository _sponsorRepository;
-        public ContentController(ISponsorRepository sponsorsRepository)
+        private readonly IWaitListHelper _waitListHelper;
+        public ContentController(ISponsorRepository sponsorsRepository, IWaitListHelper waitListHelper)
         {
             _sponsorRepository = sponsorsRepository;
+            _waitListHelper = waitListHelper;
         }
 
         //
@@ -30,6 +32,13 @@ namespace GiveCampLondon.Website.Controllers
             
             sponsors.Shuffle();
             return PartialView(sponsors);
+        }
+
+        [ChildActionOnly]
+        public ActionResult EventFullBanner()
+        {
+            ViewBag.IsEventFull = _waitListHelper.SetWaitListStatus();
+            return PartialView();
         }
 
         private IList<Sponsor> GetSponsorsFromCache()
