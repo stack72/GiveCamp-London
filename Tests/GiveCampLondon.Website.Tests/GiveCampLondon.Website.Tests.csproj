@@ -87,7 +87,6 @@
     <Compile Include="Controllers\ErrorController.Tests.cs" />
     <Compile Include="Controllers\FaqController.Tests.cs" />
     <Compile Include="Controllers\HomeController.Tests.cs" />
-    <Compile Include="Controllers\SiteMapController.Tests.cs" />
     <Compile Include="Controllers\SponsorsController.Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

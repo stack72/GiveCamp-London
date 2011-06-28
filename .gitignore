@@ -13,3 +13,4 @@ TestResults/*
 *.dbmdl
 *.config
 *.log
+*.hg*

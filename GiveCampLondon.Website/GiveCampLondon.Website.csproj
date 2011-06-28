@@ -107,7 +107,6 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\NonTechVolunteerController.cs" />
-    <Compile Include="Controllers\SiteMapController.cs" />
     <Compile Include="Controllers\SponsorsController.cs" />
     <Compile Include="Helpers\ConfigManager.cs" />
     <Compile Include="Helpers\IConfigManager.cs" />
@@ -240,7 +239,6 @@
     <Content Include="Views\FAQ\FAQ-Charities.cshtml" />
     <Content Include="Views\Shared\_TwitterPanel.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Views\SiteMap\Index.cshtml" />
     <Content Include="Views\Sponsors\Index.cshtml" />
     <Content Include="Views\NonTechVolunteer\ThankYou.cshtml" />
     <Content Include="Views\NonTechVolunteer\SignUp.cshtml" />

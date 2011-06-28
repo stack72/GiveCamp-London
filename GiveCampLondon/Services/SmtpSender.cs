@@ -19,7 +19,7 @@ namespace GiveCampLondon.Services
 			{
 				client.Send(message);
 			}
-			catch (Exception ex)
+			catch
 			{
 				//log exception!
 				return false;
