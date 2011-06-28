@@ -11,7 +11,6 @@ namespace GiveCampLondon.Website.Tests.Controllers
         [TestCase("developers", "FAQ-Developers")]
         [TestCase("eventstaff", "FAQ-EventStaff")]
         [TestCase("sponsors", "FAQ-Sponsors")]
-        [TestCase("", "")]
         public void FAQAction_Passing_Id_Returns_Specific_View(string id, string expectedView)
         {
             //Act
@@ -22,6 +21,7 @@ namespace GiveCampLondon.Website.Tests.Controllers
             result.AssertViewRendered().Equals(expectedView);
         }
 
+        [Test]
         public void FAQAction_Passing_CompletelyRandomId_Redirects()
         {
             //Act
