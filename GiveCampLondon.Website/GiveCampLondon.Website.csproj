@@ -128,6 +128,7 @@
     <Compile Include="Models\ContentModels.cs" />
     <Compile Include="Models\Charity\SignUpViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\SponsorsViewModel.cs" />
     <Compile Include="Models\ViewModelConverters.cs" />
     <Compile Include="Models\Volunteer\NonTechieVolunteerSummaryModel.cs" />
     <Compile Include="Models\Volunteer\NonTechVolunteerViewModel.cs" />
@@ -210,6 +211,7 @@
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\jquery-1.4.4.js" />
     <Content Include="Scripts\jquery-1.4.4.min.js" />
@@ -255,6 +257,7 @@
     <Content Include="Views\Admin\NonTechieDetails.cshtml" />
     <Content Include="Views\Content\RotatorContent.cshtml" />
     <Content Include="Views\Content\EventFullBanner.cshtml" />
+    <Content Include="Views\Sponsors\_contributorPanel.cshtml" />
     <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.xml" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.xml" />

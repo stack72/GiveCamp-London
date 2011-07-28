@@ -1,6 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Collections.Generic;
+using System.Web.Mvc;
 using GiveCampLondon.Repositories;
 using GiveCampLondon.Website.Helpers;
+using GiveCampLondon.Website.Models;
 
 namespace GiveCampLondon.Website.Controllers
 {
@@ -13,18 +16,29 @@ namespace GiveCampLondon.Website.Controllers
             _sponsorRepository = sponsorRepository;
         }
 
-        //
-        // GET: /Sponsors/
-
         public ActionResult Index()
         {
             var sponsors = _sponsorRepository.FindAll();
-            sponsors.Shuffle();
+            
+            var viewModel = BuildSponsorsViewModel(sponsors);
+            viewModel.Contributors.Shuffle();
+            viewModel.Sponsors.Shuffle();
 
-            return View(sponsors);
+            return View(viewModel);
         }
 
-        
-
+        private SponsorsViewModel BuildSponsorsViewModel(IList<Sponsor> sponsors)
+        {
+            var viewModel = new SponsorsViewModel
+                                {
+                                    Sponsors = (from sponsorList in sponsors
+                                                where sponsorList.IsContributor
+                                                select sponsorList).ToList(),
+                                    Contributors = (from sponsorList in sponsors
+                                                    where sponsorList.IsContributor == false
+                                                    select sponsorList).ToList()
+                                };
+            return viewModel;
+        }
     }
 }
