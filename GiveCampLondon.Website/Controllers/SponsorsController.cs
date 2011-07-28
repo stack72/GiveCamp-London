@@ -32,10 +32,10 @@ namespace GiveCampLondon.Website.Controllers
             var viewModel = new SponsorsViewModel
                                 {
                                     Sponsors = (from sponsorList in sponsors
-                                                where sponsorList.IsContributor
+                                                where sponsorList.IsContributor == false
                                                 select sponsorList).ToList(),
                                     Contributors = (from sponsorList in sponsors
-                                                    where sponsorList.IsContributor == false
+                                                    where sponsorList.IsContributor == true
                                                     select sponsorList).ToList()
                                 };
             return viewModel;
