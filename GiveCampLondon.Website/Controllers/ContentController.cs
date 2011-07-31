@@ -26,7 +26,9 @@ namespace GiveCampLondon.Website.Controllers
             var sponsors = GetSponsorsFromCache();
             if (sponsors == null)
             {
-                sponsors = _sponsorRepository.FindAll();
+                sponsors = (from s in _sponsorRepository.FindAll()
+                            where s.IsContributor == false
+                            select s).ToList();
                 HttpRuntime.Cache.Insert("LeftHandPanelSponsors", sponsors);
             }
             
