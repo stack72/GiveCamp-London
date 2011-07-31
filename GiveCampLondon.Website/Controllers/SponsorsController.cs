@@ -35,7 +35,7 @@ namespace GiveCampLondon.Website.Controllers
                                                 where sponsorList.IsContributor == false
                                                 select sponsorList).ToList(),
                                     Contributors = (from sponsorList in sponsors
-                                                    where sponsorList.IsContributor == true
+                                                    where sponsorList.IsContributor
                                                     select sponsorList).ToList()
                                 };
             return viewModel;

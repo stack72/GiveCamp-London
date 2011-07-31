@@ -582,6 +582,10 @@ ul#content-list span {
 .sponsor-logo {
   float: left;
   width: 160px;
+  padding-right: 50px;
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 .sponsor-text {
   float: left;

@@ -1,7 +1,10 @@
-﻿@model Sponsor
+﻿@model List<Sponsor>
 <div class="sponsor clearfix">
-    <div class="sponsor-logo">
-        @{var smallLogo = @Url.Content("~/content/images/sponsors/smalllogo/" + @Model.SmallLogo);}
-        <img width="160" src="@smallLogo" alt="@Model.Blurb" />
-    </div>
+    @foreach (var sponsor in Model)
+    {
+        <div class="sponsor-logo">
+            @{var smallLogo = @Url.Content("~/content/images/sponsors/smalllogo/" + @sponsor.SmallLogo);}
+            <img width="160" src="@smallLogo" alt="@sponsor.Blurb" />
+        </div>
+    }
 </div>
