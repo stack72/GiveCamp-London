@@ -57,6 +57,14 @@
         http://@Html.TextBoxFor(m => m.Link, new { required = "required" })
     </div>
     
+    <div class="editor-label">
+        <label for="Link">@Html.LabelFor(m => m.IsContributor)</label>
+        <span>* Required</span>
+    </div>	
+    <div class="editor-field">
+        @Html.CheckBoxFor(m => m.IsContributor, new { required = "required" })
+    </div>
+    
     <input type="submit" value="Save Sponsor" />
 }
     <br />

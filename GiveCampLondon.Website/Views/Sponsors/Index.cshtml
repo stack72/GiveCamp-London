@@ -9,7 +9,4 @@
     possible.</p>
 <br />
 @Html.Partial("_sponsorPanel", Model.Sponsors)
-@*@foreach (var contributor in Model.Contributors)
-{
-    @Html.Partial("_contributorPanel", contributor)
-}*@ 
+@Html.Partial("_contributorPanel", Model.Contributors)

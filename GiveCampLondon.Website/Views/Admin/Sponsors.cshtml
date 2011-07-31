@@ -16,11 +16,13 @@
         <tr>
             <th class="name" style="font-weight: bold">Sponsor Name</th>
             <th class="name" style="font-weight: bold">Sponsor Blurb</th>
+            <th class="name" style="font-weight: bold">Is Contributor</th>
         </tr>
         @foreach (var sponsor in Model)
         {<tr>
             <td>@sponsor.Name</td>
             <td>@sponsor.Blurb</td>
+            <td>@sponsor.IsContributor</td>
         </tr>
         }
     </table>

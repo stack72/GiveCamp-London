@@ -599,6 +599,14 @@ ul#content-list span {
   display: block;
   line-height: 100%;
 }
+.contributor-logo {
+  float: left;
+  width: 90px;
+  padding-right: 50px;
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 /* FORMS
 ------------------------------------------ */.article form #submit {
   background: url("../content/images/btn_submit.jpg") no-repeat;
