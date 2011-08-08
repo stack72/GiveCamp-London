@@ -241,7 +241,7 @@ namespace GiveCampLondon.Website.Controllers
 
         public FileContentResult DownloadEmailList()
         {
-            var users = _volunteerRepository.FindAll().Select(x => x.Email);
+            var users = _volunteerRepository.FindAll().Select(x => x.Email).Distinct();
 
             var sb = new StringBuilder();
             foreach (var user in users)
