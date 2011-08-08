@@ -239,6 +239,20 @@ namespace GiveCampLondon.Website.Controllers
                 return View(sponsor);
         }
 
+        public FileContentResult DownloadEmailList()
+        {
+            var users = _volunteerRepository.FindAll().Select(x => x.Email);
+
+            var sb = new StringBuilder();
+            foreach (var user in users)
+            {
+                sb.AppendFormat(user + "\n");
+            }
+
+
+            return File(new UTF8Encoding().GetBytes(sb.ToString()), "text/csv", "UserMailAddress.csv");
+        }
+
         private string FormatLogoName(HttpPostedFileBase logo, string sponsorName, string logoType)
         {
             var name = sponsorName.Replace(" ", "_");
