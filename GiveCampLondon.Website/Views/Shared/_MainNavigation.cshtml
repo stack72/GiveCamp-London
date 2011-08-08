@@ -1,0 +1,17 @@
+﻿<div id="main-navigation-wrapper">
+    <div id="main-navigation" class="clearfix">
+        <dl>
+            <dd><a href="@Url.Action("index", "home")">Home</a></dd>
+            <dd><a href="@Url.Action("index", "volunteer")">Volunteer</a></dd>
+            <dd><a href="@Url.Action("index", "charity")">Charity</a></dd>
+            <dd><a href="@Url.Action("index", "sponsors")">Sponsors</a></dd>
+            <dd><a href="/faq">FAQ</a></dd>
+            <dd><a href="@Url.Action("schedule", "home")">Schedule</a></dd>
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+            {
+                <dd><a href="@Url.Action("ControlPanel", "admin")">Admin Control Panel</a></dd>
+                <dd><a href="@Url.Action("LogOff", "account")">Logout</a></dd>
+            }
+        </dl>
+    </div>
+</div>

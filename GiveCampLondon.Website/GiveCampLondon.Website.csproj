@@ -258,6 +258,7 @@
     <Content Include="Views\Content\RotatorContent.cshtml" />
     <Content Include="Views\Content\EventFullBanner.cshtml" />
     <Content Include="Views\Sponsors\_contributorPanel.cshtml" />
+    <Content Include="Views\Shared\_GoogleAnalytics.cshtml" />
     <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.xml" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.xml" />
