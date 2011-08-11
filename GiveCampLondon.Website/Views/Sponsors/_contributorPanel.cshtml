@@ -3,8 +3,8 @@
 @foreach (var sponsor in Model)
 {
     <div class="contributor-logo">
-        @{var smallLogo = @Url.Content("~/content/images/sponsors/smalllogo/" + @Model.SmallLogo);}
-        <img width="90" src="@smallLogo" alt="@Model.Name" />
+        @{var smallLogo = @Url.Content("~/content/images/sponsors/smalllogo/" + @sponsor.SmallLogo);}
+        <img width="90" src="@smallLogo" alt="@sponsor.Name" />
     </div>
 }
 </div>
