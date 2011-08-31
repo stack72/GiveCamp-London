@@ -10,6 +10,13 @@
     <br />
     <fieldset>
         <div class="editor-label" style="font-weight: bold; font-size: larger;">
+            @Html.LabelFor(model => model.Id)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Id)
+        </div>
+        <br />
+        <div class="editor-label" style="font-weight: bold; font-size: larger;">
             @Html.LabelFor(model => model.FirstName)
         </div>
         <div class="editor-field">
@@ -72,7 +79,7 @@
             @if (Model.ExperienceLevel != null)
             {
                 @:@Model.ExperienceLevel.Description
-                                }
+                                            }
         </div>
         <br />
         <div class="editor-label" style="font-weight: bold; font-size: larger;">
@@ -94,7 +101,7 @@
         </div>
         <div class="editor-field">
             @{var twitterHandle = Model.TwitterHandle;}
-          <a href="http://twitter.com/@twitterHandle">@twitterHandle</a>
+            <a href="http://twitter.com/@twitterHandle">@twitterHandle</a>
         </div>
         <br />
         <div class="editor-label" style="font-weight: bold; font-size: larger;">
