@@ -82,6 +82,7 @@ namespace GiveCampLondon
         public int? TeamId { get; set; }
 
         public bool IsOnWaitList { get; set; }
+        public bool HasCancelled { get; set; }
     }
 
     public class ShirtSizeValues

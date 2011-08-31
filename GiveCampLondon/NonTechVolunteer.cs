@@ -57,5 +57,6 @@ namespace GiveCampLondon
         public string SessionDetails { get; set; }
 
         public bool IsOnWaitList{ get; set; }
+        public bool HasCancelled { get; set; }
     }
 }
