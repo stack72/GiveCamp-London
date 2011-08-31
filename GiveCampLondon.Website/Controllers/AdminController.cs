@@ -261,7 +261,6 @@ namespace GiveCampLondon.Website.Controllers
 
         private string FormatLogoName(HttpPostedFileBase logo, string sponsorName, string logoType)
         {
-            var name = sponsorName.Replace(" ", "_");
             return string.Format("{0}_{1}{2}", logoType, sponsorName, Path.GetExtension(logo.FileName));
         }
 
