@@ -89,7 +89,7 @@ namespace GiveCampLondon
     {
         static ShirtSizeValues()
         {
-            ShirtSizes = new List<string>()
+            ShirtSizes = new List<string>
                              {
                                  None,
                                  S,
@@ -114,8 +114,8 @@ namespace GiveCampLondon
     {
         static ShirtStyleValues()
         {
-            ShirtStyles = new List<string>()
-                             {
+            ShirtStyles = new List<string>
+                              {
                                  None,
                                  Mens,
                                  Womens
