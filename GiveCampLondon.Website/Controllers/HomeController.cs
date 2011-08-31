@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Web.Mvc;
+using GiveCampLondon.Services;
 using GiveCampLondon.Website.Models;
 
 namespace GiveCampLondon.Website.Controllers
 {
     public class HomeController : Controller
     {
+        private INotificationService _notificationService;
+        public HomeController(INotificationService notificationService)
+        {
+            _notificationService = notificationService;
+        }
         public ActionResult Index()
         {
             return View();
@@ -31,18 +37,20 @@ namespace GiveCampLondon.Website.Controllers
         [ActionName("Contact-Us")]
         public ActionResult ContactUs(ContactUsViewModel vm)
         {
-            ContactUsViewModel model;
-            try
+            if (ModelState.IsValid)
             {
-                ViewBag.RequestSent = true;
-                model = new ContactUsViewModel();
+                try
+                {
+                    _notificationService.SendContactUsMail(vm.Enquiry, vm.EmailAddress);
+                    ViewBag.RequestSent = true;
+                }
+                catch (Exception)
+                {
+                    ViewBag.RequestSent = false;
+                    return View(vm);
+                }
             }
-            catch (Exception)
-            {
-                model = vm;
-            }
-
-            return View(model);
+            return View(vm);
         }
     }
 }

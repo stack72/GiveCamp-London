@@ -4,22 +4,21 @@ using GiveCampLondon.Repositories;
 
 namespace GiveCampLondon.Services
 {
-	public class NotificationService : INotificationService
-	{
-		private readonly IContentRepository _contentRepository;
-		private readonly ISmtpSender _sender;
-		private readonly MailConfiguration _mailConfiguration;
+    public class NotificationService : INotificationService
+    {
+        private readonly IContentRepository _contentRepository;
+        private readonly ISmtpSender _sender;
+        private readonly MailConfiguration _mailConfiguration;
 
-	    public NotificationService(IContentRepository contentRepository, ISmtpSender sender, MailConfiguration mailConfiguration)
-		{
-			_contentRepository = contentRepository;
-			_sender = sender;
-			_mailConfiguration = mailConfiguration;
-		}
-
+        public NotificationService(IContentRepository contentRepository, ISmtpSender sender, MailConfiguration mailConfiguration)
+        {
+            _contentRepository = contentRepository;
+            _sender = sender;
+            _mailConfiguration = mailConfiguration;
+        }
 
         public bool SendNotification(string email, VolunteerNotificationTemplate volunteerNotificationType)
-		{
+        {
             var message = new MailMessage(_mailConfiguration.SiteEmailAddress, email)
             {
                 Subject = GetTemplate(volunteerNotificationType.ToString().ToLower() + "-subject"),
@@ -28,18 +27,29 @@ namespace GiveCampLondon.Services
             };
 
             return _sender.Send(message);
-		}
+        }
 
-	    private string GetTemplate(string templateSlug)
-		{
-			var template = new StringTemplate(_contentRepository.Get(templateSlug, "email-template").ContentText);
-			return template.ToString();
-		}
-	}
+        public bool SendContactUsMail(string email, string userEmail)
+        {
+            var message = new MailMessage(_mailConfiguration.SiteEmailAddress, userEmail)
+                              {
+                                  Subject = "Site Feedback",
+                                  Body = email,
+                                  IsBodyHtml = false
+                              };
+            return _sender.Send(message);
+        }
 
-	public enum VolunteerNotificationTemplate
-	{
-		WelcomeVolunteer,
-	    WelcomeWaitingVolunteer
-	}
+        private string GetTemplate(string templateSlug)
+        {
+            var template = new StringTemplate(_contentRepository.Get(templateSlug, "email-template").ContentText);
+            return template.ToString();
+        }
+    }
+
+    public enum VolunteerNotificationTemplate
+    {
+        WelcomeVolunteer,
+        WelcomeWaitingVolunteer
+    }
 }
