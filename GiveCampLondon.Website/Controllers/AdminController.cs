@@ -242,11 +242,17 @@ namespace GiveCampLondon.Website.Controllers
         public FileContentResult DownloadEmailList()
         {
             var users = _volunteerRepository.FindAll().Select(x => x.Email).Distinct();
+            var notTechies = _nonTechieVolunteerRepository.FindAll().Select(x => x.Email).Distinct();
 
             var sb = new StringBuilder();
             foreach (var user in users)
             {
-                sb.AppendFormat(user + "\n");
+                sb.AppendFormat(user + ",");
+            }
+
+            foreach (var notTechy in notTechies)
+            {
+                sb.AppendFormat(notTechy + ",");
             }
 
 

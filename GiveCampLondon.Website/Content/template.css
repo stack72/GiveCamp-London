@@ -237,7 +237,7 @@ a:hover, a:visited:hover {
 /* EVENT FULL BANNER
 ------------------------------------------ */
 
-#event-full-banner { width: 340px; height: 72px; position: absolute; top: 16px; left: 300px; padding: 22px 15px 0 100px; background: url(../content/images/event_full_banner.jpg) no-repeat; font-weight: bold; color: white; }
+#event-full-banner { width: 340px; height: 74px; position: absolute; top: 16px; left: 300px; padding: 22px 15px 0 100px; background: url(../content/images/event_full_banner.jpg) no-repeat; font-weight: bold; color: white; }
 
 #event-full-banner span {
   text-shadow: #262626 2px 2px 2px;
