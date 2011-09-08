@@ -185,7 +185,7 @@ namespace GiveCampLondon.Website.Controllers
         [HttpPost]
         public ActionResult TechieCancellation(int Id)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {
@@ -279,8 +279,8 @@ namespace GiveCampLondon.Website.Controllers
 
         public FileContentResult DownloadEmailList()
         {
-            var users = _volunteerRepository.FindAll().Select(x => x.Email).Distinct();
-            var notTechies = _nonTechieVolunteerRepository.FindAll().Select(x => x.Email).Distinct();
+            var users = _volunteerRepository.FindAll().Where(x => x.HasCancelled == false).Select(x => x.Email).Distinct();
+            var notTechies = _nonTechieVolunteerRepository.FindAll().Where(x => x.HasCancelled == false).Select(x => x.Email).Distinct();
 
             var sb = new StringBuilder();
             foreach (var user in users)
