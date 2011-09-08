@@ -46,6 +46,8 @@ namespace GiveCampLondon
                 .HasColumnName("VolunteerId");
             modelBuilder.Entity<Volunteer>().Property(v => v.MembershipId)
                 .HasColumnName("MembershipId");
+            modelBuilder.Entity<Volunteer>().Property(v => v.HasCancelled)
+                .HasColumnName("HasCancelled");
             modelBuilder.Entity<Volunteer>().HasKey(v => v.Id);
             modelBuilder.Entity<Volunteer>().ToTable("dbo.Volunteer");
             modelBuilder.Entity<Volunteer>().Ignore(v => v.JobRoles);
@@ -87,6 +89,8 @@ namespace GiveCampLondon
             modelBuilder.Entity<NonTechVolunteer>().HasKey(v => v.Id);
             modelBuilder.Entity<NonTechVolunteer>().Property(v => v.Id)
                 .HasColumnName("VolunteerId");
+            modelBuilder.Entity<NonTechVolunteer>().Property(v => v.HasCancelled)
+                .HasColumnName("HasCancelled");
             modelBuilder.Entity<NonTechVolunteer>().Ignore(v => v.AreasOfExpertise);
             modelBuilder.Entity<NonTechVolunteer>().ToTable("dbo.NonTechVolunteer");
 

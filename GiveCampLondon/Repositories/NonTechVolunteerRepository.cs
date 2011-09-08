@@ -80,5 +80,11 @@ namespace GiveCampLondon.Repositories
             return _dataContext.NonTechVolunteers.FirstOrDefault(c => c.MembershipId == membershipId);
         }
 
+        public void CancelRegistration(int VolunteerId)
+        {
+            var volunteer = _dataContext.NonTechVolunteers.Where(x => x.Id == VolunteerId).FirstOrDefault();
+            volunteer.HasCancelled = true;
+            _dataContext.SaveChanges();
+        }
     }
 }

@@ -11,5 +11,6 @@ namespace GiveCampLondon.Repositories
         NonTechVolunteer Get(Guid membershipId);
         IList<NonTechVolunteer> FindAll();
         IList<NonTechVolunteer> FindVolunteersForExpertiseRole(int expertiseId);
+        void CancelRegistration(int VolunteerId);
     }
 }

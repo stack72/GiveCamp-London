@@ -3,130 +3,131 @@
     ViewBag.Title = "TechieDetails";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<br />
-<h1>Technical Volunteer Details</h1>
-<br />
 @using (Html.BeginForm("TechieCancellation", "Admin", FormMethod.Post, null))
 {
-<div style="padding-left: 10px; padding-right: 10px;">
     <br />
-    <fieldset>
-        <div class="editor-label" style="font-weight: bold; font-size: larger;">
-            @Html.LabelFor(model => model.Id)
-        </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.Id)
-        </div>
+    <h1>Technical Volunteer Details</h1>
+    <br />
+    <div style="padding-left: 10px; padding-right: 10px;">
         <br />
-        <div class="editor-label" style="font-weight: bold; font-size: larger;">
-            @Html.LabelFor(model => model.FirstName)
-        </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.FirstName)
-        </div>
-        <br />
-        <div class="editor-label" style="font-weight: bold; font-size: larger;">
-            @Html.LabelFor(model => model.LastName)
-        </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.LastName)
-        </div>
-        <br />
-        <div class="editor-label" style="font-weight: bold; font-size: larger;">
-            @Html.LabelFor(model => model.Email)
-        </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.Email)
-        </div>
-        <br />
-        <div class="editor-label" style="font-weight: bold; font-size: larger;">
-            @Html.LabelFor(model => model.PhoneNumber)
-        </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </div>
-        <br />
-        <div class="editor-label" style="font-weight: bold; font-size: larger;">
-            @Html.LabelFor(model => model.ShirtSize)
-        </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.ShirtSize)
-        </div>
-        <br />
-        <div class="editor-label" style="font-weight: bold; font-size: larger;">
-            @Html.LabelFor(model => model.ShirtStyle)
-        </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.ShirtStyle)
-        </div>
-        <br />
-        <div class="editor-label" style="font-weight: bold; font-size: larger;">
-            @Html.LabelFor(model => model.IsStudent)
-        </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.IsStudent)
-        </div>
-        <br />
-        <div class="editor-label" style="font-weight: bold; font-size: larger;">
-            @Html.LabelFor(model => model.JobDescription)
-        </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.JobDescription)
-        </div>
-        <br />
-        <div class="editor-label" style="font-weight: bold; font-size: larger;">
-            @Html.LabelFor(model => model.ExperienceLevel)
-        </div>
-        <div class="editor-field">
-            @if (Model.ExperienceLevel != null)
+        <fieldset>
+            <div class="editor-label" style="font-weight: bold; font-size: larger;">
+                @Html.LabelFor(model => model.Id)
+            </div>
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.Id)
+            </div>
+            <br />
+            <div class="editor-label" style="font-weight: bold; font-size: larger;">
+                @Html.LabelFor(model => model.FirstName)
+            </div>
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.FirstName)
+            </div>
+            <br />
+            <div class="editor-label" style="font-weight: bold; font-size: larger;">
+                @Html.LabelFor(model => model.LastName)
+            </div>
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.LastName)
+            </div>
+            <br />
+            <div class="editor-label" style="font-weight: bold; font-size: larger;">
+                @Html.LabelFor(model => model.Email)
+            </div>
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.Email)
+            </div>
+            <br />
+            <div class="editor-label" style="font-weight: bold; font-size: larger;">
+                @Html.LabelFor(model => model.PhoneNumber)
+            </div>
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </div>
+            <br />
+            <div class="editor-label" style="font-weight: bold; font-size: larger;">
+                @Html.LabelFor(model => model.ShirtSize)
+            </div>
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.ShirtSize)
+            </div>
+            <br />
+            <div class="editor-label" style="font-weight: bold; font-size: larger;">
+                @Html.LabelFor(model => model.ShirtStyle)
+            </div>
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.ShirtStyle)
+            </div>
+            <br />
+            <div class="editor-label" style="font-weight: bold; font-size: larger;">
+                @Html.LabelFor(model => model.IsStudent)
+            </div>
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.IsStudent)
+            </div>
+            <br />
+            <div class="editor-label" style="font-weight: bold; font-size: larger;">
+                @Html.LabelFor(model => model.JobDescription)
+            </div>
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.JobDescription)
+            </div>
+            <br />
+            <div class="editor-label" style="font-weight: bold; font-size: larger;">
+                @Html.LabelFor(model => model.ExperienceLevel)
+            </div>
+            <div class="editor-field">
+                @if (Model.ExperienceLevel != null)
+                {
+                    @:@Model.ExperienceLevel.Description
+                                                                                                            }
+            </div>
+            <br />
+            <div class="editor-label" style="font-weight: bold; font-size: larger;">
+                @Html.LabelFor(model => model.YearsOfExperience)
+            </div>
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.YearsOfExperience)
+            </div>
+            <br />
+            <div class="editor-label" style="font-weight: bold; font-size: larger;">
+                @Html.LabelFor(model => model.DietaryNeeds)
+            </div>
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.DietaryNeeds)
+            </div>
+            <br />
+            <div class="editor-label" style="font-weight: bold; font-size: larger;">
+                @Html.LabelFor(model => model.TwitterHandle)
+            </div>
+            <div class="editor-field">
+                @{var twitterHandle = Model.TwitterHandle;}
+                <a href="http://twitter.com/@twitterHandle">@twitterHandle</a>
+            </div>
+            <br />
+            <div class="editor-label" style="font-weight: bold; font-size: larger;">
+                @Html.LabelFor(model => model.Bio)
+            </div>
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.Bio)
+            </div>
+            <br />
+            <div class="editor-label" style="font-weight: bold; font-size: larger;">
+                @Html.LabelFor(model => model.HasCancelled)
+            </div>
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.HasCancelled)
+            </div>
+            @if (!Model.HasCancelled)
             {
-                @:@Model.ExperienceLevel.Description
-                                            }
-        </div>
+                <input type="hidden" name="Id" value="@Model.Id"/>
+                <input type="submit" value="Cancel Registration" />
+            }
+        </fieldset>
         <br />
-        <div class="editor-label" style="font-weight: bold; font-size: larger;">
-            @Html.LabelFor(model => model.YearsOfExperience)
-        </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.YearsOfExperience)
-        </div>
         <br />
-        <div class="editor-label" style="font-weight: bold; font-size: larger;">
-            @Html.LabelFor(model => model.DietaryNeeds)
-        </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.DietaryNeeds)
-        </div>
+        @Html.ActionLink("Return To Techie Listings", "Techies")
         <br />
-        <div class="editor-label" style="font-weight: bold; font-size: larger;">
-            @Html.LabelFor(model => model.TwitterHandle)
-        </div>
-        <div class="editor-field">
-            @{var twitterHandle = Model.TwitterHandle;}
-            <a href="http://twitter.com/@twitterHandle">@twitterHandle</a>
-        </div>
-        <br />
-        <div class="editor-label" style="font-weight: bold; font-size: larger;">
-            @Html.LabelFor(model => model.Bio)
-        </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.Bio)
-        </div>
-        <br />
-        <div class="editor-label" style="font-weight: bold; font-size: larger;">
-            @Html.LabelFor(model => model.HasCancelled)
-        </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.HasCancelled)
-        </div>
-
-        <input type="submit" value="Cancel Registration" />
-
-    </fieldset>
-    }
-
-    <br />
-    <br />
-    @Html.ActionLink("Return To Techie Listings", "Techies")
-    <br />
-</div>
+    </div>
+}

@@ -183,22 +183,41 @@ namespace GiveCampLondon.Website.Controllers
         }
 
         [HttpPost]
-        public ActionResult TechieCancellation(Volunteer viewModel)
+        public ActionResult TechieCancellation(int Id)
         {
             if(ModelState.IsValid)
             {
                 try
                 {
-                    _volunteerRepository.CancelRegistration(viewModel);
+                    _volunteerRepository.CancelRegistration(Id);
                     return RedirectToAction("Techies");
                 }
                 catch (Exception ex)
                 {
                     ModelState.AddModelError("Error trying to deregister user", ex);
-                    return View(viewModel);
+                    return View("Techies");
                 }
             }
-            return View(viewModel);
+            return View("Techies");
+        }
+
+        [HttpPost]
+        public ActionResult NonTechieCancellation(int Id)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _nonTechieVolunteerRepository.CancelRegistration(Id);
+                    return RedirectToAction("NonTechies");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("Error trying to deregister user", ex);
+                    return View("NonTechies");
+                }
+            }
+            return View("NonTechies");
         }
 
         public ActionResult Charities()

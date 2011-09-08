@@ -15,7 +15,7 @@ namespace GiveCampLondon.Repositories
         IList<Volunteer> FindAll();
         IList<Volunteer> FindVolunteersForJobRole(int jobRoleId);
         void RemoveAllVolunteersFromJobRole(int jobRoleId);
-        void CancelRegistration(Volunteer volunteer);
+        void CancelRegistration(int VolunteerId);
 
     }
 }
