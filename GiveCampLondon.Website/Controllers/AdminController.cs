@@ -136,6 +136,7 @@ namespace GiveCampLondon.Website.Controllers
         public ActionResult Techies()
         {
             IEnumerable<VolunteerSummaryModel> volunteerSummaries = _volunteerRepository.FindAll()
+                .Where(x => x.HasCancelled == false)
                 .Select(volunteer => new VolunteerSummaryModel
                 {
                     Id = volunteer.Id,
@@ -152,6 +153,7 @@ namespace GiveCampLondon.Website.Controllers
         public ActionResult NonTechies()
         {
             IEnumerable<NonTechieVolunteerSummaryModel> nonTechieVolunteers = _nonTechieVolunteerRepository.FindAll()
+                .Where(x => x.HasCancelled == false)
                 .Select(volunteer => new NonTechieVolunteerSummaryModel
                 {
                     Id = volunteer.Id,
