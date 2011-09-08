@@ -6,6 +6,8 @@
 <br />
 <h1>Technical Volunteer Details</h1>
 <br />
+@using (Html.BeginForm("TechieCancellation", "Admin", FormMethod.Post, null))
+{
 <div style="padding-left: 10px; padding-right: 10px;">
     <br />
     <fieldset>
@@ -117,7 +119,12 @@
         <div class="editor-field">
             @Html.DisplayFor(model => model.HasCancelled)
         </div>
+
+        <input type="submit" value="Cancel Registration" />
+
     </fieldset>
+    }
+
     <br />
     <br />
     @Html.ActionLink("Return To Techie Listings", "Techies")

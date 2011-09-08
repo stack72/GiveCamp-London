@@ -19,7 +19,7 @@ namespace GiveCampLondon.Website.Controllers
     {
         public AdminController(IContentRepository contentRepository, IJobRoleRepository jobRoleRepository,
             IVolunteerRepository volunteerRepository, INonTechVolunteerRepository nonTechieVolunteerRepository,
-            IExperienceLevelRepository xpLevelRepository, IRolesService rolesService, IMembershipService membershipService, 
+            IExperienceLevelRepository xpLevelRepository, IRolesService rolesService, IMembershipService membershipService,
             ICharityRepository charityRepository, ISponsorRepository sponsorRepository)
         {
             _jobRoleRepository = jobRoleRepository;
@@ -180,6 +180,25 @@ namespace GiveCampLondon.Website.Controllers
             nonTechie.AreasOfExpertise = _nonTechieVolunteerRepository.FindExpertiseFor(nonTechie.Id);
 
             return View(nonTechie);
+        }
+
+        [HttpPost]
+        public ActionResult TechieCancellation(Volunteer viewModel)
+        {
+            if(ModelState.IsValid)
+            {
+                try
+                {
+                    _volunteerRepository.CancelRegistration(viewModel);
+                    return RedirectToAction("Techies");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("Error trying to deregister user", ex);
+                    return View(viewModel);
+                }
+            }
+            return View(viewModel);
         }
 
         public ActionResult Charities()

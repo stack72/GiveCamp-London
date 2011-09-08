@@ -89,6 +89,14 @@ namespace GiveCampLondon.Repositories
             _dataContext.SaveChanges();
         }
 
+        public void CancelRegistration(Volunteer volunteer)
+        {
+            if (volunteer.Id > 0)
+            {
+                _dataContext.SaveChanges();
+            }
+        }
+
         public IList<Volunteer> FindVolunteersForJobRole(int jobRoleId)
         {
             var volunteers= (from jr in _dataContext.JobRoles
