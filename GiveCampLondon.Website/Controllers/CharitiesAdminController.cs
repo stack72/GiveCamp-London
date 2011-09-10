@@ -9,6 +9,7 @@ using MvcMembership;
 
 namespace GiveCampLondon.Website.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class CharitiesAdminController : Controller
     {
         private readonly IRolesService _rolesService;

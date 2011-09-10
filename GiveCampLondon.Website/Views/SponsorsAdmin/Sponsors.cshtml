@@ -8,7 +8,7 @@
 <br />
 <br />
 <div style="padding-left: 10px; padding-right: 10px;">
-    @Html.ActionLink("Add Sponsor", "AddSponsor", "admin")
+    @Html.ActionLink("Add Sponsor", "AddSponsor", "SponsorsAdmin")
     <br />
     <p><b>Total Sponsors Signed Up:</b> @Model.ToList().Count</p>
     <br />
@@ -28,6 +28,6 @@
     </table>
     <br />
     <br />
-    @Html.ActionLink("Return To Control Panel", "ControlPanel")
+    @Html.ActionLink("Return To Control Panel", "ControlPanel", "Admin")
     <br />
 </div>

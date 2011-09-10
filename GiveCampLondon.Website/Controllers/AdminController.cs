@@ -19,14 +19,13 @@ namespace GiveCampLondon.Website.Controllers
     {
         public AdminController(IContentRepository contentRepository, IJobRoleRepository jobRoleRepository,
             IVolunteerRepository volunteerRepository, INonTechVolunteerRepository nonTechieVolunteerRepository,
-            IExperienceLevelRepository xpLevelRepository, ISponsorRepository sponsorRepository)
+            IExperienceLevelRepository xpLevelRepository)
         {
             _jobRoleRepository = jobRoleRepository;
             _volunteerRepository = volunteerRepository;
             _nonTechieVolunteerRepository = nonTechieVolunteerRepository;
             _contentRepository = contentRepository;
             _xpLevelRepository = xpLevelRepository;
-            _sponsorRepository = sponsorRepository;
             _slugs = _contentRepository.GetSlugs();
             _slugSelectList = PopulateSlugDropdown();
         }
@@ -39,7 +38,6 @@ namespace GiveCampLondon.Website.Controllers
         private readonly INonTechVolunteerRepository _nonTechieVolunteerRepository;
         private readonly IJobRoleRepository _jobRoleRepository;
 
-        private readonly ISponsorRepository _sponsorRepository;
 
         public ActionResult ControlPanel()
         {
@@ -206,39 +204,7 @@ namespace GiveCampLondon.Website.Controllers
             return View("NonTechies");
         }
 
-        public ActionResult Sponsors()
-        {
-            IEnumerable<Sponsor> sponsors = _sponsorRepository.FindAll();
-            return View(sponsors);
-        }
-
-        public ActionResult AddSponsor()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddSponsor(Sponsor sponsor, HttpPostedFileBase mainLogo, HttpPostedFileBase smallLogo)
-        {
-            if (ModelState.IsValid)
-            {
-                TrySaveImages(mainLogo, smallLogo, sponsor.Name);
-                var sponsorToSave = new Sponsor
-                                        {
-                                            Blurb = sponsor.Blurb,
-                                            Link = "http://" + sponsor.Link,
-                                            Name = sponsor.Name,
-                                            MainLogo = FormatLogoName(mainLogo, sponsor.Name, "mainlogo"),
-                                            SmallLogo = FormatLogoName(smallLogo, sponsor.Name, "smalllogo")
-                                        };
-                _sponsorRepository.Save(sponsorToSave);
-
-                return RedirectToAction("Sponsors", "admin");
-            }
-            else
-                return View(sponsor);
-        }
-
+        
         public FileContentResult DownloadEmailList()
         {
             var users = _volunteerRepository.FindAll().Where(x => x.HasCancelled == false).Select(x => x.Email).Distinct();
@@ -258,29 +224,7 @@ namespace GiveCampLondon.Website.Controllers
             return File(new UTF8Encoding().GetBytes(sb.ToString()), "text/csv", "UserMailAddress.csv");
         }
 
-        private string FormatLogoName(HttpPostedFileBase logo, string sponsorName, string logoType)
-        {
-            return string.Format("{0}_{1}{2}", logoType, sponsorName, Path.GetExtension(logo.FileName));
-        }
-
-        private void TrySaveImages(HttpPostedFileBase mainLogo, HttpPostedFileBase smallLogo, string sponsorName)
-        {
-            SaveLogo(mainLogo, "mainlogo", sponsorName);
-            SaveLogo(smallLogo, "smalllogo", sponsorName);
-        }
-
-        private void SaveLogo(HttpPostedFileBase logo, string logoType, string sponsorName)
-        {
-            if (logo != null && logo.ContentLength > 0)
-            {
-                var logoRepoPath = string.Format("~/Content/images/sponsors/{0}", logoType);
-
-                var fileName = FormatLogoName(logo, sponsorName, logoType);
-                var path = Path.Combine(Server.MapPath(logoRepoPath), fileName);
-                logo.SaveAs(path);
-            }
-        }
-
+        
         private static List<SelectListItem> PopulateSlugDropdown()
         {
             var selectList = new List<SelectListItem>();

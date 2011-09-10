@@ -107,6 +107,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\NonTechVolunteerController.cs" />
+    <Compile Include="Controllers\SponsorsAdminController.cs" />
     <Compile Include="Controllers\SponsorsController.cs" />
     <Compile Include="Helpers\ConfigManager.cs" />
     <Compile Include="Helpers\IConfigManager.cs" />
@@ -254,8 +255,8 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Sponsors\_sponsorPanel.cshtml" />
-    <Content Include="Views\Admin\AddSponsor.cshtml" />
-    <Content Include="Views\Admin\Sponsors.cshtml" />
+    <Content Include="Views\SponsorsAdmin\AddSponsor.cshtml" />
+    <Content Include="Views\SponsorsAdmin\Sponsors.cshtml" />
     <Content Include="Views\Admin\NonTechieDetails.cshtml" />
     <Content Include="Views\Content\RotatorContent.cshtml" />
     <Content Include="Views\Content\EventFullBanner.cshtml" />
