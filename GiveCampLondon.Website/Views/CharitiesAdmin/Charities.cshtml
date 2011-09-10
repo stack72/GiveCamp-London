@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GiveCampLondon.Website.Models.Charity.CharitySummaryModel>
+﻿@model IEnumerable<CharitySummaryModel>
 @{
     ViewBag.Title = "Charities";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -33,6 +33,6 @@
     </table>
     <br />
     <br />
-    @Html.ActionLink("Return To Admin Home", "ControlPanel")
+    @Html.ActionLink("Return To Admin Home", "ControlPanel", "Admin")
     <br />
 </div>

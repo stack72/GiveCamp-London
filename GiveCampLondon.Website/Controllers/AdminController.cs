@@ -19,17 +19,13 @@ namespace GiveCampLondon.Website.Controllers
     {
         public AdminController(IContentRepository contentRepository, IJobRoleRepository jobRoleRepository,
             IVolunteerRepository volunteerRepository, INonTechVolunteerRepository nonTechieVolunteerRepository,
-            IExperienceLevelRepository xpLevelRepository, IRolesService rolesService, IMembershipService membershipService,
-            ICharityRepository charityRepository, ISponsorRepository sponsorRepository)
+            IExperienceLevelRepository xpLevelRepository, ISponsorRepository sponsorRepository)
         {
             _jobRoleRepository = jobRoleRepository;
             _volunteerRepository = volunteerRepository;
             _nonTechieVolunteerRepository = nonTechieVolunteerRepository;
             _contentRepository = contentRepository;
             _xpLevelRepository = xpLevelRepository;
-            _rolesService = rolesService;
-            _membershipService = membershipService;
-            _charityRepository = charityRepository;
             _sponsorRepository = sponsorRepository;
             _slugs = _contentRepository.GetSlugs();
             _slugSelectList = PopulateSlugDropdown();
@@ -42,9 +38,7 @@ namespace GiveCampLondon.Website.Controllers
         private readonly IVolunteerRepository _volunteerRepository;
         private readonly INonTechVolunteerRepository _nonTechieVolunteerRepository;
         private readonly IJobRoleRepository _jobRoleRepository;
-        private readonly IRolesService _rolesService;
-        private readonly IMembershipService _membershipService;
-        private readonly ICharityRepository _charityRepository;
+
         private readonly ISponsorRepository _sponsorRepository;
 
         public ActionResult ControlPanel()
@@ -95,7 +89,6 @@ namespace GiveCampLondon.Website.Controllers
 
             return Content(tagList.ToString());
         }
-
 
         public ActionResult JobRoles()
         {
@@ -213,30 +206,6 @@ namespace GiveCampLondon.Website.Controllers
             return View("NonTechies");
         }
 
-        public ActionResult Charities()
-        {
-            IEnumerable<CharitySummaryModel> charitySummeries = GetCharitySummeries();
-            return View(charitySummeries);
-        }
-
-        public ActionResult Approve(int id)
-        {
-            Charity charity = ApproveCharity(id, true);
-            return View("CharityDetails", charity);
-        }
-
-        public ActionResult Disapprove(int id)
-        {
-            Charity charity = ApproveCharity(id, false);
-            return View("CharityDetails", charity);
-        }
-
-        public ActionResult CharityDetails(int id)
-        {
-            Charity charity = _charityRepository.Get(id);
-            return View(charity);
-        }
-
         public ActionResult Sponsors()
         {
             IEnumerable<Sponsor> sponsors = _sponsorRepository.FindAll();
@@ -312,28 +281,12 @@ namespace GiveCampLondon.Website.Controllers
             }
         }
 
-        private Charity ApproveCharity(int id, bool approve)
-        {
-            Charity charity = _charityRepository.Get(id);
-            charity.Approved = approve;
-            _charityRepository.Save(charity);
-            return charity;
-        }
-
         private static List<SelectListItem> PopulateSlugDropdown()
         {
             var selectList = new List<SelectListItem>();
             _slugs.ForEach(s => selectList.Add(new SelectListItem { Text = s, Value = s }));
 
             return selectList;
-        }
-
-        private IEnumerable<CharitySummaryModel> GetCharitySummeries()
-        {
-            return _rolesService.FindUserNamesByRole("Charity")
-                .Select(username => _membershipService.GetUserByName(username))
-                .Select(membership => _charityRepository.Get((Guid)membership.ProviderUserKey))
-                .Select(charity => new CharitySummaryModel { Email = charity.Email, Name = charity.CharityName, Id = charity.Id, Approved = charity.Approved });
         }
 
         private static TechieSummary BuildTechiesViewModel(IList<Volunteer> volunteers)

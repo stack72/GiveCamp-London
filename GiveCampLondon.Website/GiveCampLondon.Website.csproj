@@ -102,6 +102,7 @@
     <Compile Include="Configuration\WebRegistry.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CharitiesAdminController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
@@ -319,10 +320,10 @@
     <Content Include="Views\Volunteer\ThankYou.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\Charities.cshtml" />
+    <Content Include="Views\CharitiesAdmin\Charities.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\CharityDetails.cshtml" />
+    <Content Include="Views\CharitiesAdmin\CharityDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\File.cshtml" />
