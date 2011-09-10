@@ -135,21 +135,12 @@ namespace GiveCampLondon.Website.Controllers
 
         public ActionResult Techies()
         {
-            IEnumerable<VolunteerSummaryModel> volunteerSummaries = _volunteerRepository.FindAll()
-                .Where(x => x.HasCancelled == false)
-                .Select(volunteer => new VolunteerSummaryModel
-                {
-                    Id = volunteer.Id,
-                    LastName = volunteer.LastName,
-                    FirstName = volunteer.FirstName,
-                    Email = volunteer.Email,
-                    PhoneNumber = volunteer.PhoneNumber,
-                    TeamName = volunteer.TeamName,
-                    TwitterHandle = volunteer.TwitterHandle
-                });
-            return View(volunteerSummaries);
-        }
+            var volunteers = _volunteerRepository.FindAll();
+            var techies = BuildTechiesViewModel(volunteers);
 
+            return View(techies);
+        }
+        
         public ActionResult NonTechies()
         {
             IEnumerable<NonTechieVolunteerSummaryModel> nonTechieVolunteers = _nonTechieVolunteerRepository.FindAll()
@@ -295,7 +286,6 @@ namespace GiveCampLondon.Website.Controllers
                 sb.AppendFormat(notTechy + ",");
             }
 
-
             return File(new UTF8Encoding().GetBytes(sb.ToString()), "text/csv", "UserMailAddress.csv");
         }
 
@@ -344,6 +334,31 @@ namespace GiveCampLondon.Website.Controllers
                 .Select(username => _membershipService.GetUserByName(username))
                 .Select(membership => _charityRepository.Get((Guid)membership.ProviderUserKey))
                 .Select(charity => new CharitySummaryModel { Email = charity.Email, Name = charity.CharityName, Id = charity.Id, Approved = charity.Approved });
+        }
+
+        private static TechieSummary BuildTechiesViewModel(IList<Volunteer> volunteers)
+        {
+            var techies = new TechieSummary
+            {
+                Volunteers = from volunteer in volunteers
+                                 .Where(x => x.HasCancelled == false)
+                             select new VolunteerSummaryModel
+                             {
+                                 Email = volunteer.Email,
+                                 FirstName = volunteer.FirstName,
+                                 Id = volunteer.Id,
+                                 LastName = volunteer.LastName,
+                                 PhoneNumber = volunteer.PhoneNumber,
+                                 TeamName = volunteer.TeamName,
+                                 TwitterHandle = volunteer.TwitterHandle
+                             },
+                TotalSignups = volunteers.Count,
+                RegisteredTechies = (from count in volunteers
+                                         .Where(x => x.IsOnWaitList == false)
+                                     select count).Count()
+            };
+            techies.OnWaitListVolunteers = techies.TotalSignups - techies.RegisteredTechies;
+            return techies;
         }
     }
 }

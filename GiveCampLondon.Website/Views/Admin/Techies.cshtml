@@ -1,4 +1,5 @@
-﻿@model IEnumerable<GiveCampLondon.Website.Models.Volunteer.VolunteerSummaryModel>
+﻿@using GiveCampLondon.Website.Models.Volunteer
+@model TechieSummary
 @{
     ViewBag.Title = "Techies";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -7,7 +8,9 @@
 <h1>Technical Volunteers Signed Up</h1>
 <br />
 <div style="padding-left: 10px; padding-right: 10px;">
-<p><b>Total Techies Signed Up:</b> @Model.ToList().Count</p>
+<p><b>Total Techies Signed Up:</b> @Model.TotalSignups</p>
+<p><b>Total Non-wait list:    </b> @Model.RegisteredTechies</p>
+<p><b>Total Wait list:        </b> @Model.OnWaitListVolunteers</p>
 <br />
     <table width="100%" border="1" cellpadding="1" cellspacing="1">
         <tr>
@@ -17,7 +20,7 @@
             <th class="email" style="width: 30%; font-weight: bold">Email</th>
             <th class="twitter" style="width: 25%; font-weight: bold">Twitter Handle</th>
         </tr>
-        @foreach (var summary in Model)
+        @foreach (var summary in Model.Volunteers)
         {
             <tr>
                 <td>@Html.ActionLink("Details", "TechieDetails", new {id=summary.Id})</td>
