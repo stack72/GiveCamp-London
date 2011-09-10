@@ -353,11 +353,12 @@ namespace GiveCampLondon.Website.Controllers
                                  TwitterHandle = volunteer.TwitterHandle
                              },
                 TotalSignups = volunteers.Count,
-                RegisteredTechies = (from count in volunteers
-                                         .Where(x => x.IsOnWaitList == false)
+                OnWaitListVolunteers = (from count in volunteers
+                                         .Where(x => x.IsOnWaitList)
+                                         .Where(x => x.HasCancelled == false)
                                      select count).Count()
             };
-            techies.OnWaitListVolunteers = techies.TotalSignups - techies.RegisteredTechies;
+            techies.RegisteredTechies = techies.TotalSignups - techies.OnWaitListVolunteers;
             return techies;
         }
     }
