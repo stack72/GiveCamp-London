@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
 using GiveCampLondon.Repositories;
-using GiveCampLondon.Services;
 using GiveCampLondon.Website.Models;
-using GiveCampLondon.Website.Models.Charity;
 using GiveCampLondon.Website.Models.Volunteer;
-using MvcMembership;
 
 namespace GiveCampLondon.Website.Controllers
 {
@@ -37,7 +32,6 @@ namespace GiveCampLondon.Website.Controllers
         private readonly IVolunteerRepository _volunteerRepository;
         private readonly INonTechVolunteerRepository _nonTechieVolunteerRepository;
         private readonly IJobRoleRepository _jobRoleRepository;
-
 
         public ActionResult ControlPanel()
         {
@@ -204,7 +198,6 @@ namespace GiveCampLondon.Website.Controllers
             return View("NonTechies");
         }
 
-        
         public FileContentResult DownloadEmailList()
         {
             var users = _volunteerRepository.FindAll().Where(x => x.HasCancelled == false).Select(x => x.Email).Distinct();
@@ -223,7 +216,6 @@ namespace GiveCampLondon.Website.Controllers
 
             return File(new UTF8Encoding().GetBytes(sb.ToString()), "text/csv", "UserMailAddress.csv");
         }
-
         
         private static List<SelectListItem> PopulateSlugDropdown()
         {
