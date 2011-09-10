@@ -106,9 +106,11 @@
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
+    <Compile Include="Controllers\MailingsAdminController.cs" />
     <Compile Include="Controllers\NonTechVolunteerController.cs" />
     <Compile Include="Controllers\SponsorsAdminController.cs" />
     <Compile Include="Controllers\SponsorsController.cs" />
+    <Compile Include="Controllers\VolunteerAdminController.cs" />
     <Compile Include="Helpers\ConfigManager.cs" />
     <Compile Include="Helpers\IConfigManager.cs" />
     <Compile Include="Helpers\IWaitListHelper.cs" />
@@ -247,8 +249,8 @@
     <Content Include="Views\NonTechVolunteer\ThankYou.cshtml" />
     <Content Include="Views\NonTechVolunteer\SignUp.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
-    <Content Include="Views\Admin\Techies.cshtml" />
-    <Content Include="Views\Admin\TechieDetails.cshtml" />
+    <Content Include="Views\VolunteerAdmin\Techies.cshtml" />
+    <Content Include="Views\VolunteerAdmin\TechieDetails.cshtml" />
     <Content Include="Views\Admin\NonTechies.cshtml" />
     <Content Include="packages.config" />
     <Content Include="Web.Sandbox.config">

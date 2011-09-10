@@ -13,23 +13,18 @@ namespace GiveCampLondon.Website.Controllers
     public class AdminController : Controller
     {
         public AdminController(IContentRepository contentRepository, IJobRoleRepository jobRoleRepository,
-            IVolunteerRepository volunteerRepository, INonTechVolunteerRepository nonTechieVolunteerRepository,
-            IExperienceLevelRepository xpLevelRepository)
+         INonTechVolunteerRepository nonTechieVolunteerRepository)
         {
             _jobRoleRepository = jobRoleRepository;
-            _volunteerRepository = volunteerRepository;
             _nonTechieVolunteerRepository = nonTechieVolunteerRepository;
             _contentRepository = contentRepository;
-            _xpLevelRepository = xpLevelRepository;
             _slugs = _contentRepository.GetSlugs();
             _slugSelectList = PopulateSlugDropdown();
         }
 
-        private readonly IExperienceLevelRepository _xpLevelRepository;
         private readonly IContentRepository _contentRepository;
         private static List<string> _slugs;
         private static List<SelectListItem> _slugSelectList;
-        private readonly IVolunteerRepository _volunteerRepository;
         private readonly INonTechVolunteerRepository _nonTechieVolunteerRepository;
         private readonly IJobRoleRepository _jobRoleRepository;
 
@@ -82,30 +77,6 @@ namespace GiveCampLondon.Website.Controllers
             return Content(tagList.ToString());
         }
 
-        public ActionResult JobRoles()
-        {
-            return View(_jobRoleRepository.FindAll());
-        }
-
-        public ActionResult JobRole(int id)
-        {
-            return View(_volunteerRepository.FindVolunteersForJobRole(id));
-        }
-
-        public ActionResult AddRole(string name)
-        {
-            _jobRoleRepository.Save(new JobRole { Description = name, DisplayOrder = 0 });
-            return RedirectToAction("JobRoles");
-        }
-
-        public ActionResult DeleteRole(int id)
-        {
-            var role = _jobRoleRepository.Get(id);
-            _volunteerRepository.RemoveAllVolunteersFromJobRole(id);
-            _jobRoleRepository.Delete(role);
-            return RedirectToAction("JobRoles");
-        }
-
         public JsonResult GetContent(string slug, string tag)
         {
             Content content = null;
@@ -118,13 +89,6 @@ namespace GiveCampLondon.Website.Controllers
             return Json(content, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Techies()
-        {
-            var volunteers = _volunteerRepository.FindAll();
-            var techies = BuildTechiesViewModel(volunteers);
-
-            return View(techies);
-        }
         
         public ActionResult NonTechies()
         {
@@ -142,15 +106,6 @@ namespace GiveCampLondon.Website.Controllers
             return View(nonTechieVolunteers);
         }
 
-        public ActionResult TechieDetails(int id)
-        {
-            var volunteer = _volunteerRepository.Get(id);
-
-            volunteer.JobRoles = _volunteerRepository.FindJobRolesFor(volunteer.Id);
-            volunteer.Technologies = _volunteerRepository.FindTechnologiesFor(volunteer.Id);
-            volunteer.ExperienceLevel = _xpLevelRepository.GetForVolunteerId(volunteer.Id);
-            return View(volunteer);
-        }
 
         public ActionResult NonTechieDetails(int id)
         {
@@ -158,25 +113,6 @@ namespace GiveCampLondon.Website.Controllers
             nonTechie.AreasOfExpertise = _nonTechieVolunteerRepository.FindExpertiseFor(nonTechie.Id);
 
             return View(nonTechie);
-        }
-
-        [HttpPost]
-        public ActionResult TechieCancellation(int Id)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _volunteerRepository.CancelRegistration(Id);
-                    return RedirectToAction("Techies");
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError("Error trying to deregister user", ex);
-                    return View("Techies");
-                }
-            }
-            return View("Techies");
         }
 
         [HttpPost]
@@ -198,25 +134,6 @@ namespace GiveCampLondon.Website.Controllers
             return View("NonTechies");
         }
 
-        public FileContentResult DownloadEmailList()
-        {
-            var users = _volunteerRepository.FindAll().Where(x => x.HasCancelled == false).Select(x => x.Email).Distinct();
-            var notTechies = _nonTechieVolunteerRepository.FindAll().Where(x => x.HasCancelled == false).Select(x => x.Email).Distinct();
-
-            var sb = new StringBuilder();
-            foreach (var user in users)
-            {
-                sb.AppendFormat(user + ",");
-            }
-
-            foreach (var notTechy in notTechies)
-            {
-                sb.AppendFormat(notTechy + ",");
-            }
-
-            return File(new UTF8Encoding().GetBytes(sb.ToString()), "text/csv", "UserMailAddress.csv");
-        }
-        
         private static List<SelectListItem> PopulateSlugDropdown()
         {
             var selectList = new List<SelectListItem>();
@@ -224,31 +141,5 @@ namespace GiveCampLondon.Website.Controllers
 
             return selectList;
         }
-
-        private static TechieSummary BuildTechiesViewModel(IList<Volunteer> volunteers)
-        {
-            var techies = new TechieSummary
-            {
-                Volunteers = from volunteer in volunteers
-                                 .Where(x => x.HasCancelled == false)
-                             select new VolunteerSummaryModel
-                             {
-                                 Email = volunteer.Email,
-                                 FirstName = volunteer.FirstName,
-                                 Id = volunteer.Id,
-                                 LastName = volunteer.LastName,
-                                 PhoneNumber = volunteer.PhoneNumber,
-                                 TeamName = volunteer.TeamName,
-                                 TwitterHandle = volunteer.TwitterHandle
-                             },
-                TotalSignups = volunteers.Count,
-                OnWaitListVolunteers = (from count in volunteers
-                                         .Where(x => x.IsOnWaitList)
-                                         .Where(x => x.HasCancelled == false)
-                                     select count).Count()
-            };
-            techies.RegisteredTechies = techies.TotalSignups - techies.OnWaitListVolunteers;
-            return techies;
-        }
-    }
+}
 }
