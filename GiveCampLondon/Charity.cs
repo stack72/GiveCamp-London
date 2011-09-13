@@ -45,6 +45,6 @@ namespace GiveCampLondon
         public bool Approved { get; set; }
 
         public string About { get; set; }
-        public string LogoPath { get; set; }
+        public string LogoName { get; set; }
     }
 }

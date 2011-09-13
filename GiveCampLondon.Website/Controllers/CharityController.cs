@@ -65,7 +65,7 @@ namespace GiveCampLondon.Website.Controllers
                                                                      {
                                                                          About = charity.About,
                                                                          CharityName = charity.CharityName,
-                                                                         LogoPath = charity.LogoPath,
+                                                                         LogoName = charity.LogoName,
                                                                          WebSiteUrl = charity.Website
                                                                      }).ToList();
             supportedCharities.Shuffle();
