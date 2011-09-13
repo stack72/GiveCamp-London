@@ -1,0 +1,20 @@
+﻿@model Charity
+@{
+    ViewBag.Title = "AddCharity";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h1>Add New charity</h1>
+<br />
+<br />
+<div style="padding-left: 10px; padding-right: 10px;">
+    @using (Html.BeginForm("AddSponsor", "SponsorsAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.EditorForModel()
+        <input type="submit" value="Save Sponsor" />
+    }
+    <br />
+    <br />
+    @Html.ActionLink("Return To Charities", "Charities")
+    <br />
+</div>

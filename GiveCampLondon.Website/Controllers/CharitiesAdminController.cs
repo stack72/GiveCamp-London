@@ -48,6 +48,22 @@ namespace GiveCampLondon.Website.Controllers
             return View(charity);
         }
 
+        public ActionResult AddCharity()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddCharity(Charity charity)
+        {
+            if (ModelState.IsValid)
+            {
+                _charityRepository.Save(charity);
+                RedirectToAction("Charities");
+            }
+
+            return View(charity);
+        }
 
         private Charity ApproveCharity(int id, bool approve)
         {
