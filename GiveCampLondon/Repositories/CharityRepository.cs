@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GiveCampLondon.Repositories
@@ -34,6 +35,11 @@ namespace GiveCampLondon.Repositories
         {
             _dataContext.Charities.Remove(charity);
             _dataContext.SaveChanges();
+        }
+
+        public IList<Charity> GetSupportedCharities()
+        {
+            return _dataContext.Charities.Where(x => x.Approved).ToList();
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using GiveCampLondon.Repositories;
 using GiveCampLondon.Services;
+using GiveCampLondon.Website.Helpers;
 using GiveCampLondon.Website.Models;
 using GiveCampLondon.Website.Models.Charity;
 
@@ -53,6 +55,22 @@ namespace GiveCampLondon.Website.Controllers
         public ActionResult ThankYou()
         {
             return View();
+        }
+    
+        public ActionResult SupportedCharities()
+        {
+            var charities = _charityRepository.GetSupportedCharities();
+
+            var supportedCharities = charities.Select(charity => new SupportedCharityDetails
+                                                                     {
+                                                                         About = charity.About,
+                                                                         CharityName = charity.CharityName,
+                                                                         LogoPath = charity.LogoPath,
+                                                                         WebSiteUrl = charity.Website
+                                                                     }).ToList();
+            supportedCharities.Shuffle();
+
+            return PartialView("_SupportedCharitiesPanel", supportedCharities);
         }
     }
 }

@@ -6,6 +6,7 @@ namespace GiveCampLondon
 {
     public class Charity
     {
+        
 
         [ScaffoldColumn(false)]
         public int Id { get; set; }
@@ -42,5 +43,8 @@ namespace GiveCampLondon
 
         [ScaffoldColumn(false)]
         public bool Approved { get; set; }
+
+        public string About { get; set; }
+        public string LogoPath { get; set; }
     }
 }

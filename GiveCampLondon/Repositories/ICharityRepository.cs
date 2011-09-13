@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace GiveCampLondon.Repositories
 {
@@ -8,5 +9,6 @@ namespace GiveCampLondon.Repositories
         Charity Get(int id);
         Charity Get(Guid membershipId);
         void Delete(Charity updatedCharity);
+        IList<Charity> GetSupportedCharities();
     }
 }
