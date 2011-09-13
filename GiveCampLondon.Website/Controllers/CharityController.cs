@@ -67,7 +67,7 @@ namespace GiveCampLondon.Website.Controllers
                                                                          CharityName = charity.CharityName,
                                                                          LogoName = charity.LogoName,
                                                                          WebSiteUrl = charity.Website
-                                                                     }).ToList();
+                                                                     }).Distinct().ToList();
             supportedCharities.Shuffle();
 
             return PartialView("_SupportedCharitiesPanel", supportedCharities);
