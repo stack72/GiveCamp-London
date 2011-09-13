@@ -107,6 +107,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\MailingsAdminController.cs" />
+    <Compile Include="Controllers\NonTechieAdminController.cs" />
     <Compile Include="Controllers\NonTechVolunteerController.cs" />
     <Compile Include="Controllers\SponsorsAdminController.cs" />
     <Compile Include="Controllers\SponsorsController.cs" />
@@ -251,7 +252,7 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\VolunteerAdmin\Techies.cshtml" />
     <Content Include="Views\VolunteerAdmin\TechieDetails.cshtml" />
-    <Content Include="Views\Admin\NonTechies.cshtml" />
+    <Content Include="Views\NonTechieAdmin\NonTechies.cshtml" />
     <Content Include="packages.config" />
     <Content Include="Web.Sandbox.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -259,7 +260,7 @@
     <Content Include="Views\Sponsors\_sponsorPanel.cshtml" />
     <Content Include="Views\SponsorsAdmin\AddSponsor.cshtml" />
     <Content Include="Views\SponsorsAdmin\Sponsors.cshtml" />
-    <Content Include="Views\Admin\NonTechieDetails.cshtml" />
+    <Content Include="Views\NonTechieAdmin\NonTechieDetails.cshtml" />
     <Content Include="Views\Content\RotatorContent.cshtml" />
     <Content Include="Views\Content\EventFullBanner.cshtml" />
     <Content Include="Views\Sponsors\_contributorPanel.cshtml" />
