@@ -1,0 +1,40 @@
+<Project DefaultTargets="default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+	</PropertyGroup>
+	<ItemGroup>
+		 <HgFolder Include="C:\Projects\GiveCampLondon\.hg\**\*"/>
+		 <GitFolder Include="C:\Projects\GiveCampLondon\.git\**\*" />
+		 <ProjFilePath Include="C:\Projects\GiveCampLondon\GiveCampLondon.Website\" />
+		 <BuildOutputFolder Include="C:\Builds\GiveCampLondon" />
+	</ItemGroup>
+	
+	<Target Name="default" DependsOnTargets="BuildDirectoryPreparation;Build" />
+	
+	<Target Name="BuildDirectoryPreparation">
+		<Message Text="Preparation of Build Directory" />
+		<ItemGroup>
+			<DelFiles Include="$(BuildOutputFolder)\**\*"></DelFiles>
+		</ItemGroup>
+		<Delete Files="@(DelFiles)" />
+		<Message Text="Build Directory Now Prepared" />	
+	</Target>
+	
+	<Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\Web\Microsoft.Web.Publishing.targets" />
+	<Target Name="Build" DependsOnTargets="BuildPackage;CopyOutput" />
+	<Target Name="BuildPackage">
+		<Message Text="QuizFactor Building Now" />
+		<MSBuild Projects="$(ProjFilePath)GiveCampLondon.Website.csproj" Targets="rebuild"
+			 Properties="Configuration=$(Configuration);DeployOnBuild=true;DeployTarget=Package" 
+			 ContinueOnError="false" />
+	</Target>
+	
+	<Target Name="CopyOutput">
+		<Message Text="Moving The Built Site To The Release Folder" />
+		<ItemGroup>
+			<PackagedFiles Include="$(ProjFilePath)obj\$(Configuration)\Package\PackageTmp\**\*.*"/>
+		</ItemGroup>
+		<Copy SourceFiles="@(PackagedFiles)" DestinationFiles="@(PackagedFiles->'$(BuildOutputFolder)\%(RecursiveDir)%(Filename)%(Extension)')"/>
+	</Target>
+
+</Project>

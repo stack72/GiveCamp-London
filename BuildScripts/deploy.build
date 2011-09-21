@@ -1,0 +1,68 @@
+<Project DefaultTargets="default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+		<BaseCheckoutDirectory>C:\Builds\GiveCampLondon\</BaseCheckoutDirectory>
+		<BaseDeploymentDirectory>C:\Websites\GiveCampLondon\</BaseDeploymentDirectory>
+		<BackUpDirectory>C:\WebBackUps\GiveCampLondon\</BackUpDirectory>
+	</PropertyGroup>
+	
+	<Target Name="default" DependsOnTargets="CreateBackup;ReleaseDirectoryCleanUp;Release;RobotsGeneration">
+	</Target>
+	
+	<Target Name="CreateBackup" DependsOnTargets="BackupDirectoryCleanUp">
+		<Message Text="Backup of Release Directory" />
+		<ItemGroup>
+			<PackagedFiles Include="$(BaseDeploymentDirectory)**\*.*" />
+		</ItemGroup>
+		<Copy   SourceFiles="@(PackagedFiles)" 
+				DestinationFiles="@(PackagedFiles->'$(BackUpDirectory)%(RecursiveDir)%(Filename)%(Extension)')"/>
+		<Message Text="Backup Complete" />
+	</Target>
+
+	<Target Name="BackupDirectoryCleanUp">
+		<Message Text="Cleaning up Backup Directory" />
+		<ItemGroup>
+			<BackupFiles Include="$(BackUpDirectory)**\*"></BackupFiles>
+		</ItemGroup>
+		<Delete Files="@(BackupFiles)" TreatErrorsAsWarnings="true" />
+		<Message Text="Backup Directory Now Cleaned" />	
+	</Target>
+
+	<Target Name="ReleaseDirectoryCleanUp">
+		<Message Text="Preparation of Release Directory - including promotion folders" />
+		<ItemGroup>
+			<DelFiles Include="$(BaseDeploymentDirectory)**\*" Exclude="$(BaseDeploymentDirectory)app_offline.htm"></DelFiles>
+		</ItemGroup>
+		<Delete Files="@(DelFiles)" TreatErrorsAsWarnings="true" />
+		<Message Text="Release Directory Now Prepared" />	
+	</Target>
+
+	<Target Name="RobotsGeneration">
+		<Message Text="Finalising the robots.txt file" />
+		<Copy 
+			SourceFiles="$(BaseCheckoutDirectory)\robots.live.txt" 
+			DestinationFiles="$(BaseDeploymentDirectory)robots.txt"></Copy>
+		<Delete Files="$(BaseDeploymentDirectory)robots.notlive.txt"></Delete>
+		<Delete Files="$(BaseDeploymentDirectory)robots.live.txt"></Delete>
+	</Target>
+	
+	<Target Name="Release">
+		<Message Text="Starting Copy Of Files From checkout directory to live - including promotion folders" />
+		<ItemGroup>
+			<PackagedFiles Include="$(BaseCheckoutDirectory)\**\*.*" Exclude="" />
+		</ItemGroup>
+		<Copy   SourceFiles="@(PackagedFiles)" 
+				DestinationFiles="@(PackagedFiles->'$(BaseDeploymentDirectory)%(RecursiveDir)%(Filename)%(Extension)')"/>
+	</Target>
+	
+	<!--<Target Name="BuildScriptCleanUp">
+		<Message Text="Removal of Build Scripts" />
+		<ItemGroup>
+			<BuildScriptFiles Include="$(BaseDeploymentDirectory)BuildScript\*.*"></BuildScriptFiles>
+		</ItemGroup>
+		<Delete Files="@(BuildScriptFiles)" TreatErrorsAsWarnings="true" />
+		<RemoveDir Directories="$(BaseDeploymentDirectory)BuildScript\" />
+		<Message Text="Build scripts Now deleted" />	
+	</Target>-->
+	
+</Project>

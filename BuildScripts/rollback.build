@@ -1,0 +1,43 @@
+<Project DefaultTargets="default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+		<SourceFileRootFolder>..\</SourceFileRootFolder>
+		<ReleaseFolder>C:\TeamCity\ReleaseDirectory\myoffers\</ReleaseFolder>
+	</PropertyGroup>
+	<ItemGroup>
+		<CheckoutDirectory Include="F:\buildagent\releases\myoffers_backup\" />
+		<DeploymentDirectory Include="F:\wwwroot\net\www_myoffers_co_uk\" />
+		<ReleaseFilesToDelete Include="F:\wwwroot\net\www_myoffers_co_uk\**\*"/>
+	</ItemGroup>
+	
+	<Target Name="default" DependsOnTargets="ReleaseDirectoryCleanUp;Release;BuildScriptCleanUp">
+	</Target>
+
+	<Target Name="ReleaseDirectoryCleanUp">
+		<Message Text="Preparation of Release Directory" />
+		<ItemGroup>
+			<DelFiles Include="F:\wwwroot\net\www_myoffers_co_uk\**\*" Exclude="F:\wwwroot\net\www_myoffers_co_uk\app_offline.htm;F:\wwwroot\net\www_myoffers_co_uk\Log\**\*"></DelFiles>
+		</ItemGroup>
+		<Delete Files="@(DelFiles)" TreatErrorsAsWarnings="true" />
+		<Message Text="Release Directory Now Prepared" />	
+	</Target>
+
+	<Target Name="Release">
+		<Message Text="Starting Copy Of Files From checkout directory to live" />
+		<ItemGroup>
+			<PackagedFiles Include="F:\buildagent\releases\myoffers_backup\**\*.*" Exclude="**\BuildScript\**\*" />
+		</ItemGroup>
+		<Copy   SourceFiles="@(PackagedFiles)" 
+				DestinationFiles="@(PackagedFiles->'F:\wwwroot\net\www_myoffers_co_uk\%(RecursiveDir)%(Filename)%(Extension)')"/>
+	</Target>
+	
+	<Target Name="BuildScriptCleanUp">
+		<Message Text="Removal of Build Scripts" />
+		<ItemGroup>
+			<BuildScriptFiles Include="F:\wwwroot\net\www_myoffers_co_uk\BuildScript\*.*"></BuildScriptFiles>
+		</ItemGroup>
+		<Delete Files="@(BuildScriptFiles)" TreatErrorsAsWarnings="true" />
+		<RemoveDir Directories="F:\wwwroot\net\www_myoffers_co_uk\BuildScript\" />
+		<Message Text="Build scripts Now deleted" />	
+	</Target>
+</Project>
