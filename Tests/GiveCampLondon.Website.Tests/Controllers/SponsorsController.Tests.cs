@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using GiveCampLondon.Repositories;
 using GiveCampLondon.Website.Controllers;
+using GiveCampLondon.Website.Models;
 using MvcContrib.TestHelper;
 using NSubstitute;
 using NUnit.Framework;
@@ -26,7 +27,7 @@ namespace GiveCampLondon.Website.Tests.Controllers
         }
 
         [Test]
-        public void IndexAction_Passes_IList_Sponsor_To_View()
+        public void IndexAction_Passes_SponsorsViewModel_To_View()
         {
             //arrange
             var sponsorRepository = Substitute.For<ISponsorRepository>();
@@ -37,7 +38,7 @@ namespace GiveCampLondon.Website.Tests.Controllers
             var result = controller.Index();
 
             //Assert
-            result.AssertViewRendered().WithViewData<IList<Sponsor>>();
+            result.AssertViewRendered().WithViewData<SponsorsViewModel>();
         }
     }
 }

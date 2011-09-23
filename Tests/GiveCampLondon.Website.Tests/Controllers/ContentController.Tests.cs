@@ -36,6 +36,20 @@ namespace GiveCampLondon.Website.Tests.Controllers
         }
     
         [Test]
+        public void EventFullBanner_Action_Sets_WaitList_Property_In_ViewBag()
+        {
+            //Arrange
+            _waitListHelper.SetWaitListStatus().Returns(true);
+
+            //Act
+            var controller = new ContentController(_sponsorRepository, _waitListHelper);
+            var result = controller.EventFullBanner();
+
+            //Assert
+            Assert.IsNotNull(result.AssertPartialViewRendered().ViewBag.IsEventFull);
+        }
+
+        [Test]
         public void RotatorContent_Action_Returns_View()
         {
             //Arrange
@@ -47,6 +61,20 @@ namespace GiveCampLondon.Website.Tests.Controllers
 
             //Assert
             result.AssertPartialViewRendered();
+        }
+    
+        [Test]
+        public void RotatorContent_Action_Returns_IList_Sponsor_To_The_View()
+        {
+            //Arrange
+            _sponsorRepository.FindAll().ReceivedWithAnyArgs().Returns(new List<Sponsor>());
+
+            //Act
+            var controller = new ContentController(_sponsorRepository, _waitListHelper);
+            var result = controller.RotatorContent();
+
+            //Assert
+            result.AssertPartialViewRendered().WithViewData<IList<Sponsor>>();
         }
     }
 }
