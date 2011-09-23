@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.Tests.cs" />
     <Compile Include="Controllers\CharityController.Tests.cs" />
+    <Compile Include="Controllers\NonTechieAdminController.Tests.cs" />
     <Compile Include="Controllers\ContentController.Tests.cs" />
     <Compile Include="Controllers\ErrorController.Tests.cs" />
     <Compile Include="Controllers\FaqController.Tests.cs" />
