@@ -73,13 +73,20 @@ namespace GiveCampLondon.Website.Controllers
                              },
                 TotalSignups = volunteers.Count,
                 TotalCancellations = volunteers.Where(x => x.HasCancelled).Count(),
-                TotalStillRegistered = volunteers.Where(x => x.HasCancelled == false).Count(),
+                TotalStillRegistered = (from count in volunteers
+                                     .Where(x => x.IsOnWaitList == false)
+                                     .Where(x => x.HasCancelled == false)
+                                        select count).Count(),
                 OnWaitListVolunteers = (from count in volunteers
                                          .Where(x => x.IsOnWaitList)
                                          .Where(x => x.HasCancelled == false)
-                                        select count).Count()
+                                        select count).Count(),
+                RegisteredTechies = (from count in volunteers
+                                     .Where(x => x.IsOnWaitList == false)
+                                     .Where(x => x.HasCancelled == false)
+                                     select count).Count()
+
             };
-            techies.RegisteredTechies = techies.TotalSignups - techies.OnWaitListVolunteers;
             return techies;
         }
 
