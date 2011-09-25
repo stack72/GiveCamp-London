@@ -72,6 +72,8 @@ namespace GiveCampLondon.Website.Controllers
                                  TwitterHandle = volunteer.TwitterHandle
                              },
                 TotalSignups = volunteers.Count,
+                TotalCancellations = volunteers.Where(x => x.HasCancelled).Count(),
+                TotalStillRegistered = volunteers.Where(x => x.HasCancelled == false).Count(),
                 OnWaitListVolunteers = (from count in volunteers
                                          .Where(x => x.IsOnWaitList)
                                          .Where(x => x.HasCancelled == false)

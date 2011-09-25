@@ -16,6 +16,8 @@ namespace GiveCampLondon.Website.Models.Volunteer
 
     public class TechieSummary
     {
+        public int TotalCancellations;
+        public int TotalStillRegistered;
         public IEnumerable<VolunteerSummaryModel> Volunteers { get; set; }
 
         public int TotalSignups { get; set; }

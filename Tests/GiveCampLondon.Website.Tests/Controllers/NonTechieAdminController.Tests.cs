@@ -40,5 +40,50 @@ namespace GiveCampLondon.Website.Tests.Controllers
 
             result.AssertViewRendered().WithViewData<IEnumerable<NonTechieVolunteerSummaryModel>>();
         }
+
+        [Test]
+        public void NonTechieDetail_Action_Returns_View()
+        {
+            _nonTechieVolunteerRepository.Get(0).ReceivedWithAnyArgs().Returns(new NonTechVolunteer());
+
+            var controller = new NonTechieAdminController(_nonTechieVolunteerRepository);
+            var result = controller.NonTechieDetails(1);
+
+            result.AssertViewRendered();
+        }
+
+        [Test]
+        public void NonTechieDetail_Action_Returns_NonTechVolunteer_To_The_View()
+        {
+            _nonTechieVolunteerRepository.Get(0).ReceivedWithAnyArgs().Returns(new NonTechVolunteer());
+
+            var controller = new NonTechieAdminController(_nonTechieVolunteerRepository);
+            var result = controller.NonTechieDetails(1);
+
+            result.AssertViewRendered().WithViewData<NonTechVolunteer>();
+        }
+    
+        [Test]
+        public void NonTechieCancellation_Action_Redirects_To_Techies_View_When_Invalid_Model()
+        {
+            var controller = new NonTechieAdminController(_nonTechieVolunteerRepository);
+            controller.ModelState.AddModelError("Error", "Simple Error For test");
+
+            var result = controller.NonTechieCancellation(1);
+
+            Assert.That(result.AssertViewRendered().ViewName == "NonTechies");
+        }
+
+        public void NonTechieCancellation_Action_Redirects_To_Techies_View_When_Cancellation_Fails()
+        {
+            //_nonTechieVolunteerRepository.CancelRegistration(1).
+
+            //var controller = new NonTechieAdminController(_nonTechieVolunteerRepository);
+            //controller.ModelState.AddModelError("Error", "Simple Error For test");
+
+            //var result = controller.NonTechieCancellation(1);
+
+            //Assert.That(result.AssertViewRendered().ViewName == "NonTechies");
+        }
     }
 }
